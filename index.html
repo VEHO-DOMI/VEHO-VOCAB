@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>VEHO VOCAB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<style>
+:root {
+  --bg: #0f0f13;
+  --surface: #1a1a24;
+  --surface2: #232336;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --green: #00b894;
+  --red: #e17055;
+  --orange: #fdcb6e;
+  --text: #f0f0f5;
+  --text2: #a0a0b8;
+  --radius: 16px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background:var(--bg); color:var(--text); min-height:100dvh; }
+
+/* ====== LOGIN SCREEN ====== */
+.login-wrap {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  min-height:100dvh; padding:24px;
+}
+.login-logo { font-size:2.2rem; font-weight:800; margin-bottom:4px; letter-spacing:-1px; }
+.login-logo span { color:var(--accent2); }
+.login-sub { color:var(--text2); font-size:0.85rem; margin-bottom:32px; }
+.login-card {
+  background:var(--surface); border-radius:var(--radius); padding:28px 24px;
+  width:100%; max-width:380px; border:1px solid rgba(108,92,231,0.15);
+}
+.login-card h2 { font-size:1.1rem; margin-bottom:16px; text-align:center; }
+.login-field { margin-bottom:14px; }
+.login-field label { display:block; font-size:0.75rem; color:var(--text2); margin-bottom:5px; text-transform:uppercase; letter-spacing:1px; }
+.login-field input {
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--surface2);
+  background:var(--bg); color:var(--text); font-size:0.95rem; outline:none;
+}
+.login-field input:focus { border-color:var(--accent); }
+.login-btn {
+  width:100%; padding:14px; border-radius:12px; border:none;
+  background:var(--accent); color:white; font-size:1rem; font-weight:600;
+  cursor:pointer; margin-top:8px; transition:opacity 0.15s;
+}
+.login-btn:hover { opacity:0.9; }
+.login-btn:disabled { opacity:0.5; cursor:not-allowed; }
+.login-error { color:var(--red); font-size:0.8rem; text-align:center; margin-top:10px; min-height:1.2em; }
+.login-info { color:var(--text2); font-size:0.72rem; text-align:center; margin-top:16px; line-height:1.5; }
+.login-switch { color:var(--accent2); cursor:pointer; text-decoration:underline; }
+
+/* Sync indicator */
+.sync-dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+.sync-dot.online { background:var(--green); }
+.sync-dot.offline { background:var(--orange); }
+.sync-dot.syncing { background:var(--accent2); animation:pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+/* Nav */
+.nav { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; background:var(--surface); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:100; }
+.nav h1 { font-size:1.15rem; font-weight:700; }
+.nav h1 span { color:var(--accent2); }
+.nav-right { font-size:0.8rem; color:var(--text2); display:flex; align-items:center; gap:8px; }
+.nav-user { font-size:0.72rem; color:var(--accent2); cursor:pointer; padding:3px 8px; border-radius:6px; background:rgba(108,92,231,0.1); }
+
+/* Tabs */
+.tabs { display:flex; gap:4px; padding:10px 16px; background:var(--surface); }
+.tab { padding:7px 16px; border-radius:20px; border:none; background:transparent; color:var(--text2); font-size:0.82rem; font-weight:500; cursor:pointer; }
+.tab.active { background:var(--accent); color:white; }
+
+.container { max-width:540px; margin:0 auto; padding:20px 16px; }
+
+/* Home cards */
+.section-label { font-size:0.68rem; color:var(--text2); text-transform:uppercase; letter-spacing:1.5px; margin:16px 0 8px; }
+.mode-card { background:var(--surface); border-radius:14px; padding:16px; cursor:pointer; border:1px solid transparent; display:flex; align-items:center; gap:14px; margin-bottom:8px; transition:all 0.15s; }
+.mode-card:hover { border-color:var(--accent); }
+.mode-icon { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+.mode-card h3 { font-size:0.92rem; margin-bottom:2px; }
+.mode-card p { font-size:0.75rem; color:var(--text2); }
+
+/* Direction */
+.dir-bar { display:flex; justify-content:center; gap:8px; padding:8px 0; }
+.dir-btn { padding:7px 14px; border-radius:20px; border:1px solid var(--surface2); background:transparent; color:var(--text2); font-size:0.78rem; cursor:pointer; }
+.dir-btn.active { background:var(--accent); color:white; border-color:var(--accent); }
+
+/* List picker */
+.lp-row { background:var(--surface); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; border:1px solid transparent; margin-bottom:6px; transition:all 0.15s; }
+.lp-row:hover { border-color:var(--accent); }
+.lp-num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:7px; background:var(--accent); color:white; font-size:0.75rem; font-weight:700; margin-right:12px; flex-shrink:0; }
+.lp-info { flex:1; }
+.lp-name { font-size:0.88rem; font-weight:500; }
+.lp-meta { font-size:0.72rem; color:var(--text2); margin-top:2px; }
+.lp-badge { padding:4px 10px; border-radius:8px; font-size:0.7rem; font-weight:600; }
+
+/* Flashcard */
+.fc-wrap { perspective:1000px; margin-bottom:20px; }
+.fc { width:100%; min-height:270px; position:relative; transform-style:preserve-3d; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); cursor:pointer; }
+.fc.flipped { transform:rotateY(180deg); }
+.fc-face { position:absolute; width:100%; min-height:270px; backface-visibility:hidden; border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:28px 24px; text-align:center; }
+.fc-front { background:linear-gradient(135deg,var(--surface),var(--surface2)); border:1px solid rgba(108,92,231,0.2); }
+.fc-back { background:linear-gradient(135deg,#1a2436,#1a1a24); border:1px solid rgba(0,184,148,0.2); transform:rotateY(180deg); }
+.fc-lang { font-size:0.68rem; color:var(--text2); text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; }
+.fc-word { font-size:1.5rem; font-weight:700; line-height:1.3; }
+.fc-ex { font-size:0.82rem; color:var(--text2); font-style:italic; margin-top:12px; max-height:0; overflow:hidden; transition:max-height 0.3s; line-height:1.5; }
+.fc-ex.show { max-height:200px; }
+.fc-hint { margin-top:10px; padding:5px 12px; border-radius:10px; border:1px solid var(--surface2); background:transparent; color:var(--text2); font-size:0.72rem; cursor:pointer; }
+.fc-counter { font-size:0.75rem; color:var(--text2); text-align:center; margin-bottom:10px; }
+.fc-actions { display:flex; gap:10px; justify-content:center; }
+.fc-btn { padding:12px 24px; border-radius:12px; border:none; font-size:0.88rem; font-weight:600; cursor:pointer; }
+.fc-btn:active { transform:scale(0.95); }
+
+/* ====== EXERCISE ====== */
+.ex-progress { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.ex-prog-bar { flex:1; height:4px; background:var(--surface2); border-radius:2px; overflow:hidden; }
+.ex-prog-fill { height:100%; background:var(--accent); border-radius:2px; transition:width 0.3s; }
+.ex-prog-text { font-size:0.75rem; color:var(--text2); white-space:nowrap; }
+
+.q-card { background:#f8f8fa; border-radius:14px; overflow:hidden; box-shadow:0 2px 16px rgba(0,0,0,0.25); margin-bottom:16px; }
+.q-header { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; background:#e0e0e8; border-bottom:2px solid #c0c0cc; }
+.q-header-left { display:flex; align-items:center; gap:8px; }
+.q-task-badge { padding:3px 10px; border-radius:6px; font-size:0.72rem; font-weight:700; background:#1a1a2e; color:white; text-transform:uppercase; letter-spacing:0.5px; }
+.q-task-label { font-size:0.78rem; color:#1a1a2e; font-weight:500; }
+.q-score { font-size:0.82rem; color:#6b6b80; font-weight:600; }
+.q-body { padding:24px 20px; color:#1a1a2e; }
+.q-num { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:#1a1a2e; color:white; font-size:0.72rem; font-weight:700; margin-right:8px; vertical-align:middle; }
+.q-sentence { font-size:1rem; line-height:1.8; margin-bottom:8px; }
+.q-blank { display:inline; border-bottom:2px solid #1a1a2e; padding:0 2px; min-width:80px; font-weight:600; color:#6c5ce7; letter-spacing:0.5px; }
+.q-blank.plain { color:#999; }
+.q-def { font-size:0.88rem; color:#6b6b80; font-style:italic; margin-top:6px; line-height:1.5; }
+.q-list-tag { display:inline-block; padding:2px 8px; border-radius:6px; font-size:0.65rem; color:#6b6b80; background:#e8e8f0; margin-top:12px; }
+.q-input-area { padding:0 20px 20px; display:flex; gap:8px; }
+.q-input { flex:1; padding:12px 14px; border-radius:10px; border:2px solid #d0d0dc; background:white; color:#1a1a2e; font-size:0.95rem; outline:none; transition:border-color 0.2s; }
+.q-input:focus { border-color:#6c5ce7; }
+.q-input.correct { border-color:#00b894; background:#e8faf4; }
+.q-input.close { border-color:#f39c12; background:#fef9e7; }
+.q-input.wrong { border-color:#e17055; background:#fef0ed; }
+.q-submit { padding:12px 20px; border-radius:10px; border:none; background:#6c5ce7; color:white; font-size:0.88rem; font-weight:600; cursor:pointer; white-space:nowrap; }
+.q-submit:active { transform:scale(0.97); }
+.q-feedback { padding:12px 20px; font-size:0.88rem; font-weight:600; display:none; border-top:1px solid #e0e0e8; }
+.q-feedback.correct-fb { display:block; background:#e8faf4; color:#1a8a5e; }
+.q-feedback.close-fb { display:block; background:#fef9e7; color:#b8860b; }
+.q-feedback.wrong-fb { display:block; background:#fef0ed; color:#c0392b; }
+.q-feedback .fb-example { font-weight:400; font-style:italic; font-size:0.82rem; margin-top:4px; color:#6b6b80; }
+
+/* Results */
+.results { text-align:center; padding:40px 20px; }
+.results-score { font-size:3rem; font-weight:800; margin:16px 0; }
+.results-msg { color:var(--text2); margin-bottom:24px; }
+.results-detail { display:flex; justify-content:center; gap:24px; margin-bottom:32px; }
+.results-stat { text-align:center; }
+.results-stat .num { font-size:1.5rem; font-weight:700; }
+.results-stat .lbl { font-size:0.75rem; color:var(--text2); }
+.restart-btn { padding:14px 32px; border-radius:14px; border:none; background:var(--accent); color:white; font-size:1rem; font-weight:600; cursor:pointer; }
+
+/* Browse */
+.browse-search { width:100%; padding:12px 16px; border-radius:12px; border:1px solid var(--surface2); background:var(--surface); color:var(--text); font-size:0.9rem; outline:none; margin-bottom:16px; }
+.br-item { padding:12px 14px; background:var(--surface); border-radius:10px; margin-bottom:6px; cursor:pointer; border-left:3px solid transparent; }
+.br-item:hover { border-left-color:var(--accent); }
+.br-en { font-weight:600; font-size:0.9rem; }
+.br-de { font-size:0.82rem; color:var(--text2); margin-top:2px; }
+.br-ex { font-size:0.78rem; color:var(--text2); font-style:italic; margin-top:4px; display:none; }
+.br-item.expanded .br-ex { display:block; }
+.br-tag { font-size:0.65rem; color:var(--accent2); background:rgba(108,92,231,0.1); padding:2px 6px; border-radius:6px; display:inline-block; margin-bottom:4px; }
+
+/* Stats */
+.stat-row { display:flex; justify-content:space-between; align-items:center; padding:12px 14px; background:var(--surface); border-radius:10px; margin-bottom:6px; font-size:0.88rem; }
+.stat-row .val { font-weight:700; color:var(--accent2); }
+.weak-row { display:flex; align-items:center; gap:8px; padding:8px 12px; background:var(--surface); border-radius:8px; margin-bottom:4px; font-size:0.82rem; }
+.weak-bar { flex:1; height:5px; background:var(--surface2); border-radius:3px; overflow:hidden; }
+
+.back-btn { display:inline-flex; align-items:center; gap:5px; padding:7px 12px; border-radius:8px; border:none; background:var(--surface); color:var(--text2); font-size:0.82rem; cursor:pointer; margin-bottom:14px; }
+.reset-btn { padding:8px 16px; border-radius:8px; border:1px solid var(--red); background:transparent; color:var(--red); font-size:0.82rem; cursor:pointer; margin-top:12px; }
+.logout-btn { padding:8px 16px; border-radius:8px; border:1px solid var(--text2); background:transparent; color:var(--text2); font-size:0.82rem; cursor:pointer; margin-top:8px; }
+
+.hidden { display:none !important; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.fade-in { animation:fadeIn 0.25s ease; }
+</style>
+</head>
+<body>
+
+<!-- ====== LOGIN ====== -->
+<div id="s-login" class="login-wrap">
+  <div class="login-logo">VEHO <span>VOCAB</span></div>
+  <div class="login-sub">5B Vocabulary Trainer</div>
+  <div class="login-card">
+    <h2 id="loginTitle">Sign In</h2>
+    <div class="login-field">
+      <label>Your Name</label>
+      <input id="loginName" placeholder="e.g. Max M." autocomplete="off">
+    </div>
+    <div class="login-field">
+      <label>Class Code</label>
+      <input id="loginCode" placeholder="Enter class code" autocomplete="off">
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">Start Learning</button>
+    <div class="login-error" id="loginErr"></div>
+    <div class="login-info">Enter the class code from your teacher.<br>Your progress will be saved automatically.</div>
+  </div>
+</div>
+
+<!-- ====== APP ====== -->
+<div id="app-wrap" class="hidden">
+<nav class="nav">
+  <h1>VEHO <span>VOCAB</span></h1>
+  <div class="nav-right">
+    <span id="syncStatus"><span class="sync-dot online"></span></span>
+    <span id="navRight"></span>
+    <span class="nav-user" id="navUser" onclick="go('stats')"></span>
+  </div>
+</nav>
+<div class="tabs">
+  <button class="tab active" onclick="go('home')">Home</button>
+  <button class="tab" onclick="go('browse')">Browse</button>
+  <button class="tab" onclick="go('stats')">Stats</button>
+</div>
+
+<!-- HOME -->
+<div class="container" id="s-home">
+  <div class="section-label">Practice modes</div>
+  <div class="mode-card" onclick="pickList('flashcard')">
+    <div class="mode-icon" style="background:rgba(108,92,231,0.15);color:var(--accent2)">&#x1F4C7;</div>
+    <div><h3>Flashcards</h3><p>Flip cards, rate your knowledge</p></div>
+  </div>
+  <div class="mode-card" onclick="pickList('gapfill')">
+    <div class="mode-icon" style="background:rgba(0,184,148,0.15);color:var(--green)">&#x270D;&#xFE0F;</div>
+    <div><h3>Gap Fill</h3><p>Complete the sentence (first letter given)</p></div>
+  </div>
+  <div class="mode-card" onclick="pickList('definition')">
+    <div class="mode-icon" style="background:rgba(253,203,110,0.15);color:var(--orange)">&#x1F4D6;</div>
+    <div><h3>Definitions</h3><p>Read the definition, write the word</p></div>
+  </div>
+  <div class="mode-card" onclick="pickList('context')">
+    <div class="mode-icon" style="background:rgba(162,155,254,0.15);color:var(--accent2)">&#x1F9E9;</div>
+    <div><h3>Context + Definition</h3><p>Sentence gap with definition in brackets</p></div>
+  </div>
+  <div class="section-label" style="margin-top:6px">Flashcard direction</div>
+  <div class="dir-bar">
+    <button class="dir-btn" id="dir-en" onclick="setDir('en')">EN &rarr; DE</button>
+    <button class="dir-btn active" id="dir-de" onclick="setDir('de')">DE &rarr; EN</button>
+  </div>
+  <p style="text-align:center;font-size:0.65rem;color:var(--text2);margin-top:4px;">Direction applies to Flashcards only</p>
+</div>
+
+<!-- LIST PICKER -->
+<div class="container hidden" id="s-listpicker">
+  <button class="back-btn" onclick="go('home')">&larr; Back</button>
+  <div class="section-label" id="lpTitle"></div>
+  <div id="lpGrid"></div>
+</div>
+
+<!-- FLASHCARD -->
+<div class="container hidden" id="s-flashcard">
+  <button class="back-btn" onclick="go('home')">&larr; Back</button>
+  <div class="fc-counter" id="fcCount"></div>
+  <div class="fc-wrap">
+    <div class="fc" id="fc" onclick="flipCard()">
+      <div class="fc-face fc-front">
+        <div class="fc-lang" id="fcFL"></div>
+        <div class="fc-word" id="fcFW"></div>
+        <button class="fc-hint" onclick="event.stopPropagation();toggleHint()">Show example</button>
+        <div class="fc-ex" id="fcEx"></div>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="fc-lang" id="fcBL"></div>
+        <div class="fc-word" id="fcBW"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fc-actions" id="fcAct" style="visibility:hidden;">
+    <button class="fc-btn" style="background:rgba(225,112,85,0.15);color:var(--red)" onclick="rate(0)">Hard</button>
+    <button class="fc-btn" style="background:rgba(253,203,110,0.15);color:var(--orange)" onclick="rate(1)">OK</button>
+    <button class="fc-btn" style="background:rgba(0,184,148,0.15);color:var(--green)" onclick="rate(2)">Easy</button>
+  </div>
+</div>
+
+<!-- EXERCISE -->
+<div class="container hidden" id="s-exercise">
+  <button class="back-btn" onclick="go('home')">&larr; Back</button>
+  <div class="ex-progress">
+    <div class="ex-prog-bar"><div class="ex-prog-fill" id="exProg"></div></div>
+    <span class="ex-prog-text" id="exProgText"></span>
+  </div>
+  <div class="q-card fade-in" id="qCard">
+    <div class="q-header">
+      <div class="q-header-left">
+        <span class="q-task-badge" id="qBadge"></span>
+        <span class="q-task-label" id="qLabel"></span>
+      </div>
+      <span class="q-score" id="qScore"></span>
+    </div>
+    <div class="q-body" id="qBody"></div>
+    <div class="q-input-area" id="qInputArea">
+      <input class="q-input" id="qInput" placeholder="Type the word..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button class="q-submit" id="qBtn" onclick="checkEx()">Check</button>
+    </div>
+    <div class="q-feedback" id="qFb"></div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="container hidden" id="s-results">
+  <div class="results fade-in">
+    <div style="font-size:3rem">&#x1F389;</div>
+    <div class="results-score" id="rScore"></div>
+    <div class="results-msg" id="rMsg"></div>
+    <div class="results-detail">
+      <div class="results-stat"><div class="num" style="color:var(--green)" id="rC"></div><div class="lbl">Correct</div></div>
+      <div class="results-stat"><div class="num" style="color:var(--orange)" id="rA"></div><div class="lbl">Almost</div></div>
+      <div class="results-stat"><div class="num" style="color:var(--red)" id="rW"></div><div class="lbl">Wrong</div></div>
+      <div class="results-stat"><div class="num" style="color:var(--accent2)" id="rT"></div><div class="lbl">Total</div></div>
+    </div>
+    <button class="restart-btn" onclick="go('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- BROWSE -->
+<div class="container hidden" id="s-browse">
+  <input class="browse-search" id="brSearch" placeholder="Search words..." oninput="renderBrowse()">
+  <div id="brList"></div>
+</div>
+
+<!-- STATS -->
+<div class="container hidden" id="s-stats">
+  <div class="section-label">Overview</div>
+  <div class="stat-row"><span>Total Words</span><span class="val" id="sTotal"></span></div>
+  <div class="stat-row"><span>Mastered</span><span class="val" style="color:var(--green)" id="sMast"></span></div>
+  <div class="stat-row"><span>Learning</span><span class="val" style="color:var(--orange)" id="sLearn"></span></div>
+  <div class="stat-row"><span>New</span><span class="val" style="color:var(--red)" id="sNew"></span></div>
+  <div class="stat-row"><span>Sessions</span><span class="val" id="sSess"></span></div>
+  <div class="section-label" style="margin-top:16px">Words needing practice</div>
+  <div id="sWeak"></div>
+  <div style="text-align:center">
+    <button class="logout-btn" onclick="doLogout()">Log Out</button>
+    <button class="reset-btn" onclick="if(confirm('Reset all your progress? This cannot be undone.')){resetProgress();}">Reset Progress</button>
+  </div>
+</div>
+</div><!-- /app-wrap -->
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+// ============================================================
+// FIREBASE CONFIG — Replace with your project's config
+// ============================================================
+const FIREBASE_CONFIG = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// Class code — students must enter this to log in
+const CLASS_CODE = "5B2026";
+
+// ============================================================
+// VOCABULARY DATA
+// ============================================================
+const V=[
+{en:"conversation starters",de:"Gesprächsöffner",ex:"Animals are my favourite conversation starters.",l:1},
+{en:"putting on a front",de:"Sich verstellen",ex:"Don't put on a front. Be yourself!",l:1},
+{en:"to take smth into account",de:"etwas berücksichtigen",ex:"I will take your situation into account.",l:1},
+{en:"to regard something",de:"etwas respektieren",ex:"Don't forget to regard your friend's privacy.",l:1},
+{en:"to make someone's life a misery",de:"Jemandem das Leben schwer machen",ex:"She makes his life a misery every day.",l:1},
+{en:"boarding school",de:"Internat",ex:"Ana doesn't live at home. She is a pupil at a boarding school.",l:1},
+{en:"to board",de:"Im Internat wohnen",ex:"There were other kids who boarded weekly.",l:1},
+{en:"to board something",de:"einsteigen",ex:"To board a plane.",l:1},
+{en:"on duty",de:"Im Einsatz",ex:"There's a teacher on duty in this class.",l:1},
+{en:"to take a liking to someone",de:"An jemandem Gefallen finden",ex:"He took a liking to her.",l:1},
+{en:"to be spent",de:"Erschöpft; erledigt",ex:"After the long day, he was spent.",l:1},
+{en:"learning a trade",de:"Ein Handwerk erlernen",ex:"My brother is learning a trade.",l:1},
+{en:"acquaintance",de:"Bekannter",ex:"Yes, I know him but we are not that close. He is just an acquaintance.",l:1},
+{en:"anxious",de:"Ängstlich",ex:"I was a bit anxious at the beginning.",l:1},
+{en:"window-shopper",de:"Schaufenster Bummler",ex:"My friends and me always go window-shopping.",l:1},
+{en:"addictive",de:"Süchtig machend",ex:"Social media is addictive.",l:1},
+{en:"to be addicted",de:"Nach etwas süchtig sein",ex:"Her friend is addicted to coconuts.",l:1},
+{en:"invasion of privacy",de:"In die Privatsphäre eindringen",ex:"Taking her photo without asking is an invasion of privacy.",l:1},
+{en:"stalker",de:"Stalker",ex:"He won't leave me alone, he is a stalker!",l:1},
+{en:"bot",de:"Bot (keine echte Person)",ex:"ChatGPT is a bot.",l:1},
+{en:"(to be) distracted",de:"Abgelenkt sein",ex:"I'm distracted because I'm talking to my neighbor.",l:2},
+{en:"hater",de:"Nichtsgönner, Neider",ex:"He's just a hater who criticizes everything.",l:2},
+{en:"survey",de:"Umfrage",ex:"They did a survey to understand their customers better.",l:2},
+{en:"a significant increase",de:"Bedeutender Anstieg",ex:"The report is saying that we're having a significant increase in sales this year.",l:2},
+{en:"a dramatic decrease",de:"Dramatischer Rückgang",ex:"There was a dramatic decrease in people buying this product.",l:2},
+{en:"occasion",de:"Anlass",ex:"It's an important occasion so please wear a suit.",l:2},
+{en:"benefit",de:"Vorteil",ex:"It's a benefit to study for a test beforehand.",l:2},
+{en:"suggestion",de:"Vorschlag",ex:"I made a suggestion because no one was saying anything.",l:2},
+{en:"STEM (subjects)",de:"MINT-Fächer",ex:"She excels in every STEM subject: science, technology, engineering, and mathematics.",l:2},
+{en:"representative",de:"Vertreter",ex:"Each group had a representative in the panel discussion.",l:2},
+{en:"to invest in smth.",de:"Investieren",ex:"I invested in bitcoins last year.",l:2},
+{en:"unnecessary",de:"Unnötig",ex:"It's unnecessary to be loud in class.",l:2},
+{en:"to ragequit",de:"Ausrasten (und das Spiel abbrechen)",ex:"I ragequit because I lost a game in Fortnite!",l:2},
+{en:"narrative",de:"Erzählung",ex:"The documentary presents a fascinating narrative about social media usage.",l:2},
+{en:"household",de:"Haushalt",ex:"Usually every household has at least one TV.",l:2},
+{en:"to run errands",de:"Besorgungen tätigen / erledigen",ex:"I'm usually running errands in the evening.",l:2},
+{en:"persuasive",de:"Überzeugend",ex:"He's very persuasive because he has good arguments.",l:2},
+{en:"troll",de:"Troll (Scherzkeks)",ex:"You are not funny, troll!",l:2},
+{en:"scammer",de:"Betrüger",ex:"He tried to steal my personal information -- he is a scammer!",l:2},
+{en:"eat out",de:"auswärts essen",ex:"We usually eat out on Fridays.",l:3},
+{en:"order in",de:"Essen bestellen",ex:"Let's order in some pizza tonight.",l:3},
+{en:"to-go / take-away",de:"zum Mitnehmen",ex:"I'll get my coffee to-go, please.",l:3},
+{en:"go-to meal",de:"Standardwahl / Standardessen",ex:"What's your go-to meal when you're in a hurry?",l:3},
+{en:"comfort food",de:"Futter für die Seele / Wohlfühlgericht",ex:"After a bad day, chocolate is my comfort food.",l:3},
+{en:"convenient",de:"praktisch / bequem",ex:"Frozen meals are convenient but not very healthy.",l:3},
+{en:"I'm starving",de:"Ich verhungere! (umgangsprachlich)",ex:"I haven't eaten all day -- I'm starving!",l:3},
+{en:"to crave something",de:"Verlangen nach etwas haben",ex:"She's craving chocolate again.",l:3},
+{en:"to starve",de:"Verhungern (wörtlich)",ex:"Without food, people can starve in days.",l:3},
+{en:"to tip",de:"Trinkgeld geben",ex:"Don't forget to tip the waiter.",l:3},
+{en:"ethnicity",de:"Bevölkerungsgruppe / Ethnie",ex:"The city is home to people of many ethnicities.",l:3},
+{en:"beverage",de:"Getränk",ex:"Coffee is my favorite beverage.",l:3},
+{en:"nutrition",de:"Ernährung",ex:"Good nutrition is essential for children.",l:3},
+{en:"nutrients",de:"Nährstoffe",ex:"Vegetables provide important nutrients.",l:3},
+{en:"processed",de:"verarbeitet",ex:"Processed foods often contain too much sugar.",l:3},
+{en:"fiber",de:"Ballaststoffe",ex:"Whole grains are high in fiber.",l:3},
+{en:"to maintain weight",de:"Gewicht halten",ex:"She exercises daily to maintain her weight.",l:3},
+{en:"to digest",de:"verdauen",ex:"Some people find milk hard to digest.",l:3},
+{en:"to avoid",de:"vermeiden",ex:"I try to avoid eating too much sugar.",l:3},
+{en:"evidence",de:"Beweis",ex:"There's no evidence that this diet works.",l:3},
+{en:"chronically",de:"chronisch",ex:"She is chronically tired during the week.",l:4},
+{en:"psychological",de:"psychologisch",ex:"He has a psychological problem that he wants to fix.",l:4},
+{en:"eating disorder",de:"Essstörung",ex:"She suffers from an eating disorder, but she is getting help.",l:4},
+{en:"to brag",de:"angeben / prahlen",ex:"He likes to brag about his new phone.",l:4},
+{en:"to share",de:"etwas teilen",ex:"Can you share which secret she told you?",l:4},
+{en:"on average",de:"im Durchschnitt",ex:"On average, teenagers spent multiple hours per day on their phones.",l:4},
+{en:"minerals",de:"Mineralien",ex:"This water contains many important minerals.",l:4},
+{en:"sleep-deprived",de:"übermüdet (durch Schlafmangel)",ex:"After studying all night, the student was severely sleep-deprived.",l:4},
+{en:"as a result",de:"als Ergebnis / infolgedessen",ex:"It rained all day, and as a result, the game was canceled.",l:4},
+{en:"purpose",de:"Zweck / Absicht / Ziel",ex:"The main purpose of this meeting is to discuss our holiday plans.",l:4},
+{en:"therefore",de:"deshalb / deswegen",ex:"The store was closed, therefore we went to another one.",l:4},
+{en:"for pleasure",de:"zum Vergnügen / aus Spaß",ex:"I read books for pleasure, not just for school.",l:4},
+{en:"to enroll",de:"sich anmelden / einschreiben",ex:"She decided to enroll in a language course.",l:4},
+{en:"tuition fees",de:"Studiengebühren",ex:"The tuition fees are very high this year.",l:4},
+{en:"to be deported",de:"abgeschoben werden",ex:"He was afraid to be deported from the country.",l:4},
+{en:"makeover",de:"Umstyling / Veränderung",ex:"She got a complete makeover for the party.",l:4},
+{en:"to go out of fashion",de:"aus der Mode kommen",ex:"Skinny jeans are starting to go out of fashion.",l:4},
+{en:"procrastination",de:"Aufschieben / Prokrastination",ex:"Her procrastination makes homework very stressful.",l:4},
+{en:"to sleep in",de:"ausschlafen",ex:"On Sundays I love to sleep in.",l:4},
+{en:"powernap",de:"Kurzschlaf / Powernap",ex:"He took a quick powernap before studying again.",l:4},
+{en:"lifespan",de:"Lebensspanne",ex:"The short lifespan of fashion is not a new phenomenon.",l:5},
+{en:"peer pressure",de:"Gruppenzwang",ex:"He started drinking in high school because of peer pressure.",l:5},
+{en:"assessment",de:"Beurteilung",ex:"I do not agree with this assessment.",l:5},
+{en:"timeless",de:"zeitlos",ex:"She recommends choosing a timeless design.",l:5},
+{en:"conscious choice",de:"Bewusste Entscheidung",ex:"He needs to make a conscious choice for his future.",l:5},
+{en:"to assert",de:"sich durchsetzen / zum Ausdruck bringen",ex:"She decided to assert her independence by moving to a new city.",l:5},
+{en:"authenticity",de:"Authentizität",ex:"The restaurant is known for its authenticity.",l:5},
+{en:"authentic",de:"Authentisch",ex:"Today jeans are popular because they stay authentic.",l:5},
+{en:"insecurity",de:"Unsicherheit",ex:"People retouch pictures because of their insecurities.",l:5},
+{en:"to hide flaws",de:"Mängel verstecken",ex:"She used makeup to hide the flaws in her skin.",l:5},
+{en:"exaggerated",de:"übertrieben",ex:"He has an exaggerated fear of spiders.",l:5},
+{en:"measure yourself against smth.",de:"Sich mit jemandem messen/vergleichen",ex:"Don't measure yourself against celebrities on social media.",l:5},
+{en:"desirable",de:"begehrenswert",ex:"The house is in a desirable location.",l:5},
+{en:"dedication",de:"Hingabe",ex:"We were impressed by his dedication.",l:5},
+{en:"rumor",de:"Gerücht",ex:"The rumor turned out to be false.",l:5},
+{en:"objective",de:"Ziel",ex:"We all live with the objective to be happy.",l:5},
+{en:"dispute",de:"anfechten / in Frage stellen",ex:"Do not dispute people around you.",l:5},
+{en:"destined for",de:"Für etw. bestimmt sein",ex:"I always knew my brother was destined for success.",l:5},
+{en:"legacy",de:"Erbe / Vermächtnis",ex:"The band's musical legacy influenced generations of artists.",l:5},
+{en:"deliberately",de:"absichtlich",ex:"He's been deliberately ignoring him all day.",l:5},
+{en:"obesity",de:"Übergewicht / Fettleibigkeit",ex:"Many countries are fighting the rise of childhood obesity.",l:6},
+{en:"justification",de:"Rechtfertigung / Begründung",ex:"There is no justification for such rude behavior.",l:6},
+{en:"body shaming",de:"Body Shaming / Diskriminierung aufgrund des Körpers",ex:"Body shaming on social media can have a negative impact on mental health.",l:6},
+{en:"self-conscious",de:"unsicher / gehemmt",ex:"He felt self-conscious about his new haircut.",l:6},
+{en:"self-confident",de:"selbstbewusst",ex:"To succeed in a job interview, you need to appear self-confident.",l:6},
+{en:"competitive",de:"wettbewerbsorientiert / ehrgeizig",ex:"She has a very competitive nature and always wants to win.",l:6},
+{en:"equipment",de:"Ausrüstung",ex:"Make sure you have all the necessary camping equipment.",l:6},
+{en:"to get out of one's comfort zone",de:"seine Komfortzone verlassen",ex:"You only grow as a person when you get out of your comfort zone.",l:6},
+{en:"rite of passage",de:"Initiationsritus / Übergangsritus",ex:"Graduation is considered a major rite of passage for students.",l:6},
+{en:"comfort zone",de:"Komfortzone",ex:"It feels safe to stay inside your comfort zone.",l:6},
+{en:"opponent",de:"Gegner",ex:"His opponent in the chess match was very experienced.",l:6},
+{en:"facility",de:"Einrichtung / Anlage / Gelände",ex:"The school has a great sports facility for the students.",l:6},
+{en:"competitor",de:"Mitbewerber / Konkurrent",ex:"The company is doing better than its main competitor.",l:6},
+{en:"spectator",de:"Zuschauer",ex:"Thousands of spectators gathered to watch the marathon.",l:6},
+{en:"littering",de:"Verschmutzung / Müll wegwerfen",ex:"Littering in public parks can lead to a heavy fine.",l:6},
+{en:"legal age",de:"gesetzliches Alter",ex:"You must be of legal age to vote in the elections.",l:6},
+{en:"to give consent",de:"seine Zustimmung geben",ex:"You need to give your consent before the surgery can begin.",l:6},
+{en:"to participate in",de:"teilnehmen an",ex:"Many students want to participate in the school play.",l:6},
+{en:"obstacles",de:"Hindernisse",ex:"She had to overcome many obstacles to reach her goal.",l:6},
+{en:"determined",de:"entschlossen",ex:"He was determined to finish the race despite the rain.",l:6},
+{en:"court",de:"Spielfeld / Platz (Sport)",ex:"The players are heading out onto the basketball court.",l:6},
+];
+
+const LNAMES={1:"Social Life & School",2:"Media & Society",3:"Food & Nutrition",4:"Health & Lifestyle",5:"Identity & Culture",6:"Body, Sports & Society"};
+
+// ============================================================
+// FIREBASE + SYNC
+// ============================================================
+let db=null, fbReady=false, currentUser=null;
+
+function initFirebase(){
+  try {
+    if(FIREBASE_CONFIG.apiKey==='YOUR_API_KEY'){
+      console.log('Firebase not configured — using localStorage only');
+      return;
+    }
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db=firebase.firestore();
+    // Enable offline persistence
+    db.enablePersistence({synchronizeTabs:true}).catch(()=>{});
+    fbReady=true;
+    console.log('Firebase connected');
+  } catch(e) {
+    console.warn('Firebase init failed:',e);
+  }
+}
+
+function userDocRef(){
+  if(!fbReady||!currentUser)return null;
+  const id=(currentUser.code+'_'+currentUser.name).toLowerCase().replace(/[^a-z0-9]/g,'_');
+  return db.collection('students').doc(id);
+}
+
+async function cloudSave(){
+  const ref=userDocRef();
+  if(!ref)return;
+  setSyncStatus('syncing');
+  try {
+    await ref.set({
+      name:currentUser.name,
+      code:currentUser.code,
+      sr:S.sr,
+      dir:S.dir,
+      sess:S.sess,
+      streak:S.streak,
+      last:S.last,
+      updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+    },{merge:true});
+    setSyncStatus('online');
+  } catch(e) {
+    console.warn('Cloud save failed:',e);
+    setSyncStatus('offline');
+  }
+}
+
+async function cloudLoad(){
+  const ref=userDocRef();
+  if(!ref)return null;
+  try {
+    const doc=await ref.get();
+    if(doc.exists){
+      const d=doc.data();
+      return {sr:d.sr||{},dir:d.dir||'de',sess:d.sess||0,streak:d.streak||0,last:d.last||null};
+    }
+  } catch(e) { console.warn('Cloud load failed:',e); }
+  return null;
+}
+
+let syncTimer=null;
+function debouncedCloudSave(){
+  if(syncTimer)clearTimeout(syncTimer);
+  syncTimer=setTimeout(cloudSave,2000);
+}
+
+function setSyncStatus(status){
+  const el=document.getElementById('syncStatus');
+  if(!el)return;
+  const dot=el.querySelector('.sync-dot');
+  if(dot){dot.className='sync-dot '+status;}
+}
+
+// ============================================================
+// AUTH / LOGIN
+// ============================================================
+function doLogin(){
+  const name=document.getElementById('loginName').value.trim();
+  const code=document.getElementById('loginCode').value.trim();
+  const err=document.getElementById('loginErr');
+
+  if(!name){err.textContent='Please enter your name.';return;}
+  if(!code){err.textContent='Please enter the class code.';return;}
+  if(code!==CLASS_CODE){err.textContent='Wrong class code. Ask your teacher!';return;}
+
+  err.textContent='';
+  currentUser={name,code};
+  localStorage.setItem('vv_user',JSON.stringify(currentUser));
+  enterApp();
+}
+
+function doLogout(){
+  if(!confirm('Log out? Your progress is saved.'))return;
+  localStorage.removeItem('vv_user');
+  currentUser=null;
+  document.getElementById('app-wrap').classList.add('hidden');
+  document.getElementById('s-login').classList.remove('hidden');
+}
+
+async function enterApp(){
+  document.getElementById('s-login').classList.add('hidden');
+  document.getElementById('app-wrap').classList.remove('hidden');
+  document.getElementById('navUser').textContent=currentUser.name;
+
+  // Load state: try cloud first, fall back to localStorage
+  const localKey='vv_'+currentUser.code+'_'+currentUser.name;
+  let cloudData=await cloudLoad();
+  let localData=null;
+  try { localData=JSON.parse(localStorage.getItem(localKey)); } catch(e){}
+
+  if(cloudData&&localData){
+    // Merge: use whichever has more sessions
+    S=cloudData.sess>=localData.sess?cloudData:localData;
+  } else if(cloudData){
+    S=cloudData;
+  } else if(localData){
+    S=localData;
+  } else {
+    S={sr:{},dir:'de',sess:0,streak:0,last:null};
+  }
+
+  // Apply direction UI
+  document.getElementById('dir-en').classList.toggle('active',S.dir==='en');
+  document.getElementById('dir-de').classList.toggle('active',S.dir==='de');
+
+  updNav();
+  if(fbReady)setSyncStatus('online');else setSyncStatus('offline');
+}
+
+function resetProgress(){
+  S={sr:{},dir:'de',sess:0,streak:0,last:null};
+  save();
+  renderStats();
+  updNav();
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let S={sr:{},dir:'de',sess:0,streak:0,last:null};
+
+function save(){
+  if(!currentUser)return;
+  const localKey='vv_'+currentUser.code+'_'+currentUser.name;
+  localStorage.setItem(localKey,JSON.stringify(S));
+  debouncedCloudSave();
+}
+
+function sr(i){if(!S.sr[i])S.sr[i]={e:2.5,iv:0,d:0,r:0,c:0,w:0};return S.sr[i];}
+function upSR(i,q){const s=sr(i);if(q===0){s.iv=1;s.r=0;s.e=Math.max(1.3,s.e-0.2);s.w++;}else if(q===1){s.r++;s.iv=s.iv===0?1:s.iv<6?6:Math.round(s.iv*s.e);s.c++;}else{s.r++;s.iv=s.iv===0?4:Math.round(s.iv*s.e*1.3);s.e=Math.min(3,s.e+0.15);s.c++;}s.d=Date.now()+s.iv*60000;save();}
+
+// ============================================================
+// GAP FINDER
+// ============================================================
+const STOP=new Set(['to','be','a','an','the','in','on','at','of','for','is','it','my','your','his','her','its','our','their','smth','someone','something',"one's",'i',"i'm",'not','and','but','or','so','do',"don't",'can','will','was','were','has','have','had','are','am','that','this','with','from','by']);
+function gap(v){
+  const s=v.ex;
+  for(const vr of v.en.split(/\s*[\/;]\s*/)){
+    let c=vr.replace(/\(.*?\)/g,'').replace(/\./g,'').replace(/^to\s+/i,'').trim();
+    const ws=c.split(/[\s\-]+/).filter(w=>w.length>=3&&!STOP.has(w.toLowerCase())).sort((a,b)=>b.length-a.length);
+    for(const w of ws){const m=s.match(new RegExp('\\b('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\w{0,5})\\b','i'));if(m)return{a:m[1],i:m.index};}
+    for(const w of ws){if(w.length<3)continue;const m=s.match(new RegExp('\\b('+w.substring(0,3).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\w{2,})\\b','i'));if(m&&!STOP.has(m[1].toLowerCase()))return{a:m[1],i:m.index};}
+    const pi=s.toLowerCase().indexOf(c.toLowerCase());if(pi>=0&&c.length>=3)return{a:s.substring(pi,pi+c.length),i:pi};
+  }
+  return{a:v.en,i:-1};
+}
+function gapSent(v,g,letter){
+  if(g.i<0)return v.ex;
+  return v.ex.substring(0,g.i)+(letter?'<span class="q-blank">'+g.a[0].toLowerCase()+'</span>':'')+'<span class="q-blank plain">_______________</span>'+v.ex.substring(g.i+g.a.length);
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function go(n){document.querySelectorAll('.container').forEach(e=>e.classList.add('hidden'));document.getElementById('s-'+n).classList.remove('hidden');document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['home','browse','stats'][i]===n));if(n==='browse')renderBrowse();if(n==='stats')renderStats();updNav();}
+function updNav(){const m=V.filter((_,i)=>{const s=sr(i);return s.r>=3&&s.iv>=6;}).length;document.getElementById('navRight').textContent=m+'/'+V.length;}
+function setDir(d){S.dir=d;save();document.getElementById('dir-en').classList.toggle('active',d==='en');document.getElementById('dir-de').classList.toggle('active',d==='de');}
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function norm(s){return s.toLowerCase().trim().replace(/[()]/g,'').replace(/\s+/g,' ');}
+function chk(inp,cor){const ni=norm(inp);let best='wrong';for(const a of cor.split(/[\/;]/).map(s=>s.trim()).filter(Boolean)){const na=norm(a);if(ni===na)return 'exact';if(na.length>3){const d=lev(ni,na);if(d===1||(d===2&&na.length>=6))best='close';}}return best;}
+function lev(a,b){const m=a.length,n=b.length,d=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i||j));for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=a[i-1]===b[j-1]?d[i-1][j-1]:1+Math.min(d[i-1][j],d[i][j-1],d[i-1][j-1]);return d[m][n];}
+
+// ============================================================
+// LIST PICKER
+// ============================================================
+let pMode='';
+function pickList(mode){
+  pMode=mode;
+  const names={flashcard:'Flashcards',gapfill:'Gap Fill',definition:'Definitions',context:'Context + Definition'};
+  document.getElementById('lpTitle').textContent=names[mode]+' — choose a list';
+  let h='<div class="lp-row" onclick="launch(null)"><div style="display:flex;align-items:center"><span class="lp-num" style="background:var(--accent2);">&#x2731;</span><div class="lp-info"><div class="lp-name">All Lists</div><div class="lp-meta">120 words from all 6 lists</div></div></div><div class="lp-badge" style="background:rgba(108,92,231,0.12);color:var(--accent2)">Start</div></div>';
+  for(let n=1;n<=6;n++){
+    const ws=V.filter(v=>v.l===n);
+    const mast=ws.filter((_,j)=>{const idx=V.indexOf(ws[j]);return sr(idx).r>=3&&sr(idx).iv>=6;}).length;
+    const pct=Math.round(mast/ws.length*100);
+    const col=pct>=70?'var(--green)':pct>=30?'var(--orange)':'var(--text2)';
+    h+='<div class="lp-row" onclick="launch('+n+')"><div style="display:flex;align-items:center"><span class="lp-num">'+n+'</span><div class="lp-info"><div class="lp-name">'+LNAMES[n]+'</div><div class="lp-meta">List '+n+' &middot; '+ws.length+' words &middot; '+mast+' mastered</div></div></div><div class="lp-badge" style="background:rgba(108,92,231,0.12);color:'+col+'">'+pct+'%</div></div>';
+  }
+  document.getElementById('lpGrid').innerHTML=h;
+  go('listpicker');
+}
+function launch(listNum){
+  let ws=listNum===null?V.map((v,i)=>({...v,idx:i})):V.map((v,i)=>({...v,idx:i})).filter(v=>v.l===listNum);
+  if(pMode==='flashcard')startFC(ws);else startEx(pMode,ws);
+}
+
+// ============================================================
+// FLASHCARD
+// ============================================================
+let fW=[],fI=0;
+function startFC(ws){const now=Date.now();const due=ws.filter(w=>sr(w.idx).d<=now);const rest=ws.filter(w=>sr(w.idx).d>now);fW=[...shuf(due),...shuf(rest)].slice(0,20);fI=0;go('flashcard');showFC();}
+function showFC(){
+  if(fI>=fW.length){finish(fW.length,fW.filter(w=>sr(w.idx).r>0).length);return;}
+  const w=fW[fI],d=S.dir;
+  document.getElementById('fcFL').textContent=d==='de'?'Deutsch':'English';
+  document.getElementById('fcFW').textContent=d==='de'?w.de:w.en;
+  document.getElementById('fcBL').textContent=d==='de'?'English':'Deutsch';
+  document.getElementById('fcBW').textContent=d==='de'?w.en:w.de;
+  document.getElementById('fcEx').textContent=w.ex;
+  document.getElementById('fcEx').classList.remove('show');
+  document.getElementById('fc').classList.remove('flipped');
+  document.getElementById('fcAct').style.visibility='hidden';
+  document.getElementById('fcCount').textContent=(fI+1)+' / '+fW.length;
+}
+function flipCard(){document.getElementById('fc').classList.add('flipped');document.getElementById('fcAct').style.visibility='visible';}
+function toggleHint(){document.getElementById('fcEx').classList.toggle('show');}
+function rate(q){upSR(fW[fI].idx,q);fI++;showFC();}
+
+// ============================================================
+// EXERCISE
+// ============================================================
+let eM='',eW=[],eI=0,eC=0,eH=0,eChecked=false,eG=[];
+const MCFG={gapfill:{badge:'Gap Fill',label:'Complete the sentence.'},definition:{badge:'Definitions',label:'Write the English word or phrase.'},context:{badge:'Context',label:'Fill in the word. Use the definition.'}};
+
+function startEx(mode,ws){
+  eM=mode;const now=Date.now();
+  const due=ws.filter(w=>sr(w.idx).d<=now),rest=ws.filter(w=>sr(w.idx).d>now);
+  eW=[...shuf(due),...shuf(rest)].slice(0,Math.min(ws.length,15));
+  eI=0;eC=0;eH=0;eG=eW.map(w=>gap(w));
+  go('exercise');showQ();
+}
+
+function showQ(){
+  if(eI>=eW.length){finish(eW.length,eC);return;}
+  eChecked=false;
+  const w=eW[eI],g=eG[eI],cfg=MCFG[eM];
+  document.getElementById('qBadge').textContent=cfg.badge;
+  document.getElementById('qLabel').textContent=cfg.label;
+  document.getElementById('qScore').textContent=eC+'/'+eW.length;
+  document.getElementById('exProg').style.width=((eI/eW.length)*100)+'%';
+  document.getElementById('exProgText').textContent=(eI+1)+' of '+eW.length;
+  let body='<span class="q-num">'+(eI+1)+'</span> ';
+  if(eM==='gapfill'){body+='<span class="q-sentence">'+gapSent(w,g,true)+'</span>';}
+  else if(eM==='definition'){body+='<span class="q-sentence" style="font-size:1.1rem;font-weight:600;">'+w.de+'</span>';}
+  else{body+='<span class="q-sentence">'+gapSent(w,g,false)+'</span>';body+='<div class="q-def">(= '+w.de+')</div>';}
+  body+='<div class="q-list-tag">List '+w.l+': '+LNAMES[w.l]+'</div>';
+  document.getElementById('qBody').innerHTML=body;
+  const inp=document.getElementById('qInput');
+  inp.value='';inp.className='q-input';inp.focus();
+  document.getElementById('qBtn').textContent='Check';
+  document.getElementById('qFb').className='q-feedback';
+  document.getElementById('qFb').innerHTML='';
+  document.getElementById('qInputArea').style.display='flex';
+  const card=document.getElementById('qCard');card.classList.remove('fade-in');void card.offsetWidth;card.classList.add('fade-in');
+}
+
+function checkEx(){
+  if(eChecked){eI++;showQ();return;}
+  const inp=document.getElementById('qInput'),v=inp.value.trim();
+  if(!v)return;
+  eChecked=true;
+  const w=eW[eI],g=eG[eI];
+  let res=chk(v,g.a);if(res==='wrong')res=chk(v,w.en);
+  const fb=document.getElementById('qFb');
+  if(res==='exact'){
+    inp.classList.add('correct');fb.className='q-feedback correct-fb';
+    fb.innerHTML='&#10003; Correct! <b>'+g.a+'</b><div class="fb-example">'+w.ex+'</div>';
+    eC++;upSR(w.idx,2);
+  }else if(res==='close'){
+    inp.classList.add('close');fb.className='q-feedback close-fb';
+    fb.innerHTML='&#9998; Almost! You wrote <b>'+v+'</b> — correct spelling: <b>'+g.a+'</b><div class="fb-example">Spelling counts! Half point awarded.</div>';
+    eH++;upSR(w.idx,1);
+  }else{
+    inp.classList.add('wrong');fb.className='q-feedback wrong-fb';
+    fb.innerHTML='&#10007; Correct answer: <b>'+g.a+'</b> &nbsp;(you wrote: '+v+')<div class="fb-example">'+w.ex+'</div>';
+    upSR(w.idx,0);
+  }
+  document.getElementById('qScore').textContent=eC+'/'+eW.length;
+  document.getElementById('qBtn').textContent='Next \u2192';
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!document.getElementById('s-exercise').classList.contains('hidden'))checkEx();});
+
+// ============================================================
+// RESULTS
+// ============================================================
+function finish(total,correct){
+  S.sess++;const today=new Date().toDateString();
+  if(S.last!==today){const y=new Date(Date.now()-864e5).toDateString();S.streak=S.last===y?S.streak+1:1;S.last=today;}
+  save();
+  const p=Math.round((correct+eH*0.5)/total*100);
+  document.getElementById('rScore').textContent=p+'%';
+  document.getElementById('rMsg').textContent=p>=90?'Outstanding!':p>=70?'Good job!':p>=50?'Getting there!':'Keep studying!';
+  document.getElementById('rC').textContent=correct;
+  document.getElementById('rA').textContent=eH;
+  document.getElementById('rW').textContent=total-correct-eH;
+  document.getElementById('rT').textContent=total;
+  go('results');
+}
+
+// ============================================================
+// BROWSE
+// ============================================================
+function renderBrowse(){
+  const q=(document.getElementById('brSearch').value||'').toLowerCase();
+  const items=V.map((v,i)=>({...v,idx:i})).filter(v=>!q||v.en.toLowerCase().includes(q)||v.de.toLowerCase().includes(q));
+  document.getElementById('brList').innerHTML=items.map(v=>
+    '<div class="br-item" onclick="this.classList.toggle(\'expanded\')">'+
+    '<div class="br-tag">List '+v.l+': '+LNAMES[v.l]+'</div>'+
+    '<div class="br-en">'+v.en+'</div><div class="br-de">'+v.de+'</div>'+
+    '<div class="br-ex">'+v.ex+'</div></div>'
+  ).join('');
+}
+
+// ============================================================
+// STATS
+// ============================================================
+function renderStats(){
+  updNav();let m=0,le=0,nw=0;
+  V.forEach((_,i)=>{const s=sr(i);if(s.r>=3&&s.iv>=6)m++;else if(s.r>0)le++;else nw++;});
+  document.getElementById('sTotal').textContent=V.length;
+  document.getElementById('sMast').textContent=m;
+  document.getElementById('sLearn').textContent=le;
+  document.getElementById('sNew').textContent=nw;
+  document.getElementById('sSess').textContent=S.sess;
+  const weak=V.map((v,i)=>({...v,idx:i,s:sr(i)})).filter(w=>w.s.w>0)
+    .sort((a,b)=>(b.s.w/Math.max(1,b.s.c+b.s.w))-(a.s.w/Math.max(1,a.s.c+a.s.w))).slice(0,10);
+  document.getElementById('sWeak').innerHTML=weak.length===0?'<div style="color:var(--text2);font-size:0.82rem;">No data yet.</div>':
+    weak.map(w=>{const t=w.s.c+w.s.w,p=t>0?Math.round(w.s.c/t*100):0;const c=p>=70?'var(--green)':p>=40?'var(--orange)':'var(--red)';
+      return'<div class="weak-row"><span style="width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+w.en+'</span><div class="weak-bar"><div style="width:'+p+'%;height:100%;border-radius:3px;background:'+c+'"></div></div><span style="font-size:0.72rem;color:var(--text2);width:35px;text-align:right;">'+p+'%</span></div>';}).join('');
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+initFirebase();
+
+// Auto-login if returning user
+const savedUser=localStorage.getItem('vv_user');
+if(savedUser){
+  try {
+    currentUser=JSON.parse(savedUser);
+    enterApp();
+  } catch(e){ localStorage.removeItem('vv_user'); }
+}
+
+// Enter key on login
+document.getElementById('loginCode').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('loginName').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('loginCode').focus();});
+</script>
+</body>
+</html>
