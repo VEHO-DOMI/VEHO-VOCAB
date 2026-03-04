@@ -984,6 +984,7 @@
 
                 // Load from localStorage
                 loadLocalStorage();
+
                 // Update UI
                 updateUserInfo();
                 navigationStack = ['homeScreen'];
@@ -1006,7 +1007,7 @@
             document.getElementById('loginForm').reset();
         });
 
-        // ============================
+        // ===========================
         // LocalStorage & Firebase Sync
         // ===========================
         function getStorageKey() {
@@ -1611,6 +1612,7 @@
 
             const data = appState.sessionData[word];
             data.lastReviewed = Date.now();
+
             if (difficulty === 'easy') {
                 data.correct++;
                 data.interval = Math.max(1000, data.interval * 2.5);
@@ -1632,7 +1634,7 @@
         // Direction Badges
         // ===========================
         function updateDirectionBadges() {
-            const badge = appState.direction === 'de-en' ? 'German ‚áê English' : 'English ¯°¶ German';
+            const badge = appState.direction === 'de-en' ? 'German ‚Üí English' : 'English ‚Üí German';
             document.getElementById('directionBadge').textContent = badge;
             document.getElementById('directionBadge2').textContent = badge;
             document.getElementById('directionBadge3').textContent = badge;
