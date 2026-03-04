@@ -2327,21 +2327,25 @@
                 const word = vocab[currentIndex];
                 const sentence = word.ex2;
                 // Build gap sentence: show first letter + underscores for rest
+                // Must also consume any suffix (e.g. "achieved" when en="achieve")
                 const enLower = word.en.toLowerCase();
                 const sentLower = sentence.toLowerCase();
                 const phraseIdx = sentLower.indexOf(enLower);
                 let gapSentence;
                 if (phraseIdx >= 0) {
-                    const originalPhrase = sentence.substring(phraseIdx, phraseIdx + word.en.length);
-                    const firstLetter = originalPhrase.charAt(0);
+                    // Extend match to include trailing letters (suffixes like -ed, -ing, -s)
+                    let endIdx = phraseIdx + word.en.length;
+                    while (endIdx < sentence.length && /[a-zA-Z]/.test(sentence[endIdx])) endIdx++;
+                    const firstLetter = sentence.charAt(phraseIdx);
                     const blankPart = '_'.repeat(Math.max(1, word.en.length * 2));
-                    gapSentence = sentence.substring(0, phraseIdx) + '<strong>' + firstLetter + blankPart + '</strong>' + sentence.substring(phraseIdx + word.en.length);
+                    gapSentence = sentence.substring(0, phraseIdx) + '<strong>' + firstLetter + blankPart + '</strong>' + sentence.substring(endIdx);
                 } else {
                     // Fallback: blank first word with first letter hint
                     const firstWord = word.en.split(' ')[0];
                     const firstLetter = word.en.charAt(0);
+                    const escaped = firstWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     const blankPart = '_'.repeat(Math.max(1, word.en.length * 2));
-                    gapSentence = sentence.replace(new RegExp('\\b' + firstWord + '\\b', 'i'), '<strong>' + firstLetter + blankPart + '</strong>');
+                    gapSentence = sentence.replace(new RegExp(escaped + '[a-zA-Z]*', 'i'), '<strong>' + firstLetter + blankPart + '</strong>');
                 }
 
                 const itemHtml = `
@@ -2522,13 +2526,16 @@
                 let sentence = word.ex;
                 const ctxIdx = sentence.toLowerCase().indexOf(word.en.toLowerCase());
                 if (ctxIdx >= 0) {
+                    // Extend match to include trailing letters (suffixes like -ed, -ing, -s)
+                    let endIdx = ctxIdx + word.en.length;
+                    while (endIdx < sentence.length && /[a-zA-Z]/.test(sentence[endIdx])) endIdx++;
                     const blankPart = '_'.repeat(Math.max(8, word.en.length + 4));
-                    sentence = sentence.substring(0, ctxIdx) + '<strong>' + blankPart + '</strong>' + sentence.substring(ctxIdx + word.en.length);
+                    sentence = sentence.substring(0, ctxIdx) + '<strong>' + blankPart + '</strong>' + sentence.substring(endIdx);
                 } else {
                     const firstWord = word.en.split(' ')[0];
                     const blankPart = '_'.repeat(Math.max(8, word.en.length + 4));
                     const escaped = firstWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    sentence = sentence.replace(new RegExp('\\b' + escaped + '\\b', 'i'), '<strong>' + blankPart + '</strong>');
+                    sentence = sentence.replace(new RegExp(escaped + '[a-zA-Z]*', 'i'), '<strong>' + blankPart + '</strong>');
                 }
 
                 const definition = word.def || word.de;
