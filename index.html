@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>VEHO VOCAB</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
 <style>
 :root {
   --bg: #0f0f13;
@@ -347,7 +347,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sa
 
 <script>
 // ============================================================
-// FIREBASE CONFIG — Replace with your project's config
+// FIREBASE CONFIG â Replace with your project's config
 // ============================================================
 const FIREBASE_CONFIG = {
   apiKey: "YOUR_API_KEY",
@@ -358,16 +358,16 @@ const FIREBASE_CONFIG = {
   appId: "YOUR_APP_ID"
 };
 
-// Class code — students must enter this to log in
+// Class code â students must enter this to log in
 const CLASS_CODE = "5B2026";
 
 // ============================================================
 // VOCABULARY DATA
 // ============================================================
 const V=[
-{en:"conversation starters",de:"Gesprächsöffner",ex:"Animals are my favourite conversation starters.",l:1},
+{en:"conversation starters",de:"GesprÃ¤chsÃ¶ffner",ex:"Animals are my favourite conversation starters.",l:1},
 {en:"putting on a front",de:"Sich verstellen",ex:"Don't put on a front. Be yourself!",l:1},
-{en:"to take smth into account",de:"etwas berücksichtigen",ex:"I will take your situation into account.",l:1},
+{en:"to take smth into account",de:"etwas berÃ¼cksichtigen",ex:"I will take your situation into account.",l:1},
 {en:"to regard something",de:"etwas respektieren",ex:"Don't forget to regard your friend's privacy.",l:1},
 {en:"to make someone's life a misery",de:"Jemandem das Leben schwer machen",ex:"She makes his life a misery every day.",l:1},
 {en:"boarding school",de:"Internat",ex:"Ana doesn't live at home. She is a pupil at a boarding school.",l:1},
@@ -375,49 +375,49 @@ const V=[
 {en:"to board something",de:"einsteigen",ex:"To board a plane.",l:1},
 {en:"on duty",de:"Im Einsatz",ex:"There's a teacher on duty in this class.",l:1},
 {en:"to take a liking to someone",de:"An jemandem Gefallen finden",ex:"He took a liking to her.",l:1},
-{en:"to be spent",de:"Erschöpft; erledigt",ex:"After the long day, he was spent.",l:1},
+{en:"to be spent",de:"ErschÃ¶pft; erledigt",ex:"After the long day, he was spent.",l:1},
 {en:"learning a trade",de:"Ein Handwerk erlernen",ex:"My brother is learning a trade.",l:1},
 {en:"acquaintance",de:"Bekannter",ex:"Yes, I know him but we are not that close. He is just an acquaintance.",l:1},
-{en:"anxious",de:"Ängstlich",ex:"I was a bit anxious at the beginning.",l:1},
+{en:"anxious",de:"Ãngstlich",ex:"I was a bit anxious at the beginning.",l:1},
 {en:"window-shopper",de:"Schaufenster Bummler",ex:"My friends and me always go window-shopping.",l:1},
-{en:"addictive",de:"Süchtig machend",ex:"Social media is addictive.",l:1},
-{en:"to be addicted",de:"Nach etwas süchtig sein",ex:"Her friend is addicted to coconuts.",l:1},
-{en:"invasion of privacy",de:"In die Privatsphäre eindringen",ex:"Taking her photo without asking is an invasion of privacy.",l:1},
+{en:"addictive",de:"SÃ¼chtig machend",ex:"Social media is addictive.",l:1},
+{en:"to be addicted",de:"Nach etwas sÃ¼chtig sein",ex:"Her friend is addicted to coconuts.",l:1},
+{en:"invasion of privacy",de:"In die PrivatsphÃ¤re eindringen",ex:"Taking her photo without asking is an invasion of privacy.",l:1},
 {en:"stalker",de:"Stalker",ex:"He won't leave me alone, he is a stalker!",l:1},
 {en:"bot",de:"Bot (keine echte Person)",ex:"ChatGPT is a bot.",l:1},
 {en:"(to be) distracted",de:"Abgelenkt sein",ex:"I'm distracted because I'm talking to my neighbor.",l:2},
-{en:"hater",de:"Nichtsgönner, Neider",ex:"He's just a hater who criticizes everything.",l:2},
+{en:"hater",de:"NichtsgÃ¶nner, Neider",ex:"He's just a hater who criticizes everything.",l:2},
 {en:"survey",de:"Umfrage",ex:"They did a survey to understand their customers better.",l:2},
 {en:"a significant increase",de:"Bedeutender Anstieg",ex:"The report is saying that we're having a significant increase in sales this year.",l:2},
-{en:"a dramatic decrease",de:"Dramatischer Rückgang",ex:"There was a dramatic decrease in people buying this product.",l:2},
+{en:"a dramatic decrease",de:"Dramatischer RÃ¼ckgang",ex:"There was a dramatic decrease in people buying this product.",l:2},
 {en:"occasion",de:"Anlass",ex:"It's an important occasion so please wear a suit.",l:2},
 {en:"benefit",de:"Vorteil",ex:"It's a benefit to study for a test beforehand.",l:2},
 {en:"suggestion",de:"Vorschlag",ex:"I made a suggestion because no one was saying anything.",l:2},
-{en:"STEM (subjects)",de:"MINT-Fächer",ex:"She excels in every STEM subject: science, technology, engineering, and mathematics.",l:2},
+{en:"STEM (subjects)",de:"MINT-FÃ¤cher",ex:"She excels in every STEM subject: science, technology, engineering, and mathematics.",l:2},
 {en:"representative",de:"Vertreter",ex:"Each group had a representative in the panel discussion.",l:2},
 {en:"to invest in smth.",de:"Investieren",ex:"I invested in bitcoins last year.",l:2},
-{en:"unnecessary",de:"Unnötig",ex:"It's unnecessary to be loud in class.",l:2},
+{en:"unnecessary",de:"UnnÃ¶tig",ex:"It's unnecessary to be loud in class.",l:2},
 {en:"to ragequit",de:"Ausrasten (und das Spiel abbrechen)",ex:"I ragequit because I lost a game in Fortnite!",l:2},
-{en:"narrative",de:"Erzählung",ex:"The documentary presents a fascinating narrative about social media usage.",l:2},
+{en:"narrative",de:"ErzÃ¤hlung",ex:"The documentary presents a fascinating narrative about social media usage.",l:2},
 {en:"household",de:"Haushalt",ex:"Usually every household has at least one TV.",l:2},
-{en:"to run errands",de:"Besorgungen tätigen / erledigen",ex:"I'm usually running errands in the evening.",l:2},
-{en:"persuasive",de:"Überzeugend",ex:"He's very persuasive because he has good arguments.",l:2},
+{en:"to run errands",de:"Besorgungen tÃ¤tigen / erledigen",ex:"I'm usually running errands in the evening.",l:2},
+{en:"persuasive",de:"Ãberzeugend",ex:"He's very persuasive because he has good arguments.",l:2},
 {en:"troll",de:"Troll (Scherzkeks)",ex:"You are not funny, troll!",l:2},
-{en:"scammer",de:"Betrüger",ex:"He tried to steal my personal information -- he is a scammer!",l:2},
-{en:"eat out",de:"auswärts essen",ex:"We usually eat out on Fridays.",l:3},
+{en:"scammer",de:"BetrÃ¼ger",ex:"He tried to steal my personal information -- he is a scammer!",l:2},
+{en:"eat out",de:"auswÃ¤rts essen",ex:"We usually eat out on Fridays.",l:3},
 {en:"order in",de:"Essen bestellen",ex:"Let's order in some pizza tonight.",l:3},
 {en:"to-go / take-away",de:"zum Mitnehmen",ex:"I'll get my coffee to-go, please.",l:3},
 {en:"go-to meal",de:"Standardwahl / Standardessen",ex:"What's your go-to meal when you're in a hurry?",l:3},
-{en:"comfort food",de:"Futter für die Seele / Wohlfühlgericht",ex:"After a bad day, chocolate is my comfort food.",l:3},
+{en:"comfort food",de:"Futter fÃ¼r die Seele / WohlfÃ¼hlgericht",ex:"After a bad day, chocolate is my comfort food.",l:3},
 {en:"convenient",de:"praktisch / bequem",ex:"Frozen meals are convenient but not very healthy.",l:3},
 {en:"I'm starving",de:"Ich verhungere! (umgangsprachlich)",ex:"I haven't eaten all day -- I'm starving!",l:3},
 {en:"to crave something",de:"Verlangen nach etwas haben",ex:"She's craving chocolate again.",l:3},
-{en:"to starve",de:"Verhungern (wörtlich)",ex:"Without food, people can starve in days.",l:3},
+{en:"to starve",de:"Verhungern (wÃ¶rtlich)",ex:"Without food, people can starve in days.",l:3},
 {en:"to tip",de:"Trinkgeld geben",ex:"Don't forget to tip the waiter.",l:3},
-{en:"ethnicity",de:"Bevölkerungsgruppe / Ethnie",ex:"The city is home to people of many ethnicities.",l:3},
-{en:"beverage",de:"Getränk",ex:"Coffee is my favorite beverage.",l:3},
-{en:"nutrition",de:"Ernährung",ex:"Good nutrition is essential for children.",l:3},
-{en:"nutrients",de:"Nährstoffe",ex:"Vegetables provide important nutrients.",l:3},
+{en:"ethnicity",de:"BevÃ¶lkerungsgruppe / Ethnie",ex:"The city is home to people of many ethnicities.",l:3},
+{en:"beverage",de:"GetrÃ¤nk",ex:"Coffee is my favorite beverage.",l:3},
+{en:"nutrition",de:"ErnÃ¤hrung",ex:"Good nutrition is essential for children.",l:3},
+{en:"nutrients",de:"NÃ¤hrstoffe",ex:"Vegetables provide important nutrients.",l:3},
 {en:"processed",de:"verarbeitet",ex:"Processed foods often contain too much sugar.",l:3},
 {en:"fiber",de:"Ballaststoffe",ex:"Whole grains are high in fiber.",l:3},
 {en:"to maintain weight",de:"Gewicht halten",ex:"She exercises daily to maintain her weight.",l:3},
@@ -426,20 +426,20 @@ const V=[
 {en:"evidence",de:"Beweis",ex:"There's no evidence that this diet works.",l:3},
 {en:"chronically",de:"chronisch",ex:"She is chronically tired during the week.",l:4},
 {en:"psychological",de:"psychologisch",ex:"He has a psychological problem that he wants to fix.",l:4},
-{en:"eating disorder",de:"Essstörung",ex:"She suffers from an eating disorder, but she is getting help.",l:4},
+{en:"eating disorder",de:"EssstÃ¶rung",ex:"She suffers from an eating disorder, but she is getting help.",l:4},
 {en:"to brag",de:"angeben / prahlen",ex:"He likes to brag about his new phone.",l:4},
 {en:"to share",de:"etwas teilen",ex:"Can you share which secret she told you?",l:4},
 {en:"on average",de:"im Durchschnitt",ex:"On average, teenagers spent multiple hours per day on their phones.",l:4},
 {en:"minerals",de:"Mineralien",ex:"This water contains many important minerals.",l:4},
-{en:"sleep-deprived",de:"übermüdet (durch Schlafmangel)",ex:"After studying all night, the student was severely sleep-deprived.",l:4},
+{en:"sleep-deprived",de:"Ã¼bermÃ¼det (durch Schlafmangel)",ex:"After studying all night, the student was severely sleep-deprived.",l:4},
 {en:"as a result",de:"als Ergebnis / infolgedessen",ex:"It rained all day, and as a result, the game was canceled.",l:4},
 {en:"purpose",de:"Zweck / Absicht / Ziel",ex:"The main purpose of this meeting is to discuss our holiday plans.",l:4},
 {en:"therefore",de:"deshalb / deswegen",ex:"The store was closed, therefore we went to another one.",l:4},
-{en:"for pleasure",de:"zum Vergnügen / aus Spaß",ex:"I read books for pleasure, not just for school.",l:4},
+{en:"for pleasure",de:"zum VergnÃ¼gen / aus SpaÃ",ex:"I read books for pleasure, not just for school.",l:4},
 {en:"to enroll",de:"sich anmelden / einschreiben",ex:"She decided to enroll in a language course.",l:4},
-{en:"tuition fees",de:"Studiengebühren",ex:"The tuition fees are very high this year.",l:4},
+{en:"tuition fees",de:"StudiengebÃ¼hren",ex:"The tuition fees are very high this year.",l:4},
 {en:"to be deported",de:"abgeschoben werden",ex:"He was afraid to be deported from the country.",l:4},
-{en:"makeover",de:"Umstyling / Veränderung",ex:"She got a complete makeover for the party.",l:4},
+{en:"makeover",de:"Umstyling / VerÃ¤nderung",ex:"She got a complete makeover for the party.",l:4},
 {en:"to go out of fashion",de:"aus der Mode kommen",ex:"Skinny jeans are starting to go out of fashion.",l:4},
 {en:"procrastination",de:"Aufschieben / Prokrastination",ex:"Her procrastination makes homework very stressful.",l:4},
 {en:"to sleep in",de:"ausschlafen",ex:"On Sundays I love to sleep in.",l:4},
@@ -450,35 +450,35 @@ const V=[
 {en:"timeless",de:"zeitlos",ex:"She recommends choosing a timeless design.",l:5},
 {en:"conscious choice",de:"Bewusste Entscheidung",ex:"He needs to make a conscious choice for his future.",l:5},
 {en:"to assert",de:"sich durchsetzen / zum Ausdruck bringen",ex:"She decided to assert her independence by moving to a new city.",l:5},
-{en:"authenticity",de:"Authentizität",ex:"The restaurant is known for its authenticity.",l:5},
+{en:"authenticity",de:"AuthentizitÃ¤t",ex:"The restaurant is known for its authenticity.",l:5},
 {en:"authentic",de:"Authentisch",ex:"Today jeans are popular because they stay authentic.",l:5},
 {en:"insecurity",de:"Unsicherheit",ex:"People retouch pictures because of their insecurities.",l:5},
-{en:"to hide flaws",de:"Mängel verstecken",ex:"She used makeup to hide the flaws in her skin.",l:5},
-{en:"exaggerated",de:"übertrieben",ex:"He has an exaggerated fear of spiders.",l:5},
+{en:"to hide flaws",de:"MÃ¤ngel verstecken",ex:"She used makeup to hide the flaws in her skin.",l:5},
+{en:"exaggerated",de:"Ã¼bertrieben",ex:"He has an exaggerated fear of spiders.",l:5},
 {en:"measure yourself against smth.",de:"Sich mit jemandem messen/vergleichen",ex:"Don't measure yourself against celebrities on social media.",l:5},
 {en:"desirable",de:"begehrenswert",ex:"The house is in a desirable location.",l:5},
 {en:"dedication",de:"Hingabe",ex:"We were impressed by his dedication.",l:5},
-{en:"rumor",de:"Gerücht",ex:"The rumor turned out to be false.",l:5},
+{en:"rumor",de:"GerÃ¼cht",ex:"The rumor turned out to be false.",l:5},
 {en:"objective",de:"Ziel",ex:"We all live with the objective to be happy.",l:5},
 {en:"dispute",de:"anfechten / in Frage stellen",ex:"Do not dispute people around you.",l:5},
-{en:"destined for",de:"Für etw. bestimmt sein",ex:"I always knew my brother was destined for success.",l:5},
-{en:"legacy",de:"Erbe / Vermächtnis",ex:"The band's musical legacy influenced generations of artists.",l:5},
+{en:"destined for",de:"FÃ¼r etw. bestimmt sein",ex:"I always knew my brother was destined for success.",l:5},
+{en:"legacy",de:"Erbe / VermÃ¤chtnis",ex:"The band's musical legacy influenced generations of artists.",l:5},
 {en:"deliberately",de:"absichtlich",ex:"He's been deliberately ignoring him all day.",l:5},
-{en:"obesity",de:"Übergewicht / Fettleibigkeit",ex:"Many countries are fighting the rise of childhood obesity.",l:6},
-{en:"justification",de:"Rechtfertigung / Begründung",ex:"There is no justification for such rude behavior.",l:6},
-{en:"body shaming",de:"Body Shaming / Diskriminierung aufgrund des Körpers",ex:"Body shaming on social media can have a negative impact on mental health.",l:6},
+{en:"obesity",de:"Ãbergewicht / Fettleibigkeit",ex:"Many countries are fighting the rise of childhood obesity.",l:6},
+{en:"justification",de:"Rechtfertigung / BegrÃ¼ndung",ex:"There is no justification for such rude behavior.",l:6},
+{en:"body shaming",de:"Body Shaming / Diskriminierung aufgrund des KÃ¶rpers",ex:"Body shaming on social media can have a negative impact on mental health.",l:6},
 {en:"self-conscious",de:"unsicher / gehemmt",ex:"He felt self-conscious about his new haircut.",l:6},
 {en:"self-confident",de:"selbstbewusst",ex:"To succeed in a job interview, you need to appear self-confident.",l:6},
 {en:"competitive",de:"wettbewerbsorientiert / ehrgeizig",ex:"She has a very competitive nature and always wants to win.",l:6},
-{en:"equipment",de:"Ausrüstung",ex:"Make sure you have all the necessary camping equipment.",l:6},
+{en:"equipment",de:"AusrÃ¼stung",ex:"Make sure you have all the necessary camping equipment.",l:6},
 {en:"to get out of one's comfort zone",de:"seine Komfortzone verlassen",ex:"You only grow as a person when you get out of your comfort zone.",l:6},
-{en:"rite of passage",de:"Initiationsritus / Übergangsritus",ex:"Graduation is considered a major rite of passage for students.",l:6},
+{en:"rite of passage",de:"Initiationsritus / Ãbergangsritus",ex:"Graduation is considered a major rite of passage for students.",l:6},
 {en:"comfort zone",de:"Komfortzone",ex:"It feels safe to stay inside your comfort zone.",l:6},
 {en:"opponent",de:"Gegner",ex:"His opponent in the chess match was very experienced.",l:6},
-{en:"facility",de:"Einrichtung / Anlage / Gelände",ex:"The school has a great sports facility for the students.",l:6},
+{en:"facility",de:"Einrichtung / Anlage / GelÃ¤nde",ex:"The school has a great sports facility for the students.",l:6},
 {en:"competitor",de:"Mitbewerber / Konkurrent",ex:"The company is doing better than its main competitor.",l:6},
 {en:"spectator",de:"Zuschauer",ex:"Thousands of spectators gathered to watch the marathon.",l:6},
-{en:"littering",de:"Verschmutzung / Müll wegwerfen",ex:"Littering in public parks can lead to a heavy fine.",l:6},
+{en:"littering",de:"Verschmutzung / MÃ¼ll wegwerfen",ex:"Littering in public parks can lead to a heavy fine.",l:6},
 {en:"legal age",de:"gesetzliches Alter",ex:"You must be of legal age to vote in the elections.",l:6},
 {en:"to give consent",de:"seine Zustimmung geben",ex:"You need to give your consent before the surgery can begin.",l:6},
 {en:"to participate in",de:"teilnehmen an",ex:"Many students want to participate in the school play.",l:6},
@@ -497,7 +497,7 @@ let db=null, fbReady=false, currentUser=null;
 function initFirebase(){
   try {
     if(FIREBASE_CONFIG.apiKey==='YOUR_API_KEY'){
-      console.log('Firebase not configured — using localStorage only');
+      console.log('Firebase not configured â using localStorage only');
       return;
     }
     firebase.initializeApp(FIREBASE_CONFIG);
@@ -681,7 +681,7 @@ let pMode='';
 function pickList(mode){
   pMode=mode;
   const names={flashcard:'Flashcards',gapfill:'Gap Fill',definition:'Definitions',context:'Context + Definition'};
-  document.getElementById('lpTitle').textContent=names[mode]+' — choose a list';
+  document.getElementById('lpTitle').textContent=names[mode]+' â choose a list';
   let h='<div class="lp-row" onclick="launch(null)"><div style="display:flex;align-items:center"><span class="lp-num" style="background:var(--accent2);">&#x2731;</span><div class="lp-info"><div class="lp-name">All Lists</div><div class="lp-meta">120 words from all 6 lists</div></div></div><div class="lp-badge" style="background:rgba(108,92,231,0.12);color:var(--accent2)">Start</div></div>';
   for(let n=1;n<=6;n++){
     const ws=V.filter(v=>v.l===n);
@@ -772,7 +772,7 @@ function checkEx(){
     eC++;upSR(w.idx,2);
   }else if(res==='close'){
     inp.classList.add('close');fb.className='q-feedback close-fb';
-    fb.innerHTML='&#9998; Almost! You wrote <b>'+v+'</b> — correct spelling: <b>'+g.a+'</b><div class="fb-example">Spelling counts! Half point awarded.</div>';
+    fb.innerHTML='&#9998; Almost! You wrote <b>'+v+'</b> â correct spelling: <b>'+g.a+'</b><div class="fb-example">Spelling counts! Half point awarded.</div>';
     eH++;upSR(w.idx,1);
   }else{
     inp.classList.add('wrong');fb.className='q-feedback wrong-fb';
