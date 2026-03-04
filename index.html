@@ -921,6 +921,10 @@
                 backBtn.classList.remove('show');
                 document.getElementById('userSection').style.display = 'none';
                 document.getElementById('modalOverlay').classList.remove('show');
+            } else if (screenId === 'homeScreen') {
+                backBtn.classList.remove('show');
+                document.getElementById('userSection').style.display = 'flex';
+                document.getElementById('modalOverlay').classList.remove('show');
             } else {
                 backBtn.classList.add('show');
                 document.getElementById('userSection').style.display = 'flex';
