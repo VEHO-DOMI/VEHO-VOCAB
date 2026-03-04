@@ -556,7 +556,7 @@
 </head>
 <body>
     <div class="header">
-        <button class="back-btn" id="backBtn">â Back</button>
+        <button class="back-btn" id="backBtn">← Back</button>
         <h1>VEHO VOCAB</h1>
         <div class="header-right">
             <div class="sync-status">
@@ -589,8 +589,8 @@
                     <div class="form-group">
                         <label for="directionSelect">Learning Direction:</label>
                         <select id="directionSelect">
-                            <option value="de-en">German â English (default)</option>
-                            <option value="en-de">English â German</option>
+                            <option value="de-en">German → English (default)</option>
+                            <option value="en-de">English → German</option>
                         </select>
                     </div>
                     <button type="submit" class="button">Login</button>
@@ -674,8 +674,8 @@
                         </div>
                     </div>
                     <div class="nav-buttons">
-                        <button class="button button-small" id="btnPrevCard">â Previous</button>
-                        <button class="button button-small" id="btnNextCard">Next â</button>
+                        <button class="button button-small" id="btnPrevCard">← Previous</button>
+                        <button class="button button-small" id="btnNextCard">Next →</button>
                     </div>
                 </div>
             </div>
@@ -732,9 +732,9 @@
         // ===========================
         const VOCABULARY = [
             // List 1 - Social Life & School
-            { en: "conversation starters", de: "GesprÃ¤chsÃ¶ffner", ex: "Animals are my favourite conversation starters.", ex2: "Good conversation starters can help you make new friends at parties.", l: 1 },
+            { en: "conversation starters", de: "Gesprächsöffner", ex: "Animals are my favourite conversation starters.", ex2: "Good conversation starters can help you make new friends at parties.", l: 1 },
             { en: "putting on a front", de: "Sich verstellen", ex: "Don't put on a front. Be yourself!", ex2: "She stopped putting on a front and showed her true personality.", l: 1 },
-            { en: "to take smth into account", de: "etwas berÃ¼cksichtigen", ex: "I will take your situation into account.", ex2: "You should take the weather into account when planning a trip.", l: 1 },
+            { en: "to take smth into account", de: "etwas berücksichtigen", ex: "I will take your situation into account.", ex2: "You should take the weather into account when planning a trip.", l: 1 },
             { en: "to regard something", de: "etwas respektieren", ex: "Don't forget to regard your friend's privacy.", ex2: "We should regard the rules of the school.", l: 1 },
             { en: "to make someone's life a misery", de: "Jemandem das Leben schwer machen", ex: "She makes his life a misery every day.", ex2: "The loud neighbors make our life a misery.", l: 1 },
             { en: "boarding school", de: "Internat", ex: "Ana doesn't live at home. She is a pupil at a boarding school.", ex2: "Many students attend boarding school in the UK.", l: 1 },
@@ -742,53 +742,53 @@
             { en: "to board something", de: "einsteigen", ex: "To board a plane.", ex2: "Passengers need to board the train quickly before it leaves.", l: 1 },
             { en: "on duty", de: "Im Einsatz", ex: "There's a teacher on duty in this class.", ex2: "The lifeguard is on duty at the swimming pool today.", l: 1 },
             { en: "to take a liking to someone", de: "An jemandem Gefallen finden", ex: "He took a liking to her.", ex2: "The dog took a liking to the new neighbors immediately.", l: 1 },
-            { en: "to be spent", de: "ErschÃ¶pft / erledigt", ex: "After the long day, he was spent.", ex2: "After the marathon, all the runners were completely spent.", l: 1 },
+            { en: "to be spent", de: "Erschöpft / erledigt", ex: "After the long day, he was spent.", ex2: "After the marathon, all the runners were completely spent.", l: 1 },
             { en: "learning a trade", de: "Ein Handwerk erlernen", ex: "My brother is learning a trade.", ex2: "Learning a trade is a great way to develop practical skills.", l: 1 },
             { en: "acquaintance", de: "Bekannter", ex: "Yes, I know him but we are not that close. He is just an acquaintance.", ex2: "An acquaintance from work invited me to a concert.", l: 1 },
-            { en: "anxious", de: "Ãngstlich", ex: "I was a bit anxious at the beginning.", ex2: "She felt anxious before the important job interview.", l: 1 },
+            { en: "anxious", de: "Ängstlich", ex: "I was a bit anxious at the beginning.", ex2: "She felt anxious before the important job interview.", l: 1 },
             { en: "window-shopper", de: "Schaufenster Bummler", ex: "My friends and me always go window-shopping.", ex2: "The typical window-shopper enjoys looking without buying.", l: 1 },
-            { en: "addictive", de: "SÃ¼chtig machend", ex: "Social media is addictive.", ex2: "Video games can be very addictive for young people.", l: 1 },
-            { en: "to be addicted", de: "Nach etwas sÃ¼chtig sein", ex: "Her friend is addicted to coconuts.", ex2: "Many teenagers are addicted to their smartphones.", l: 1 },
-            { en: "invasion of privacy", de: "In die PrivatsphÃ¤re eindringen", ex: "Taking her photo without asking is an invasion of privacy.", ex2: "Reading someone's diary is an invasion of privacy.", l: 1 },
+            { en: "addictive", de: "Süchtig machend", ex: "Social media is addictive.", ex2: "Video games can be very addictive for young people.", l: 1 },
+            { en: "to be addicted", de: "Nach etwas süchtig sein", ex: "Her friend is addicted to coconuts.", ex2: "Many teenagers are addicted to their smartphones.", l: 1 },
+            { en: "invasion of privacy", de: "In die Privatsphäre eindringen", ex: "Taking her photo without asking is an invasion of privacy.", ex2: "Reading someone's diary is an invasion of privacy.", l: 1 },
             { en: "stalker", de: "Stalker", ex: "He won't leave me alone, he is a stalker!", ex2: "The celebrity reported the stalker to the police.", l: 1 },
             { en: "bot", de: "Bot (keine echte Person)", ex: "ChatGPT is a bot.", ex2: "The bot automatically answers frequently asked questions.", l: 1 },
 
             // List 2 - Media & Society
             { en: "distracted", de: "Abgelenkt sein", ex: "I'm distracted because I'm talking to my neighbor.", ex2: "Don't be distracted during the test.", l: 2 },
-            { en: "hater", de: "NichtsgÃ¶nner, Neider", ex: "He's just a hater who criticizes everything.", ex2: "Every famous person has to deal with at least one hater.", l: 2 },
+            { en: "hater", de: "Nichtsgönner, Neider", ex: "He's just a hater who criticizes everything.", ex2: "Every famous person has to deal with at least one hater.", l: 2 },
             { en: "survey", de: "Umfrage", ex: "They did a survey to understand their customers better.", ex2: "The survey showed that most students prefer online learning.", l: 2 },
             { en: "a significant increase", de: "Bedeutender Anstieg", ex: "The report is saying that we're having a significant increase in sales this year.", ex2: "There has been a significant increase in online shopping.", l: 2 },
-            { en: "a dramatic decrease", de: "Dramatischer RÃ¼ckgang", ex: "There was a dramatic decrease in people buying this product.", ex2: "Scientists noticed a dramatic decrease in air pollution.", l: 2 },
+            { en: "a dramatic decrease", de: "Dramatischer Rückgang", ex: "There was a dramatic decrease in people buying this product.", ex2: "Scientists noticed a dramatic decrease in air pollution.", l: 2 },
             { en: "occasion", de: "Anlass", ex: "It's an important occasion so please wear a suit.", ex2: "The wedding was a special occasion for the whole family.", l: 2 },
             { en: "benefit", de: "Vorteil", ex: "It's a benefit to study for a test beforehand.", ex2: "One benefit of living in a big city is public transportation.", l: 2 },
             { en: "suggestion", de: "Vorschlag", ex: "I made a suggestion because no one was saying anything.", ex2: "Do you have any suggestion for what we should eat tonight?", l: 2 },
-            { en: "STEM subjects", de: "MINT-FÃ¤cher", ex: "She excels in every STEM subject: science, technology, engineering, and mathematics.", ex2: "STEM subjects are becoming increasingly important in schools.", l: 2 },
+            { en: "STEM subjects", de: "MINT-Fächer", ex: "She excels in every STEM subject: science, technology, engineering, and mathematics.", ex2: "STEM subjects are becoming increasingly important in schools.", l: 2 },
             { en: "representative", de: "Vertreter", ex: "Each group had a representative in the panel discussion.", ex2: "The class representative organized the student meeting.", l: 2 },
             { en: "to invest", de: "Investieren", ex: "I invested in bitcoins last year.", ex2: "Many companies invest in renewable energy nowadays.", l: 2 },
-            { en: "unnecessary", de: "UnnÃ¶tig", ex: "It's unnecessary to be loud in class.", ex2: "That comment was unnecessary and hurt people's feelings.", l: 2 },
+            { en: "unnecessary", de: "Unnötig", ex: "It's unnecessary to be loud in class.", ex2: "That comment was unnecessary and hurt people's feelings.", l: 2 },
             { en: "to ragequit", de: "Ausrasten (und das Spiel abbrechen)", ex: "I ragequit because I lost a game in Fortnite!", ex2: "He tends to ragequit whenever he loses a match.", l: 2 },
-            { en: "narrative", de: "ErzÃ¤hlung", ex: "The documentary presents a fascinating narrative about social media usage.", ex2: "The narrative of the book was very engaging and suspenseful.", l: 2 },
+            { en: "narrative", de: "Erzählung", ex: "The documentary presents a fascinating narrative about social media usage.", ex2: "The narrative of the book was very engaging and suspenseful.", l: 2 },
             { en: "household", de: "Haushalt", ex: "Usually every household has at least one TV.", ex2: "The average household spends several hours watching television daily.", l: 2 },
-            { en: "to run errands", de: "Besorgungen tÃ¤tigen / erledigen", ex: "I'm usually running errands in the evening.", ex2: "She spent the afternoon running errands downtown.", l: 2 },
-            { en: "persuasive", de: "Ãberzeugend", ex: "He's very persuasive because he has good arguments.", ex2: "The speaker was incredibly persuasive and convinced the audience.", l: 2 },
+            { en: "to run errands", de: "Besorgungen tätigen / erledigen", ex: "I'm usually running errands in the evening.", ex2: "She spent the afternoon running errands downtown.", l: 2 },
+            { en: "persuasive", de: "Überzeugend", ex: "He's very persuasive because he has good arguments.", ex2: "The speaker was incredibly persuasive and convinced the audience.", l: 2 },
             { en: "troll", de: "Troll (Scherzkeks)", ex: "You are not funny, troll!", ex2: "The troll posted offensive comments just to get attention.", l: 2 },
-            { en: "scammer", de: "BetrÃ¼ger", ex: "He tried to steal my personal information -- he is a scammer!", ex2: "The scammer called pretending to be from the bank.", l: 2 },
+            { en: "scammer", de: "Betrüger", ex: "He tried to steal my personal information -- he is a scammer!", ex2: "The scammer called pretending to be from the bank.", l: 2 },
 
             // List 3 - Food & Nutrition
-            { en: "eat out", de: "auswÃ¤rts essen", ex: "We usually eat out on Fridays.", ex2: "My family loves to eat out at Italian restaurants.", l: 3 },
+            { en: "eat out", de: "auswärts essen", ex: "We usually eat out on Fridays.", ex2: "My family loves to eat out at Italian restaurants.", l: 3 },
             { en: "order in", de: "Essen bestellen", ex: "Let's order in some pizza tonight.", ex2: "We decided to order in Chinese food instead of cooking.", l: 3 },
             { en: "to-go / take-away", de: "zum Mitnehmen", ex: "I'll get my coffee to-go, please. It's only for take-away, sir!", ex2: "Most coffee shops offer to-go options for busy customers.", l: 3 },
             { en: "go-to meal", de: "Standardwahl / Standardessen", ex: "What's your go-to meal when you're in a hurry?", ex2: "Pasta is my go-to meal when I don't have much time.", l: 3 },
-            { en: "comfort food", de: "Futter fÃ¼r die Seele / WohlfÃ¼hlgericht", ex: "After a bad day, chocolate is my comfort food.", ex2: "Ice cream is the perfect comfort food on a rainy day.", l: 3 },
+            { en: "comfort food", de: "Futter für die Seele / Wohlfühlgericht", ex: "After a bad day, chocolate is my comfort food.", ex2: "Ice cream is the perfect comfort food on a rainy day.", l: 3 },
             { en: "convenient", de: "praktisch / bequem", ex: "Frozen meals are convenient but not very healthy.", ex2: "Online shopping is very convenient for busy people.", l: 3 },
             { en: "I'm starving", de: "Ich verhungere! (umgangsprachlich)", ex: "I haven't eaten all day -- I'm starving!", ex2: "Can we eat soon? I'm starving!", l: 3 },
             { en: "to crave something", de: "Verlangen nach etwas haben", ex: "She's craving chocolate again.", ex2: "After exercising, I always crave something salty.", l: 3 },
-            { en: "to starve", de: "Verhungern (wÃ¶rtlich)", ex: "Without food, people can starve in days.", ex2: "Animals will starve if they don't have access to food.", l: 3 },
+            { en: "to starve", de: "Verhungern (wörtlich)", ex: "Without food, people can starve in days.", ex2: "Animals will starve if they don't have access to food.", l: 3 },
             { en: "to tip", de: "Trinkgeld geben", ex: "Don't forget to tip the waiter.", ex2: "In America, it is customary to tip your server.", l: 3 },
-            { en: "ethnicity", de: "BevÃ¶lkerungsgruppe / Ethnie", ex: "The city is home to people of many ethnicities.", ex2: "The survey asked about the participant's ethnicity.", l: 3 },
-            { en: "beverage", de: "GetrÃ¤nk", ex: "Coffee is my favorite beverage.", ex2: "What is your favorite beverage to drink at breakfast?", l: 3 },
-            { en: "nutrition", de: "ErnÃ¤hrung", ex: "Good nutrition is essential for children.", ex2: "Proper nutrition helps you stay healthy and energetic.", l: 3 },
-            { en: "nutrients", de: "NÃ¤hrstoffe", ex: "Vegetables provide important nutrients.", ex2: "Fruits and vegetables contain many essential nutrients.", l: 3 },
+            { en: "ethnicity", de: "Bevölkerungsgruppe / Ethnie", ex: "The city is home to people of many ethnicities.", ex2: "The survey asked about the participant's ethnicity.", l: 3 },
+            { en: "beverage", de: "Getränk", ex: "Coffee is my favorite beverage.", ex2: "What is your favorite beverage to drink at breakfast?", l: 3 },
+            { en: "nutrition", de: "Ernährung", ex: "Good nutrition is essential for children.", ex2: "Proper nutrition helps you stay healthy and energetic.", l: 3 },
+            { en: "nutrients", de: "Nährstoffe", ex: "Vegetables provide important nutrients.", ex2: "Fruits and vegetables contain many essential nutrients.", l: 3 },
             { en: "processed", de: "verarbeitet", ex: "Processed foods often contain too much sugar.", ex2: "Most processed snacks are not as healthy as fresh food.", l: 3 },
             { en: "fiber", de: "Ballaststoffe", ex: "Whole grains are high in fiber.", ex2: "Eating foods rich in fiber helps with digestion.", l: 3 },
             { en: "to maintain weight", de: "Gewicht halten", ex: "She exercises daily to maintain her weight.", ex2: "Eating balanced meals helps you maintain weight over time.", l: 3 },
@@ -799,20 +799,20 @@
             // List 4 - Health & Lifestyle
             { en: "chronically", de: "chronisch", ex: "She is chronically tired during the week.", ex2: "He suffered chronically from back pain for years.", l: 4 },
             { en: "psychological", de: "psychologisch", ex: "He has a psychological problem that he wants to fix.", ex2: "The psychological effects of stress are well documented.", l: 4 },
-            { en: "eating disorder", de: "EssstÃ¶rung", ex: "She suffers from an eating disorder, but she is getting help.", ex2: "An eating disorder requires professional medical help.", l: 4 },
+            { en: "eating disorder", de: "Essstörung", ex: "She suffers from an eating disorder, but she is getting help.", ex2: "An eating disorder requires professional medical help.", l: 4 },
             { en: "to brag", de: "angeben / prahlen", ex: "He likes to brag about his new phone.", ex2: "Don't brag about your achievements; let them speak for themselves.", l: 4 },
             { en: "to share", de: "etwas teilen", ex: "Can you share which secret she told you?", ex2: "Teachers should share their knowledge with students.", l: 4 },
             { en: "on average", de: "im Durchschnitt", ex: "On average, teenagers spend multiple hours per day on their phones.", ex2: "On average, people sleep about 8 hours per night.", l: 4 },
             { en: "minerals", de: "Mineralien", ex: "This water contains many important minerals.", ex2: "Your body needs minerals like calcium and iron to stay healthy.", l: 4 },
-            { en: "sleep-deprived", de: "Ã¼bermÃ¼det (durch Schlafmangel)", ex: "After studying all night, the student was severely sleep-deprived.", ex2: "Sleep-deprived drivers are more likely to have accidents.", l: 4 },
+            { en: "sleep-deprived", de: "übermüdet (durch Schlafmangel)", ex: "After studying all night, the student was severely sleep-deprived.", ex2: "Sleep-deprived drivers are more likely to have accidents.", l: 4 },
             { en: "as a result", de: "als Ergebnis / infolgedessen", ex: "It rained all day, and as a result, the game was canceled.", ex2: "She studied hard, and as a result, she passed the test.", l: 4 },
             { en: "purpose", de: "Zweck / Absicht / Ziel", ex: "The main purpose of this meeting is to discuss our holiday plans.", ex2: "The purpose of this project is to help the community.", l: 4 },
             { en: "therefore", de: "deshalb / deswegen", ex: "The restaurant was closed. Therefore, we went to another one.", ex2: "The weather was bad; therefore, we stayed home.", l: 4 },
-            { en: "for pleasure", de: "zum VergnÃ¼gen / aus SpaÃ", ex: "I read books for pleasure, not just for school.", ex2: "Many people travel for pleasure during the summer holidays.", l: 4 },
+            { en: "for pleasure", de: "zum Vergnügen / aus Spaß", ex: "I read books for pleasure, not just for school.", ex2: "Many people travel for pleasure during the summer holidays.", l: 4 },
             { en: "to enroll", de: "sich anmelden / einschreiben", ex: "She decided to enroll in a language course.", ex2: "You need to enroll at the university before the deadline.", l: 4 },
-            { en: "tuition fees", de: "StudiengebÃ¼hren", ex: "The tuition fees are very high this year.", ex2: "International students often pay higher tuition fees.", l: 4 },
+            { en: "tuition fees", de: "Studiengebühren", ex: "The tuition fees are very high this year.", ex2: "International students often pay higher tuition fees.", l: 4 },
             { en: "to be deported", de: "abgeschoben werden", ex: "He was afraid to be deported from the country.", ex2: "People without valid visas risk being deported.", l: 4 },
-            { en: "makeover", de: "Umstyling / VerÃ¤nderung", ex: "She got a complete makeover for the party.", ex2: "The room needed a complete makeover with new furniture.", l: 4 },
+            { en: "makeover", de: "Umstyling / Veränderung", ex: "She got a complete makeover for the party.", ex2: "The room needed a complete makeover with new furniture.", l: 4 },
             { en: "to go out of fashion", de: "aus der Mode kommen", ex: "Skinny jeans are starting to go out of fashion.", ex2: "Those hairstyles will go out of fashion eventually.", l: 4 },
             { en: "procrastination", de: "Aufschieben / Prokrastination", ex: "Her procrastination makes homework very stressful.", ex2: "Procrastination is a common problem among students.", l: 4 },
             { en: "to sleep in", de: "ausschlafen", ex: "On Sundays I love to sleep in.", ex2: "On weekends, most teenagers like to sleep in.", l: 4 },
@@ -825,37 +825,37 @@
             { en: "timeless", de: "zeitlos", ex: "She recommends choosing a timeless design.", ex2: "Classic black and white outfits are timeless.", l: 5 },
             { en: "conscious choice", de: "Bewusste Entscheidung", ex: "He needs to make a conscious choice for his future.", ex2: "Buying local food is a conscious choice for the environment.", l: 5 },
             { en: "to assert", de: "sich durchsetzen / zum Ausdruck bringen", ex: "She decided to assert her independence by moving to a new city.", ex2: "You need to assert your opinions clearly in discussions.", l: 5 },
-            { en: "authenticity", de: "AuthentizitÃ¤t", ex: "The restaurant is known for its authenticity.", ex2: "People value authenticity in friendships and relationships.", l: 5 },
+            { en: "authenticity", de: "Authentizität", ex: "The restaurant is known for its authenticity.", ex2: "People value authenticity in friendships and relationships.", l: 5 },
             { en: "authentic", de: "Authentisch", ex: "Today jeans are popular because they stay authentic.", ex2: "This restaurant serves authentic Italian pasta.", l: 5 },
             { en: "insecurity", de: "Unsicherheit", ex: "People retouch pictures because of their insecurities.", ex2: "Insecurity is something many teenagers experience.", l: 5 },
-            { en: "to hide flaws", de: "MÃ¤ngel verstecken", ex: "She used makeup to hide the flaws in her skin.", ex2: "Some people use filters to hide flaws in their photos.", l: 5 },
-            { en: "exaggerated", de: "Ã¼bertrieben", ex: "He has an exaggerated fear of spiders.", ex2: "The story was exaggerated and not entirely true.", l: 5 },
+            { en: "to hide flaws", de: "Mängel verstecken", ex: "She used makeup to hide the flaws in her skin.", ex2: "Some people use filters to hide flaws in their photos.", l: 5 },
+            { en: "exaggerated", de: "übertrieben", ex: "He has an exaggerated fear of spiders.", ex2: "The story was exaggerated and not entirely true.", l: 5 },
             { en: "measure yourself against", de: "Sich mit jemandem messen / vergleichen", ex: "Don't measure yourself against celebrities on social media.", ex2: "You should not measure yourself against others constantly.", l: 5 },
             { en: "desirable", de: "begehrenswert", ex: "The house is in a desirable location.", ex2: "A good education makes you more desirable to employers.", l: 5 },
             { en: "dedication", de: "Hingabe", ex: "We were impressed by his dedication.", ex2: "Success requires dedication and hard work.", l: 5 },
-            { en: "rumor", de: "GerÃ¼cht", ex: "The rumor turned out to be false.", ex2: "A rumor spread quickly throughout the school.", l: 5 },
+            { en: "rumor", de: "Gerücht", ex: "The rumor turned out to be false.", ex2: "A rumor spread quickly throughout the school.", l: 5 },
             { en: "objective", de: "Ziel", ex: "We all live with the objective to be happy.", ex2: "The main objective of the project is to save money.", l: 5 },
             { en: "dispute", de: "anfechten / in Frage stellen", ex: "Do not dispute people around you.", ex2: "The lawyer will dispute the evidence in court.", l: 5 },
-            { en: "destined for", de: "FÃ¼r etw. bestimmt sein", ex: "I always knew my brother was destined for success.", ex2: "She seemed destined for a great career in medicine.", l: 5 },
-            { en: "legacy", de: "Erbe / VermÃ¤chtnis", ex: "The band's musical legacy influenced generations of artists.", ex2: "His legacy will live on through his books and teachings.", l: 5 },
+            { en: "destined for", de: "Für etw. bestimmt sein", ex: "I always knew my brother was destined for success.", ex2: "She seemed destined for a great career in medicine.", l: 5 },
+            { en: "legacy", de: "Erbe / Vermächtnis", ex: "The band's musical legacy influenced generations of artists.", ex2: "His legacy will live on through his books and teachings.", l: 5 },
             { en: "deliberately", de: "absichtlich", ex: "He's been deliberately ignoring him all day.", ex2: "She deliberately chose not to answer the question.", l: 5 },
 
             // List 6 - Body, Sports & Society
-            { en: "obesity", de: "Ãbergewicht / Fettleibigkeit", ex: "Many countries are fighting the rise of childhood obesity.", ex2: "Obesity can lead to serious health problems.", l: 6 },
-            { en: "justification", de: "Rechtfertigung / BegrÃ¼ndung", ex: "There is no justification for such rude behavior.", ex2: "The teacher asked for a justification for the late homework.", l: 6 },
-            { en: "body shaming", de: "Body Shaming / Diskriminierung aufgrund des KÃ¶rpers", ex: "Body shaming on social media can have a negative impact on mental health.", ex2: "Body shaming is harmful and should not be tolerated.", l: 6 },
+            { en: "obesity", de: "Übergewicht / Fettleibigkeit", ex: "Many countries are fighting the rise of childhood obesity.", ex2: "Obesity can lead to serious health problems.", l: 6 },
+            { en: "justification", de: "Rechtfertigung / Begründung", ex: "There is no justification for such rude behavior.", ex2: "The teacher asked for a justification for the late homework.", l: 6 },
+            { en: "body shaming", de: "Body Shaming / Diskriminierung aufgrund des Körpers", ex: "Body shaming on social media can have a negative impact on mental health.", ex2: "Body shaming is harmful and should not be tolerated.", l: 6 },
             { en: "self-conscious", de: "unsicher / gehemmt", ex: "He felt self-conscious about his new haircut.", ex2: "She was self-conscious about speaking in front of groups.", l: 6 },
             { en: "self-confident", de: "selbstbewusst", ex: "To succeed in a job interview, you need to appear self-confident.", ex2: "A self-confident person is more likely to achieve their goals.", l: 6 },
             { en: "competitive", de: "wettbewerbsorientiert / ehrgeizig", ex: "She has a very competitive nature and always wants to win.", ex2: "The job market has become increasingly competitive.", l: 6 },
-            { en: "equipment", de: "AusrÃ¼stung", ex: "Make sure you have all the necessary camping equipment.", ex2: "The gym has modern sports equipment for all members.", l: 6 },
+            { en: "equipment", de: "Ausrüstung", ex: "Make sure you have all the necessary camping equipment.", ex2: "The gym has modern sports equipment for all members.", l: 6 },
             { en: "to get out of one's comfort zone", de: "seine Komfortzone verlassen", ex: "You only grow as a person when you get out of your comfort zone.", ex2: "Traveling alone helped me get out of my comfort zone.", l: 6 },
-            { en: "rite of passage", de: "Initiationsritus / Ãbergangsritus", ex: "Graduation is considered a major rite of passage for students.", ex2: "Learning to drive is a rite of passage for many teenagers.", l: 6 },
+            { en: "rite of passage", de: "Initiationsritus / Übergangsritus", ex: "Graduation is considered a major rite of passage for students.", ex2: "Learning to drive is a rite of passage for many teenagers.", l: 6 },
             { en: "comfort zone", de: "Komfortzone", ex: "It feels safe to stay inside your comfort zone.", ex2: "Leaving your comfort zone can help you grow as a person.", l: 6 },
             { en: "opponent", de: "Gegner", ex: "His opponent in the chess match was very experienced.", ex2: "The boxer defeated his opponent in the final round.", l: 6 },
-            { en: "facility", de: "Einrichtung / Anlage / GelÃ¤nde", ex: "The school has a great sports facility for the students.", ex2: "This medical facility offers excellent patient care.", l: 6 },
+            { en: "facility", de: "Einrichtung / Anlage / Gelände", ex: "The school has a great sports facility for the students.", ex2: "This medical facility offers excellent patient care.", l: 6 },
             { en: "competitor", de: "Mitbewerber / Konkurrent", ex: "The company is doing better than its main competitor.", ex2: "Our main competitor just launched a new product.", l: 6 },
             { en: "spectator", de: "Zuschauer", ex: "Thousands of spectators gathered to watch the marathon.", ex2: "The spectators cheered loudly for their favorite team.", l: 6 },
-            { en: "littering", de: "Verschmutzung / MÃ¼ll wegwerfen", ex: "Littering in public parks can lead to a heavy fine.", ex2: "Littering is bad for the environment and should be avoided.", l: 6 },
+            { en: "littering", de: "Verschmutzung / Müll wegwerfen", ex: "Littering in public parks can lead to a heavy fine.", ex2: "Littering is bad for the environment and should be avoided.", l: 6 },
             { en: "legal age", de: "gesetzliches Alter", ex: "You must be of legal age to vote in the elections.", ex2: "The legal age for drinking alcohol varies by country.", l: 6 },
             { en: "to give consent", de: "seine Zustimmung geben", ex: "You need to give your consent before the surgery can begin.", ex2: "Both parents must give consent for the school trip.", l: 6 },
             { en: "to participate in", de: "teilnehmen an", ex: "Many students want to participate in the school play.", ex2: "Everyone should participate in class discussions.", l: 6 },
@@ -1394,15 +1394,15 @@
 
                 if (result.type === 'correct') {
                     updateSessionData(word.en, 'easy');
-                    feedback.textContent = 'â Correct!';
+                    feedback.textContent = '✓ Correct!';
                     feedback.className = 'feedback show correct';
                 } else if (result.type === 'almost') {
                     updateSessionData(word.en, 'good');
-                    feedback.textContent = `â Almost! Correct spelling: ${correct}`;
+                    feedback.textContent = `○ Almost! Correct spelling: ${correct}`;
                     feedback.className = 'feedback show almost';
                 } else {
                     updateSessionData(word.en, 'wrong');
-                    feedback.textContent = `â Wrong. Answer: ${correct}`;
+                    feedback.textContent = `✗ Wrong. Answer: ${correct}`;
                     feedback.className = 'feedback show wrong';
                 }
 
@@ -1480,15 +1480,15 @@
 
                 if (result.type === 'correct') {
                     updateSessionData(word.en, 'easy');
-                    feedback.textContent = 'â Correct!';
+                    feedback.textContent = '✓ Correct!';
                     feedback.className = 'feedback show correct';
                 } else if (result.type === 'almost') {
                     updateSessionData(word.en, 'good');
-                    feedback.textContent = `â Almost! Correct spelling: ${correct}`;
+                    feedback.textContent = `○ Almost! Correct spelling: ${correct}`;
                     feedback.className = 'feedback show almost';
                 } else {
                     updateSessionData(word.en, 'wrong');
-                    feedback.textContent = `â Wrong. Answer: ${correct}`;
+                    feedback.textContent = `✗ Wrong. Answer: ${correct}`;
                     feedback.className = 'feedback show wrong';
                 }
 
@@ -1581,15 +1581,15 @@
 
                 if (result.type === 'correct') {
                     updateSessionData(word.en, 'easy');
-                    feedback.textContent = 'â Correct!';
+                    feedback.textContent = '✓ Correct!';
                     feedback.className = 'feedback show correct';
                 } else if (result.type === 'almost') {
                     updateSessionData(word.en, 'good');
-                    feedback.textContent = `â Almost! Correct spelling: ${correct}`;
+                    feedback.textContent = `○ Almost! Correct spelling: ${correct}`;
                     feedback.className = 'feedback show almost';
                 } else {
                     updateSessionData(word.en, 'wrong');
-                    feedback.textContent = `â Wrong. Answer: ${correct}`;
+                    feedback.textContent = `✗ Wrong. Answer: ${correct}`;
                     feedback.className = 'feedback show wrong';
                 }
 
@@ -1681,7 +1681,7 @@
         // Direction Badges
         // ===========================
         function updateDirectionBadges() {
-            const badge = appState.direction === 'de-en' ? 'German â English' : 'English â German';
+            const badge = appState.direction === 'de-en' ? 'German → English' : 'English → German';
             document.getElementById('directionBadge').textContent = badge;
             document.getElementById('directionBadge2').textContent = badge;
             document.getElementById('directionBadge3').textContent = badge;
