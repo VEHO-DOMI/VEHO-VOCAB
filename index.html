@@ -431,6 +431,12 @@
             transform: rotateY(180deg);
         }
 
+        .flashcard.flipped .flashcard-content,
+        .flashcard.flipped .flashcard-label,
+        .flashcard.flipped .flashcard-click {
+            transform: rotateY(180deg);
+        }
+
         .flashcard.hide {
             opacity: 0;
         }
@@ -726,136 +732,136 @@
         // ===========================
         const VOCABULARY = [
             // List 1 - Social Life & School
-            { en: "conversation starters", de: "Gesprächsöffner", ex: "Animals are my favourite conversation starters.", ex2: "Good conversation starters help break the ice at parties.", l: 1 },
-            { en: "putting on a front", de: "Sich verstellen", ex: "Don't put on a front. Be yourself!", ex2: "She's always putting on a front when her boss is around.", l: 1 },
-            { en: "anxious", de: "Ängstlich", ex: "I was a bit anxious at the beginning.", ex2: "He felt anxious before the job interview started.", l: 1 },
-            { en: "approachable", de: "Zugänglich", ex: "She looked approachable.", ex2: "A good teacher should always be approachable to students.", l: 1 },
-            { en: "impression", de: "Eindruck", ex: "He makes a great first impression.", ex2: "The city left a lasting impression on every visitor.", l: 1 },
-            { en: "what lies beneath the surface", de: "Was unter der Oberfläche liegt", ex: "What lies beneath the surface is what really matters.", ex2: "You never know what lies beneath the surface of someone's smile.", l: 1 },
-            { en: "acquire", de: "Erwerben/Erlernen", ex: "She acquired the skill quickly.", ex2: "It takes years to acquire fluency in a new language.", l: 1 },
-            { en: "bully", de: "Tyrannisieren/Mobben", ex: "He was bullied at school.", ex2: "Nobody should have to bully or be bullied in the workplace.", l: 1 },
-            { en: "compulsory", de: "Verpflichtend", ex: "Maths is a compulsory subject.", ex2: "Wearing a helmet is compulsory when riding a motorcycle.", l: 1 },
-            { en: "curriculum", de: "Lehrplan", ex: "It's part of the national curriculum.", ex2: "The school redesigned its curriculum to include more digital skills.", l: 1 },
-            { en: "dress code", de: "Kleiderordnung", ex: "The school has a strict dress code.", ex2: "Many tech companies have abandoned the traditional dress code.", l: 1 },
-            { en: "elective", de: "Wahlfach", ex: "Art is an elective.", ex2: "She chose psychology as her elective this semester.", l: 1 },
-            { en: "higher education", de: "Höhere Bildung", ex: "He wants to go into higher education.", ex2: "Access to higher education should not depend on family income.", l: 1 },
-            { en: "mixed-ability class", de: "Klasse mit unterschiedlichen Leistungsniveaus", ex: "Teaching a mixed-ability class is challenging.", ex2: "In a mixed-ability class, teachers must differentiate their instruction.", l: 1 },
-            { en: "peer", de: "Gleichaltrige/r", ex: "She is respected by her peers.", ex2: "Adolescents are heavily influenced by their peers.", l: 1 },
-            { en: "reward", de: "Belohnung", ex: "Hard work brings its own rewards.", ex2: "The company offered a reward for the best sales performance.", l: 1 },
-            { en: "scholarship", de: "Stipendium", ex: "She got a scholarship to university.", ex2: "Winning the scholarship changed the course of her entire life.", l: 1 },
-            { en: "suspension", de: "Suspendierung", ex: "He got a three-day suspension.", ex2: "The student faced suspension after repeated violations of school rules.", l: 1 },
-            { en: "syllabus", de: "Lehrplan (eines Fachs)", ex: "The syllabus covers three main topics.", ex2: "Make sure to read the syllabus before the first day of class.", l: 1 },
-            { en: "tertiary education", de: "Tertiäre Bildung", ex: "Tertiary education includes universities.", ex2: "Many countries are investing more in tertiary education programs.", l: 1 },
+            { en: "conversation starters", de: "Gesprächsöffner", ex: "Animals are my favourite conversation starters.", ex2: "Good conversation starters can help you make new friends at parties.", l: 1 },
+            { en: "putting on a front", de: "Sich verstellen", ex: "Don't put on a front. Be yourself!", ex2: "She stopped putting on a front and showed her true personality.", l: 1 },
+            { en: "to take smth into account", de: "etwas berücksichtigen", ex: "I will take your situation into account.", ex2: "You should take the weather into account when planning a trip.", l: 1 },
+            { en: "to regard something", de: "etwas respektieren", ex: "Don't forget to regard your friend's privacy.", ex2: "We should regard the rules of the school.", l: 1 },
+            { en: "to make someone's life a misery", de: "Jemandem das Leben schwer machen", ex: "She makes his life a misery every day.", ex2: "The loud neighbors make our life a misery.", l: 1 },
+            { en: "boarding school", de: "Internat", ex: "Ana doesn't live at home. She is a pupil at a boarding school.", ex2: "Many students attend boarding school in the UK.", l: 1 },
+            { en: "to board", de: "Im Internat wohnen", ex: "There were other kids who boarded weekly.", ex2: "She decided to board at school instead of commuting.", l: 1 },
+            { en: "to board something", de: "einsteigen", ex: "To board a plane.", ex2: "Passengers need to board the train quickly before it leaves.", l: 1 },
+            { en: "on duty", de: "Im Einsatz", ex: "There's a teacher on duty in this class.", ex2: "The lifeguard is on duty at the swimming pool today.", l: 1 },
+            { en: "to take a liking to someone", de: "An jemandem Gefallen finden", ex: "He took a liking to her.", ex2: "The dog took a liking to the new neighbors immediately.", l: 1 },
+            { en: "to be spent", de: "Erschöpft / erledigt", ex: "After the long day, he was spent.", ex2: "After the marathon, all the runners were completely spent.", l: 1 },
+            { en: "learning a trade", de: "Ein Handwerk erlernen", ex: "My brother is learning a trade.", ex2: "Learning a trade is a great way to develop practical skills.", l: 1 },
+            { en: "acquaintance", de: "Bekannter", ex: "Yes, I know him but we are not that close. He is just an acquaintance.", ex2: "An acquaintance from work invited me to a concert.", l: 1 },
+            { en: "anxious", de: "Ängstlich", ex: "I was a bit anxious at the beginning.", ex2: "She felt anxious before the important job interview.", l: 1 },
+            { en: "window-shopper", de: "Schaufenster Bummler", ex: "My friends and me always go window-shopping.", ex2: "The typical window-shopper enjoys looking without buying.", l: 1 },
+            { en: "addictive", de: "Süchtig machend", ex: "Social media is addictive.", ex2: "Video games can be very addictive for young people.", l: 1 },
+            { en: "to be addicted", de: "Nach etwas süchtig sein", ex: "Her friend is addicted to coconuts.", ex2: "Many teenagers are addicted to their smartphones.", l: 1 },
+            { en: "invasion of privacy", de: "In die Privatsphäre eindringen", ex: "Taking her photo without asking is an invasion of privacy.", ex2: "Reading someone's diary is an invasion of privacy.", l: 1 },
+            { en: "stalker", de: "Stalker", ex: "He won't leave me alone, he is a stalker!", ex2: "The celebrity reported the stalker to the police.", l: 1 },
+            { en: "bot", de: "Bot (keine echte Person)", ex: "ChatGPT is a bot.", ex2: "The bot automatically answers frequently asked questions.", l: 1 },
 
             // List 2 - Media & Society
-            { en: "influence", de: "Einfluss", ex: "Social media has a huge influence.", ex2: "Parents have a strong influence on their children's values.", l: 2 },
-            { en: "keep up with", de: "Mithalten mit", ex: "It's hard to keep up with trends.", ex2: "She reads every morning to keep up with world news.", l: 2 },
-            { en: "the way people perceive the world", de: "Wie Menschen die Welt wahrnehmen", ex: "Media shapes the way people perceive the world.", ex2: "Travel changes the way people perceive the world around them.", l: 2 },
-            { en: "imagery", de: "Bildsprache/Bilder", ex: "The article used powerful imagery.", ex2: "The poet's vivid imagery brought the autumn landscape to life.", l: 2 },
-            { en: "shape someone's opinion", de: "Jemandes Meinung formen", ex: "Ads shape people's opinions.", ex2: "Teachers can profoundly shape someone's opinion about learning.", l: 2 },
-            { en: "raise awareness", de: "Bewusstsein schärfen", ex: "The campaign raises awareness.", ex2: "The documentary helped raise awareness about ocean pollution.", l: 2 },
-            { en: "turn to", de: "Sich wenden an", ex: "Many people turn to social media for news.", ex2: "When she felt overwhelmed, she would turn to her best friend.", l: 2 },
-            { en: "broadcast", de: "Sendung/Übertragung", ex: "The broadcast was watched by millions.", ex2: "The live broadcast of the concert reached fans worldwide.", l: 2 },
-            { en: "censorship", de: "Zensur", ex: "Censorship limits free speech.", ex2: "The government introduced strict censorship of online content.", l: 2 },
-            { en: "coverage", de: "Berichterstattung", ex: "The news coverage was extensive.", ex2: "The media's coverage of the trial was controversial.", l: 2 },
-            { en: "current affairs", de: "Aktuelle Ereignisse", ex: "She follows current affairs closely.", ex2: "A good journalist must stay informed about current affairs.", l: 2 },
-            { en: "documentary", de: "Dokumentation/Dokumentarfilm", ex: "I watched a documentary about climate change.", ex2: "The documentary about deep-sea creatures won several awards.", l: 2 },
-            { en: "editor", de: "Redakteur/in", ex: "The editor approved the article.", ex2: "The editor carefully reviewed every paragraph before publication.", l: 2 },
-            { en: "freedom of speech", de: "Meinungsfreiheit/Redefreiheit", ex: "Freedom of speech is a basic right.", ex2: "Democracies must protect freedom of speech for all citizens.", l: 2 },
-            { en: "headline", de: "Schlagzeile", ex: "The headline caught my attention.", ex2: "The shocking headline dominated every newspaper that morning.", l: 2 },
-            { en: "the press", de: "Die Presse", ex: "The press reported on the scandal.", ex2: "A free and independent press is essential for democracy.", l: 2 },
-            { en: "reliable", de: "Verlässlich/Zuverlässig", ex: "Is this source reliable?", ex2: "He proved to be a reliable partner throughout the project.", l: 2 },
-            { en: "social media", de: "Soziale Medien", ex: "Social media connects people globally.", ex2: "Many businesses rely heavily on social media for marketing.", l: 2 },
-            { en: "source", de: "Quelle", ex: "Always check your sources.", ex2: "The historian discovered a previously unknown source in the archive.", l: 2 },
-            { en: "viewer", de: "Zuschauer/in", ex: "The show attracted millions of viewers.", ex2: "Every viewer could vote for their favourite contestant online.", l: 2 },
+            { en: "distracted", de: "Abgelenkt sein", ex: "I'm distracted because I'm talking to my neighbor.", ex2: "Don't be distracted during the test.", l: 2 },
+            { en: "hater", de: "Nichtsgönner, Neider", ex: "He's just a hater who criticizes everything.", ex2: "Every famous person has to deal with at least one hater.", l: 2 },
+            { en: "survey", de: "Umfrage", ex: "They did a survey to understand their customers better.", ex2: "The survey showed that most students prefer online learning.", l: 2 },
+            { en: "a significant increase", de: "Bedeutender Anstieg", ex: "The report is saying that we're having a significant increase in sales this year.", ex2: "There has been a significant increase in online shopping.", l: 2 },
+            { en: "a dramatic decrease", de: "Dramatischer Rückgang", ex: "There was a dramatic decrease in people buying this product.", ex2: "Scientists noticed a dramatic decrease in air pollution.", l: 2 },
+            { en: "occasion", de: "Anlass", ex: "It's an important occasion so please wear a suit.", ex2: "The wedding was a special occasion for the whole family.", l: 2 },
+            { en: "benefit", de: "Vorteil", ex: "It's a benefit to study for a test beforehand.", ex2: "One benefit of living in a big city is public transportation.", l: 2 },
+            { en: "suggestion", de: "Vorschlag", ex: "I made a suggestion because no one was saying anything.", ex2: "Do you have any suggestion for what we should eat tonight?", l: 2 },
+            { en: "STEM subjects", de: "MINT-Fächer", ex: "She excels in every STEM subject: science, technology, engineering, and mathematics.", ex2: "STEM subjects are becoming increasingly important in schools.", l: 2 },
+            { en: "representative", de: "Vertreter", ex: "Each group had a representative in the panel discussion.", ex2: "The class representative organized the student meeting.", l: 2 },
+            { en: "to invest", de: "Investieren", ex: "I invested in bitcoins last year.", ex2: "Many companies invest in renewable energy nowadays.", l: 2 },
+            { en: "unnecessary", de: "Unnötig", ex: "It's unnecessary to be loud in class.", ex2: "That comment was unnecessary and hurt people's feelings.", l: 2 },
+            { en: "to ragequit", de: "Ausrasten (und das Spiel abbrechen)", ex: "I ragequit because I lost a game in Fortnite!", ex2: "He tends to ragequit whenever he loses a match.", l: 2 },
+            { en: "narrative", de: "Erzählung", ex: "The documentary presents a fascinating narrative about social media usage.", ex2: "The narrative of the book was very engaging and suspenseful.", l: 2 },
+            { en: "household", de: "Haushalt", ex: "Usually every household has at least one TV.", ex2: "The average household spends several hours watching television daily.", l: 2 },
+            { en: "to run errands", de: "Besorgungen tätigen / erledigen", ex: "I'm usually running errands in the evening.", ex2: "She spent the afternoon running errands downtown.", l: 2 },
+            { en: "persuasive", de: "Überzeugend", ex: "He's very persuasive because he has good arguments.", ex2: "The speaker was incredibly persuasive and convinced the audience.", l: 2 },
+            { en: "troll", de: "Troll (Scherzkeks)", ex: "You are not funny, troll!", ex2: "The troll posted offensive comments just to get attention.", l: 2 },
+            { en: "scammer", de: "Betrüger", ex: "He tried to steal my personal information -- he is a scammer!", ex2: "The scammer called pretending to be from the bank.", l: 2 },
 
             // List 3 - Food & Nutrition
-            { en: "nutritious", de: "Nahrhaft", ex: "Vegetables are very nutritious.", ex2: "A nutritious breakfast gives you energy for the whole morning.", l: 3 },
-            { en: "ingredients", de: "Zutaten", ex: "Fresh ingredients make the best meals.", ex2: "The recipe calls for just five simple ingredients.", l: 3 },
-            { en: "flavour", de: "Geschmack", ex: "This dish has an amazing flavour.", ex2: "Adding fresh herbs can dramatically improve the flavour of any soup.", l: 3 },
-            { en: "organic", de: "Biologisch", ex: "We buy organic food.", ex2: "The farmer's market sells only organic produce from local farms.", l: 3 },
-            { en: "processed food", de: "Verarbeitete Lebensmittel", ex: "Processed food is often unhealthy.", ex2: "Doctors advise reducing your intake of processed food.", l: 3 },
-            { en: "diet", de: "Ernährung", ex: "A balanced diet is important.", ex2: "Her diet consists mainly of vegetables, grains, and lean protein.", l: 3 },
-            { en: "calories", de: "Kalorien", ex: "This meal is low in calories.", ex2: "Athletes often need to consume more calories during training periods.", l: 3 },
-            { en: "allergy", de: "Allergie", ex: "She has a nut allergy.", ex2: "Food labels must clearly indicate common allergy triggers.", l: 3 },
-            { en: "appetite", de: "Appetit", ex: "I've lost my appetite.", ex2: "The long hike in the mountains gave everyone a huge appetite.", l: 3 },
-            { en: "consume", de: "Konsumieren/Verbrauchen", ex: "We consume too much sugar.", ex2: "The average person consumes about two litres of water per day.", l: 3 },
-            { en: "cuisine", de: "Küche (Kochkunst)", ex: "Italian cuisine is popular worldwide.", ex2: "Each region of the country has its own traditional cuisine.", l: 3 },
-            { en: "dairy", de: "Milchprodukte", ex: "Some people avoid dairy products.", ex2: "She eliminated dairy from her diet and noticed improvements.", l: 3 },
-            { en: "fibre", de: "Ballaststoffe", ex: "Wholegrain bread is rich in fibre.", ex2: "Eating enough fibre supports healthy digestion.", l: 3 },
-            { en: "gluten", de: "Gluten", ex: "This bread is gluten-free.", ex2: "People with coeliac disease must strictly avoid gluten.", l: 3 },
-            { en: "harvest", de: "Ernte", ex: "The harvest was plentiful this year.", ex2: "Farmers begin the grape harvest in early September.", l: 3 },
-            { en: "obesity", de: "Fettleibigkeit", ex: "Obesity is a growing problem.", ex2: "Childhood obesity has become a serious public health concern.", l: 3 },
-            { en: "portion", de: "Portion", ex: "The portions are very generous.", ex2: "Restaurants have gradually increased their portion sizes over the decades.", l: 3 },
-            { en: "preservative", de: "Konservierungsmittel", ex: "This food contains no preservatives.", ex2: "Many consumers prefer products without artificial preservatives.", l: 3 },
-            { en: "vegan", de: "Vegan", ex: "She follows a vegan diet.", ex2: "The restaurant recently added several new vegan options to the menu.", l: 3 },
-            { en: "vegetarian", de: "Vegetarisch", ex: "He's been vegetarian for years.", ex2: "More and more students in the cafeteria are choosing vegetarian meals.", l: 3 },
+            { en: "eat out", de: "auswärts essen", ex: "We usually eat out on Fridays.", ex2: "My family loves to eat out at Italian restaurants.", l: 3 },
+            { en: "order in", de: "Essen bestellen", ex: "Let's order in some pizza tonight.", ex2: "We decided to order in Chinese food instead of cooking.", l: 3 },
+            { en: "to-go / take-away", de: "zum Mitnehmen", ex: "I'll get my coffee to-go, please. It's only for take-away, sir!", ex2: "Most coffee shops offer to-go options for busy customers.", l: 3 },
+            { en: "go-to meal", de: "Standardwahl / Standardessen", ex: "What's your go-to meal when you're in a hurry?", ex2: "Pasta is my go-to meal when I don't have much time.", l: 3 },
+            { en: "comfort food", de: "Futter für die Seele / Wohlfühlgericht", ex: "After a bad day, chocolate is my comfort food.", ex2: "Ice cream is the perfect comfort food on a rainy day.", l: 3 },
+            { en: "convenient", de: "praktisch / bequem", ex: "Frozen meals are convenient but not very healthy.", ex2: "Online shopping is very convenient for busy people.", l: 3 },
+            { en: "I'm starving", de: "Ich verhungere! (umgangsprachlich)", ex: "I haven't eaten all day -- I'm starving!", ex2: "Can we eat soon? I'm starving!", l: 3 },
+            { en: "to crave something", de: "Verlangen nach etwas haben", ex: "She's craving chocolate again.", ex2: "After exercising, I always crave something salty.", l: 3 },
+            { en: "to starve", de: "Verhungern (wörtlich)", ex: "Without food, people can starve in days.", ex2: "Animals will starve if they don't have access to food.", l: 3 },
+            { en: "to tip", de: "Trinkgeld geben", ex: "Don't forget to tip the waiter.", ex2: "In America, it is customary to tip your server.", l: 3 },
+            { en: "ethnicity", de: "Bevölkerungsgruppe / Ethnie", ex: "The city is home to people of many ethnicities.", ex2: "The survey asked about the participant's ethnicity.", l: 3 },
+            { en: "beverage", de: "Getränk", ex: "Coffee is my favorite beverage.", ex2: "What is your favorite beverage to drink at breakfast?", l: 3 },
+            { en: "nutrition", de: "Ernährung", ex: "Good nutrition is essential for children.", ex2: "Proper nutrition helps you stay healthy and energetic.", l: 3 },
+            { en: "nutrients", de: "Nährstoffe", ex: "Vegetables provide important nutrients.", ex2: "Fruits and vegetables contain many essential nutrients.", l: 3 },
+            { en: "processed", de: "verarbeitet", ex: "Processed foods often contain too much sugar.", ex2: "Most processed snacks are not as healthy as fresh food.", l: 3 },
+            { en: "fiber", de: "Ballaststoffe", ex: "Whole grains are high in fiber.", ex2: "Eating foods rich in fiber helps with digestion.", l: 3 },
+            { en: "to maintain weight", de: "Gewicht halten", ex: "She exercises daily to maintain her weight.", ex2: "Eating balanced meals helps you maintain weight over time.", l: 3 },
+            { en: "to digest", de: "verdauen", ex: "Some people find milk hard to digest.", ex2: "Your stomach takes time to digest large meals.", l: 3 },
+            { en: "to avoid", de: "vermeiden", ex: "I try to avoid eating too much sugar.", ex2: "You should try to avoid driving when you are tired.", l: 3 },
+            { en: "evidence", de: "Beweis", ex: "There's no evidence that this diet works.", ex2: "The police found important evidence at the crime scene.", l: 3 },
 
             // List 4 - Health & Lifestyle
-            { en: "well-being", de: "Wohlbefinden", ex: "Exercise improves your well-being.", ex2: "Schools are paying more attention to student well-being these days.", l: 4 },
-            { en: "mental health", de: "Psychische Gesundheit", ex: "Mental health is just as important as physical health.", ex2: "Open conversations about mental health help reduce stigma.", l: 4 },
-            { en: "cope with", de: "Umgehen mit/Bewältigen", ex: "She learned to cope with stress.", ex2: "Music helps many people cope with difficult emotions.", l: 4 },
-            { en: "symptom", de: "Symptom", ex: "Fever is a common symptom.", ex2: "Persistent headaches can be a symptom of dehydration.", l: 4 },
-            { en: "therapy", de: "Therapie", ex: "He started therapy last month.", ex2: "Art therapy has shown promising results for trauma recovery.", l: 4 },
-            { en: "immune system", de: "Immunsystem", ex: "Vitamin C boosts the immune system.", ex2: "Sleep is essential for maintaining a strong immune system.", l: 4 },
-            { en: "diagnosis", de: "Diagnose", ex: "The diagnosis was a relief.", ex2: "Receiving an early diagnosis can significantly improve treatment outcomes.", l: 4 },
-            { en: "addiction", de: "Sucht", ex: "Phone addiction is a modern problem.", ex2: "Breaking free from addiction requires both willpower and support.", l: 4 },
-            { en: "prevention", de: "Vorbeugung/Prävention", ex: "Prevention is better than cure.", ex2: "The government launched a new prevention campaign against smoking.", l: 4 },
-            { en: "recovery", de: "Genesung/Erholung", ex: "Recovery takes time.", ex2: "After the surgery, her recovery was faster than expected.", l: 4 },
-            { en: "anxiety", de: "Angst/Angststörung", ex: "Anxiety is very common among teens.", ex2: "Deep breathing exercises can help manage feelings of anxiety.", l: 4 },
-            { en: "chronic", de: "Chronisch", ex: "He suffers from chronic pain.", ex2: "Living with a chronic illness requires constant adaptation.", l: 4 },
-            { en: "contagious", de: "Ansteckend", ex: "The disease is highly contagious.", ex2: "Laughter is one of the most contagious human behaviours.", l: 4 },
-            { en: "dose", de: "Dosis", ex: "Take the correct dose.", ex2: "The doctor adjusted the dose after reviewing the test results.", l: 4 },
-            { en: "epidemic", de: "Epidemie", ex: "The flu epidemic spread quickly.", ex2: "Loneliness has been called the silent epidemic of our time.", l: 4 },
-            { en: "hygiene", de: "Hygiene", ex: "Good hygiene prevents illness.", ex2: "Proper hand hygiene is the simplest way to prevent infections.", l: 4 },
-            { en: "medication", de: "Medikamente", ex: "She takes medication daily.", ex2: "Never share prescription medication with another person.", l: 4 },
-            { en: "nutrition", de: "Ernährung (Nährstoffversorgung)", ex: "Good nutrition is key to health.", ex2: "Athletes work closely with experts to optimise their nutrition.", l: 4 },
-            { en: "vaccination", de: "Impfung", ex: "Vaccination saves lives.", ex2: "The global vaccination effort helped reduce the spread of the virus.", l: 4 },
-            { en: "wound", de: "Wunde", ex: "The wound is healing well.", ex2: "Clean any wound immediately to prevent infection.", l: 4 },
+            { en: "chronically", de: "chronisch", ex: "She is chronically tired during the week.", ex2: "He suffered chronically from back pain for years.", l: 4 },
+            { en: "psychological", de: "psychologisch", ex: "He has a psychological problem that he wants to fix.", ex2: "The psychological effects of stress are well documented.", l: 4 },
+            { en: "eating disorder", de: "Essstörung", ex: "She suffers from an eating disorder, but she is getting help.", ex2: "An eating disorder requires professional medical help.", l: 4 },
+            { en: "to brag", de: "angeben / prahlen", ex: "He likes to brag about his new phone.", ex2: "Don't brag about your achievements; let them speak for themselves.", l: 4 },
+            { en: "to share", de: "etwas teilen", ex: "Can you share which secret she told you?", ex2: "Teachers should share their knowledge with students.", l: 4 },
+            { en: "on average", de: "im Durchschnitt", ex: "On average, teenagers spend multiple hours per day on their phones.", ex2: "On average, people sleep about 8 hours per night.", l: 4 },
+            { en: "minerals", de: "Mineralien", ex: "This water contains many important minerals.", ex2: "Your body needs minerals like calcium and iron to stay healthy.", l: 4 },
+            { en: "sleep-deprived", de: "übermüdet (durch Schlafmangel)", ex: "After studying all night, the student was severely sleep-deprived.", ex2: "Sleep-deprived drivers are more likely to have accidents.", l: 4 },
+            { en: "as a result", de: "als Ergebnis / infolgedessen", ex: "It rained all day, and as a result, the game was canceled.", ex2: "She studied hard, and as a result, she passed the test.", l: 4 },
+            { en: "purpose", de: "Zweck / Absicht / Ziel", ex: "The main purpose of this meeting is to discuss our holiday plans.", ex2: "The purpose of this project is to help the community.", l: 4 },
+            { en: "therefore", de: "deshalb / deswegen", ex: "The restaurant was closed. Therefore, we went to another one.", ex2: "The weather was bad; therefore, we stayed home.", l: 4 },
+            { en: "for pleasure", de: "zum Vergnügen / aus Spaß", ex: "I read books for pleasure, not just for school.", ex2: "Many people travel for pleasure during the summer holidays.", l: 4 },
+            { en: "to enroll", de: "sich anmelden / einschreiben", ex: "She decided to enroll in a language course.", ex2: "You need to enroll at the university before the deadline.", l: 4 },
+            { en: "tuition fees", de: "Studiengebühren", ex: "The tuition fees are very high this year.", ex2: "International students often pay higher tuition fees.", l: 4 },
+            { en: "to be deported", de: "abgeschoben werden", ex: "He was afraid to be deported from the country.", ex2: "People without valid visas risk being deported.", l: 4 },
+            { en: "makeover", de: "Umstyling / Veränderung", ex: "She got a complete makeover for the party.", ex2: "The room needed a complete makeover with new furniture.", l: 4 },
+            { en: "to go out of fashion", de: "aus der Mode kommen", ex: "Skinny jeans are starting to go out of fashion.", ex2: "Those hairstyles will go out of fashion eventually.", l: 4 },
+            { en: "procrastination", de: "Aufschieben / Prokrastination", ex: "Her procrastination makes homework very stressful.", ex2: "Procrastination is a common problem among students.", l: 4 },
+            { en: "to sleep in", de: "ausschlafen", ex: "On Sundays I love to sleep in.", ex2: "On weekends, most teenagers like to sleep in.", l: 4 },
+            { en: "power nap", de: "Kurzschlaf / Powernap", ex: "He took a quick power nap before studying again.", ex2: "A 15-minute power nap can increase your productivity.", l: 4 },
 
             // List 5 - Identity & Culture
-            { en: "identity", de: "Identität", ex: "Culture shapes our identity.", ex2: "Teenagers often struggle with questions about their own identity.", l: 5 },
-            { en: "belong to", de: "Gehören zu", ex: "She belongs to a dance group.", ex2: "Humans have a deep need to belong to a community.", l: 5 },
-            { en: "heritage", de: "Erbe/Kulturerbe", ex: "We should protect our cultural heritage.", ex2: "The old town was declared a UNESCO heritage site.", l: 5 },
-            { en: "diverse", de: "Vielfältig", ex: "Our school is very diverse.", ex2: "A diverse team brings more creative solutions to the table.", l: 5 },
-            { en: "prejudice", de: "Vorurteil", ex: "Prejudice has no place in society.", ex2: "Education is one of the most powerful tools against prejudice.", l: 5 },
-            { en: "stereotype", de: "Stereotyp/Klischee", ex: "We should challenge stereotypes.", ex2: "The film deliberately challenged every stereotype about rural life.", l: 5 },
-            { en: "tradition", de: "Tradition", ex: "Christmas is a family tradition.", ex2: "Every country has its own unique tradition for welcoming the new year.", l: 5 },
-            { en: "tolerance", de: "Toleranz", ex: "Tolerance is essential in a diverse society.", ex2: "Teaching tolerance from a young age creates more empathetic adults.", l: 5 },
-            { en: "integration", de: "Integration", ex: "Integration takes effort from both sides.", ex2: "Language courses play a vital role in the integration of newcomers.", l: 5 },
-            { en: "assimilation", de: "Assimilation/Anpassung", ex: "Assimilation can mean losing your roots.", ex2: "The debate between assimilation and multiculturalism continues today.", l: 5 },
-            { en: "bilingual", de: "Zweisprachig", ex: "She is bilingual in English and German.", ex2: "Growing up bilingual gives children cognitive advantages.", l: 5 },
-            { en: "citizen", de: "Bürger/in", ex: "Every citizen has rights and duties.", ex2: "Active citizen participation strengthens democratic society.", l: 5 },
-            { en: "custom", de: "Brauch/Sitte", ex: "It's a local custom.", ex2: "Learning about local customs is an important part of travel.", l: 5 },
-            { en: "discrimination", de: "Diskriminierung", ex: "Discrimination is against the law.", ex2: "The company has a zero-tolerance policy toward any form of discrimination.", l: 5 },
-            { en: "ethnic", de: "Ethnisch", ex: "Austria has many ethnic groups.", ex2: "The festival celebrates the ethnic diversity of the region.", l: 5 },
-            { en: "generation", de: "Generation", ex: "Each generation is different.", ex2: "The younger generation is more comfortable with digital technology.", l: 5 },
-            { en: "immigrant", de: "Einwanderer/in", ex: "Immigrants contribute to society.", ex2: "The city has a long history of welcoming immigrant communities.", l: 5 },
-            { en: "minority", de: "Minderheit", ex: "Minorities need protection.", ex2: "Protecting minority rights is a cornerstone of any democracy.", l: 5 },
-            { en: "multicultural", de: "Multikulturell", ex: "Vienna is a multicultural city.", ex2: "Living in a multicultural neighbourhood taught him to appreciate differences.", l: 5 },
-            { en: "refugee", de: "Flüchtling", ex: "Refugees need support.", ex2: "The organisation provides legal assistance to refugee families.", l: 5 },
+            { en: "lifespan", de: "Lebensspanne", ex: "The short lifespan of fashion is not a new phenomenon.", ex2: "The average lifespan of humans has increased over the centuries.", l: 5 },
+            { en: "peer pressure", de: "Gruppenzwang", ex: "He started drinking in high school because of peer pressure.", ex2: "Many teenagers struggle with peer pressure at school.", l: 5 },
+            { en: "assessment", de: "Beurteilung", ex: "I do not agree with this assessment.", ex2: "The teacher gave a fair assessment of the student's work.", l: 5 },
+            { en: "timeless", de: "zeitlos", ex: "She recommends choosing a timeless design.", ex2: "Classic black and white outfits are timeless.", l: 5 },
+            { en: "conscious choice", de: "Bewusste Entscheidung", ex: "He needs to make a conscious choice for his future.", ex2: "Buying local food is a conscious choice for the environment.", l: 5 },
+            { en: "to assert", de: "sich durchsetzen / zum Ausdruck bringen", ex: "She decided to assert her independence by moving to a new city.", ex2: "You need to assert your opinions clearly in discussions.", l: 5 },
+            { en: "authenticity", de: "Authentizität", ex: "The restaurant is known for its authenticity.", ex2: "People value authenticity in friendships and relationships.", l: 5 },
+            { en: "authentic", de: "Authentisch", ex: "Today jeans are popular because they stay authentic.", ex2: "This restaurant serves authentic Italian pasta.", l: 5 },
+            { en: "insecurity", de: "Unsicherheit", ex: "People retouch pictures because of their insecurities.", ex2: "Insecurity is something many teenagers experience.", l: 5 },
+            { en: "to hide flaws", de: "Mängel verstecken", ex: "She used makeup to hide the flaws in her skin.", ex2: "Some people use filters to hide flaws in their photos.", l: 5 },
+            { en: "exaggerated", de: "übertrieben", ex: "He has an exaggerated fear of spiders.", ex2: "The story was exaggerated and not entirely true.", l: 5 },
+            { en: "measure yourself against", de: "Sich mit jemandem messen / vergleichen", ex: "Don't measure yourself against celebrities on social media.", ex2: "You should not measure yourself against others constantly.", l: 5 },
+            { en: "desirable", de: "begehrenswert", ex: "The house is in a desirable location.", ex2: "A good education makes you more desirable to employers.", l: 5 },
+            { en: "dedication", de: "Hingabe", ex: "We were impressed by his dedication.", ex2: "Success requires dedication and hard work.", l: 5 },
+            { en: "rumor", de: "Gerücht", ex: "The rumor turned out to be false.", ex2: "A rumor spread quickly throughout the school.", l: 5 },
+            { en: "objective", de: "Ziel", ex: "We all live with the objective to be happy.", ex2: "The main objective of the project is to save money.", l: 5 },
+            { en: "dispute", de: "anfechten / in Frage stellen", ex: "Do not dispute people around you.", ex2: "The lawyer will dispute the evidence in court.", l: 5 },
+            { en: "destined for", de: "Für etw. bestimmt sein", ex: "I always knew my brother was destined for success.", ex2: "She seemed destined for a great career in medicine.", l: 5 },
+            { en: "legacy", de: "Erbe / Vermächtnis", ex: "The band's musical legacy influenced generations of artists.", ex2: "His legacy will live on through his books and teachings.", l: 5 },
+            { en: "deliberately", de: "absichtlich", ex: "He's been deliberately ignoring him all day.", ex2: "She deliberately chose not to answer the question.", l: 5 },
 
             // List 6 - Body, Sports & Society
-            { en: "physical fitness", de: "Körperliche Fitness", ex: "Physical fitness improves concentration.", ex2: "Regular exercise is the foundation of good physical fitness.", l: 6 },
-            { en: "endurance", de: "Ausdauer", ex: "Running builds endurance.", ex2: "Marathon training requires months of building endurance.", l: 6 },
-            { en: "flexibility", de: "Flexibilität", ex: "Yoga improves flexibility.", ex2: "Good flexibility helps prevent injuries during sports.", l: 6 },
-            { en: "strength", de: "Stärke/Kraft", ex: "You need strength for this sport.", ex2: "Building core strength is important for overall body stability.", l: 6 },
-            { en: "competitive", de: "Wettbewerbsfähig/Ehrgeizig", ex: "She is very competitive.", ex2: "The job market has become increasingly competitive for graduates.", l: 6 },
-            { en: "fair play", de: "Fairplay/Faires Spiel", ex: "Fair play is important in sports.", ex2: "The coach always emphasised fair play above winning.", l: 6 },
-            { en: "opponent", de: "Gegner/in", ex: "She shook hands with her opponent.", ex2: "A strong opponent pushes you to perform at your best.", l: 6 },
-            { en: "referee", de: "Schiedsrichter/in", ex: "The referee made a controversial decision.", ex2: "The referee stopped the match due to dangerous weather conditions.", l: 6 },
-            { en: "spectator", de: "Zuschauer/in", ex: "Thousands of spectators watched the game.", ex2: "A spectator ran onto the field during the final minutes.", l: 6 },
-            { en: "sportsmanship", de: "Sportlichkeit/Fairness", ex: "He showed great sportsmanship.", ex2: "True sportsmanship means respecting your opponent even in defeat.", l: 6 },
-            { en: "amateur", de: "Amateur/in", ex: "He's an amateur boxer.", ex2: "Many amateur athletes dream of competing in the Olympics.", l: 6 },
-            { en: "athlete", de: "Sportler/in", ex: "She's a professional athlete.", ex2: "The athlete trained six hours a day to prepare for the championship.", l: 6 },
-            { en: "championship", de: "Meisterschaft", ex: "They won the championship.", ex2: "Hosting the championship brought international attention to the city.", l: 6 },
-            { en: "coach", de: "Trainer/in", ex: "The coach motivated the team.", ex2: "A good coach knows when to push and when to encourage.", l: 6 },
-            { en: "defeat", de: "Niederlage", ex: "They suffered a painful defeat.", ex2: "The unexpected defeat in the semi-final shocked the entire nation.", l: 6 },
-            { en: "doping", de: "Doping", ex: "Doping is banned in sports.", ex2: "The new doping scandal raised questions about fairness in athletics.", l: 6 },
-            { en: "injury", de: "Verletzung", ex: "He's recovering from an injury.", ex2: "A knee injury forced her to miss the entire season.", l: 6 },
-            { en: "league", de: "Liga", ex: "They play in the first league.", ex2: "The local league gives young players a chance to develop.", l: 6 },
-            { en: "performance", de: "Leistung", ex: "Her performance was outstanding.", ex2: "Proper sleep has a direct impact on athletic performance.", l: 6 },
-            { en: "tournament", de: "Turnier", ex: "The tournament starts next week.", ex2: "Teams from twelve countries entered the international tournament.", l: 6 }
+            { en: "obesity", de: "Übergewicht / Fettleibigkeit", ex: "Many countries are fighting the rise of childhood obesity.", ex2: "Obesity can lead to serious health problems.", l: 6 },
+            { en: "justification", de: "Rechtfertigung / Begründung", ex: "There is no justification for such rude behavior.", ex2: "The teacher asked for a justification for the late homework.", l: 6 },
+            { en: "body shaming", de: "Body Shaming / Diskriminierung aufgrund des Körpers", ex: "Body shaming on social media can have a negative impact on mental health.", ex2: "Body shaming is harmful and should not be tolerated.", l: 6 },
+            { en: "self-conscious", de: "unsicher / gehemmt", ex: "He felt self-conscious about his new haircut.", ex2: "She was self-conscious about speaking in front of groups.", l: 6 },
+            { en: "self-confident", de: "selbstbewusst", ex: "To succeed in a job interview, you need to appear self-confident.", ex2: "A self-confident person is more likely to achieve their goals.", l: 6 },
+            { en: "competitive", de: "wettbewerbsorientiert / ehrgeizig", ex: "She has a very competitive nature and always wants to win.", ex2: "The job market has become increasingly competitive.", l: 6 },
+            { en: "equipment", de: "Ausrüstung", ex: "Make sure you have all the necessary camping equipment.", ex2: "The gym has modern sports equipment for all members.", l: 6 },
+            { en: "to get out of one's comfort zone", de: "seine Komfortzone verlassen", ex: "You only grow as a person when you get out of your comfort zone.", ex2: "Traveling alone helped me get out of my comfort zone.", l: 6 },
+            { en: "rite of passage", de: "Initiationsritus / Übergangsritus", ex: "Graduation is considered a major rite of passage for students.", ex2: "Learning to drive is a rite of passage for many teenagers.", l: 6 },
+            { en: "comfort zone", de: "Komfortzone", ex: "It feels safe to stay inside your comfort zone.", ex2: "Leaving your comfort zone can help you grow as a person.", l: 6 },
+            { en: "opponent", de: "Gegner", ex: "His opponent in the chess match was very experienced.", ex2: "The boxer defeated his opponent in the final round.", l: 6 },
+            { en: "facility", de: "Einrichtung / Anlage / Gelände", ex: "The school has a great sports facility for the students.", ex2: "This medical facility offers excellent patient care.", l: 6 },
+            { en: "competitor", de: "Mitbewerber / Konkurrent", ex: "The company is doing better than its main competitor.", ex2: "Our main competitor just launched a new product.", l: 6 },
+            { en: "spectator", de: "Zuschauer", ex: "Thousands of spectators gathered to watch the marathon.", ex2: "The spectators cheered loudly for their favorite team.", l: 6 },
+            { en: "littering", de: "Verschmutzung / Müll wegwerfen", ex: "Littering in public parks can lead to a heavy fine.", ex2: "Littering is bad for the environment and should be avoided.", l: 6 },
+            { en: "legal age", de: "gesetzliches Alter", ex: "You must be of legal age to vote in the elections.", ex2: "The legal age for drinking alcohol varies by country.", l: 6 },
+            { en: "to give consent", de: "seine Zustimmung geben", ex: "You need to give your consent before the surgery can begin.", ex2: "Both parents must give consent for the school trip.", l: 6 },
+            { en: "to participate in", de: "teilnehmen an", ex: "Many students want to participate in the school play.", ex2: "Everyone should participate in class discussions.", l: 6 },
+            { en: "obstacles", de: "Hindernisse", ex: "She had to overcome many obstacles to reach her goal.", ex2: "The athletes faced many obstacles during the race.", l: 6 },
+            { en: "determined", de: "entschlossen", ex: "He was determined to finish the race despite the rain.", ex2: "She remained determined to succeed no matter what happened.", l: 6 },
+            { en: "court", de: "Spielfeld / Platz (Sport)", ex: "The players are heading out onto the basketball court.", ex2: "The tennis court is available for booking tomorrow.", l: 6 }
         ];
 
         // ===========================
@@ -1329,8 +1335,17 @@
 
                 const word = vocab[currentIndex];
                 const sentence = word.ex2;
-                const gapSentence = sentence.replace(new RegExp(word.en.split(' ')[0], 'i'),
-                    word.en[0].toUpperCase() + '_'.repeat(word.en.length - 1));
+                // Blank the complete phrase, not just the first word
+                const enLower = word.en.toLowerCase();
+                const sentLower = sentence.toLowerCase();
+                const phraseIdx = sentLower.indexOf(enLower);
+                let gapSentence;
+                if (phraseIdx >= 0) {
+                    gapSentence = sentence.substring(0, phraseIdx) + '_'.repeat(word.en.length) + sentence.substring(phraseIdx + word.en.length);
+                } else {
+                    // Fallback: blank first occurrence of first word
+                    gapSentence = sentence.replace(new RegExp('\\b' + word.en.split(' ')[0] + '\\b', 'i'), '_'.repeat(word.en.length));
+                }
 
                 const itemHtml = `
                     <div class="exercise-item">
@@ -1503,7 +1518,14 @@
                 }
 
                 const word = vocab[currentIndex];
-                const sentence = word.ex2.replace(word.en, '_'.repeat(20));
+                // Blank the complete phrase (case-insensitive)
+                let sentence = word.ex2;
+                const ctxIdx = sentence.toLowerCase().indexOf(word.en.toLowerCase());
+                if (ctxIdx >= 0) {
+                    sentence = sentence.substring(0, ctxIdx) + '_'.repeat(word.en.length) + sentence.substring(ctxIdx + word.en.length);
+                } else {
+                    sentence = word.ex2.replace(new RegExp(word.en.split(' ')[0], 'i'), '_'.repeat(word.en.length));
+                }
 
                 const itemHtml = `
                     <div class="exercise-item">
