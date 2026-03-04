@@ -68,6 +68,139 @@
             opacity: 0.7;
         }
 
+        .login-error {
+            color: #d32f2f;
+            background: #fde8e8;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .login-error.show {
+            display: block;
+        }
+
+        .teacher-toggle {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #888;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .teacher-toggle:hover {
+            color: #555;
+        }
+
+        .teacher-field {
+            display: none;
+        }
+
+        .teacher-field.show {
+            display: block;
+        }
+
+        /* Teacher Dashboard */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .dashboard-header h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        .dashboard-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-summary .stat-box {
+            background: #f0f4ff;
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .student-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .student-table th,
+        .student-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .student-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+        }
+
+        .student-table tr:hover {
+            background: #fafafa;
+        }
+
+        .student-table .mastery-bar {
+            display: inline-block;
+            width: 60px;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .student-table .mastery-bar .fill {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 4px;
+        }
+
+        .dashboard-empty {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+
+        .refresh-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .refresh-btn:hover {
+            background: #f5f5f5;
+            border-color: #bbb;
+        }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -577,6 +710,7 @@
         <div class="screen active" id="loginScreen">
             <div class="login-box">
                 <h2>Welcome to VEHO VOCAB</h2>
+                <div class="login-error" id="loginError"></div>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="nameInput">Your Name:</label>
@@ -593,8 +727,13 @@
                             <option value="en-de">English → German</option>
                         </select>
                     </div>
-                    <button type="submit" class="button">Login</button>
+                    <div class="form-group teacher-field" id="teacherField">
+                        <label for="teacherPasswordInput">Teacher Password:</label>
+                        <input type="password" id="teacherPasswordInput" placeholder="Enter teacher password">
+                    </div>
+                    <button type="submit" class="button" id="loginBtn">Login</button>
                 </form>
+                <span class="teacher-toggle" id="teacherToggle">Teacher Login</span>
             </div>
         </div>
 
@@ -719,6 +858,35 @@
                     </div>
                 </div>
                 <div class="exercise-content" id="contextContent">
+                </div>
+            </div>
+        </div>
+
+        <!-- Teacher Dashboard Screen -->
+        <div class="screen" id="teacherDashboard">
+            <div class="stats-section">
+                <div class="dashboard-header">
+                    <h2 id="dashboardTitle">Teacher Dashboard</h2>
+                    <button class="refresh-btn" id="dashboardRefresh">Refresh</button>
+                </div>
+                <div class="dashboard-summary" id="dashboardSummary"></div>
+                <div class="student-table-wrapper">
+                    <table class="student-table" id="studentTable">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Mastered</th>
+                                <th>Learning</th>
+                                <th>New</th>
+                                <th>Sessions</th>
+                                <th>Last Login</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody"></tbody>
+                    </table>
+                </div>
+                <div class="dashboard-empty" id="dashboardEmpty" style="display:none;">
+                    No students have logged in yet.
                 </div>
             </div>
         </div>
@@ -865,6 +1033,40 @@
         ];
 
         // ===========================
+        // Class Configuration
+        // ===========================
+        // Add new classes here. Each class needs a code (used as login),
+        // a display name, a teacher password, and list names.
+        // Vocabulary arrays can be added per class in CLASS_VOCABULARY.
+        const CLASSES = {
+            "5B": {
+                name: "5B 2025/26",
+                teacherPassword: "veho5b2025",
+                lists: {
+                    1: "Social Life & School",
+                    2: "Media & Society",
+                    3: "Food & Nutrition",
+                    4: "Health & Lifestyle",
+                    5: "Identity & Culture",
+                    6: "Body, Sports & Society"
+                }
+            }
+            // To add more classes, add entries like:
+            // "6A": { name: "6A 2025/26", teacherPassword: "veho6a2025", lists: { 1: "Topic A", ... } }
+        };
+
+        // Vocabulary per class. For now, all classes use the same VOCABULARY array.
+        // To add a different vocab set for a new class, add a new array here.
+        const CLASS_VOCABULARY = {
+            "5B": VOCABULARY
+        };
+
+        // Helper: get vocabulary for the current class
+        function getClassVocabulary(classCode) {
+            return CLASS_VOCABULARY[classCode] || VOCABULARY;
+        }
+
+        // ===========================
         // Firebase Configuration
         // ===========================
         const firebaseConfig = {
@@ -969,54 +1171,149 @@
         // ===========================
         // Login Handler
         // ===========================
+        let isTeacherMode = false;
+
+        // Teacher toggle
+        document.getElementById('teacherToggle').addEventListener('click', () => {
+            const field = document.getElementById('teacherField');
+            const toggle = document.getElementById('teacherToggle');
+            const btn = document.getElementById('loginBtn');
+            isTeacherMode = !isTeacherMode;
+            if (isTeacherMode) {
+                field.classList.add('show');
+                toggle.textContent = 'Student Login';
+                btn.textContent = 'Teacher Login';
+            } else {
+                field.classList.remove('show');
+                toggle.textContent = 'Teacher Login';
+                btn.textContent = 'Login';
+                document.getElementById('teacherPasswordInput').value = '';
+            }
+        });
+
+        function showLoginError(msg) {
+            const el = document.getElementById('loginError');
+            el.textContent = msg;
+            el.classList.add('show');
+        }
+
+        function hideLoginError() {
+            document.getElementById('loginError').classList.remove('show');
+        }
+
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            hideLoginError();
+
             const name = document.getElementById('nameInput').value.trim();
             const code = document.getElementById('classCodeInput').value.trim().toUpperCase();
             const direction = document.getElementById('directionSelect').value;
+            const teacherPw = document.getElementById('teacherPasswordInput').value.trim();
 
-            if (name && code) {
-                appState.user = { name, code, direction };
+            if (!name || !code) return;
+
+            // Validate class code
+            const classConfig = CLASSES[code];
+            if (!classConfig) {
+                showLoginError(`Unknown class code "${code}". Please check with your teacher.`);
+                return;
+            }
+
+            // Teacher login
+            if (isTeacherMode) {
+                if (!teacherPw) {
+                    showLoginError('Please enter the teacher password.');
+                    return;
+                }
+                if (teacherPw !== classConfig.teacherPassword) {
+                    showLoginError('Incorrect teacher password.');
+                    return;
+                }
+                appState.user = { name, code, direction, isTeacher: true };
                 appState.direction = direction;
+                updateUserInfo();
+                navigationStack = ['teacherDashboard'];
+                pushScreen('teacherDashboard');
+                loadTeacherDashboard(code);
+                return;
+            }
 
-                // Try to load from Firebase
-                if (firebaseReady) {
-                    try {
-                        const docId = `${code.toLowerCase()}_${name.toLowerCase()}`;
-                        const doc = await db.collection('students').doc(docId).get();
-                        if (doc.exists) {
-                            const data = doc.data();
+            // Student login
+            appState.user = { name, code, direction, isTeacher: false };
+            appState.direction = direction;
+
+            // Try to load from Firebase (new path first, then migrate from old path)
+            if (firebaseReady) {
+                try {
+                    const newPath = db.collection('classes').doc(code).collection('students').doc(name.toLowerCase());
+                    const newDoc = await newPath.get();
+                    if (newDoc.exists) {
+                        const data = newDoc.data();
+                        appState.stats = data.stats || appState.stats;
+                        appState.sessionData = data.spaced_repetition || {};
+                    } else {
+                        // Try old path for migration
+                        const oldDocId = `${code.toLowerCase()}_${name.toLowerCase()}`;
+                        const oldDoc = await db.collection('students').doc(oldDocId).get();
+                        if (oldDoc.exists) {
+                            const data = oldDoc.data();
                             appState.stats = data.stats || appState.stats;
                             appState.sessionData = data.spaced_repetition || {};
+                            // Migrate to new path
+                            await newPath.set({
+                                name: name,
+                                code: code,
+                                direction: direction,
+                                lastLogin: new Date(),
+                                stats: appState.stats,
+                                spaced_repetition: appState.sessionData,
+                                migratedFrom: oldDocId
+                            });
+                            console.log(`Migrated student data from ${oldDocId} to new path`);
                         }
-                    } catch (e) {
-                        console.warn("Error loading user data from Firebase:", e);
                     }
+
+                    // Ensure class config doc exists in Firestore
+                    const classDoc = db.collection('classes').doc(code);
+                    await classDoc.set({
+                        name: classConfig.name,
+                        lists: classConfig.lists,
+                        updatedAt: new Date()
+                    }, { merge: true });
+
+                } catch (e) {
+                    console.warn("Error loading user data from Firebase:", e);
                 }
-
-                // Load from localStorage
-                loadLocalStorage();
-
-                // Update UI
-                updateUserInfo();
-                navigationStack = ['homeScreen'];
-                pushScreen('homeScreen');
-                loadStats();
             }
+
+            // Load from localStorage
+            loadLocalStorage();
+
+            // Update UI
+            updateUserInfo();
+            navigationStack = ['homeScreen'];
+            pushScreen('homeScreen');
+            loadStats();
         });
 
         function updateUserInfo() {
             if (appState.user) {
+                const role = appState.user.isTeacher ? ' (Teacher)' : '';
                 document.getElementById('userInfo').textContent =
-                    `${appState.user.name} (${appState.user.code})`;
+                    `${appState.user.name} (${appState.user.code})${role}`;
             }
         }
 
         document.getElementById('logoutBtn').addEventListener('click', () => {
             appState.user = null;
+            isTeacherMode = false;
+            document.getElementById('teacherField').classList.remove('show');
+            document.getElementById('teacherToggle').textContent = 'Teacher Login';
+            document.getElementById('loginBtn').textContent = 'Login';
             navigationStack = ['loginScreen'];
             showScreen('loginScreen');
             document.getElementById('loginForm').reset();
+            hideLoginError();
         });
 
         // ===========================
@@ -1049,12 +1346,13 @@
         }
 
         async function syncToFirebase() {
-            if (!firebaseReady || !appState.user) return;
+            if (!firebaseReady || !appState.user || appState.user.isTeacher) return;
             try {
-                const docId = `${appState.user.code.toLowerCase()}_${appState.user.name.toLowerCase()}`;
-                await db.collection('students').doc(docId).set({
+                const code = appState.user.code;
+                const name = appState.user.name.toLowerCase();
+                await db.collection('classes').doc(code).collection('students').doc(name).set({
                     name: appState.user.name,
-                    code: appState.user.code,
+                    code: code,
                     direction: appState.direction,
                     lastLogin: new Date(),
                     stats: appState.stats,
@@ -1085,7 +1383,8 @@
         // ===========================
         function initSessionData() {
             if (!appState.sessionData) appState.sessionData = {};
-            VOCABULARY.forEach(word => {
+            const vocab = getClassVocabulary(appState.user ? appState.user.code : '5B');
+            vocab.forEach(word => {
                 const key = word.en;
                 if (!appState.sessionData[key]) {
                     appState.sessionData[key] = {
@@ -1140,13 +1439,15 @@
             const grid = document.getElementById('listGrid');
             grid.innerHTML = '';
 
+            const vocab = getClassVocabulary(appState.user ? appState.user.code : '5B');
+
             // All Lists
             const allListItem = document.createElement('div');
             allListItem.className = 'list-item';
             allListItem.innerHTML = `
                 <h3>All Lists</h3>
                 <div class="list-mastery">Mastery: ${calculateListMastery('all')}%</div>
-                <div class="list-count">120 words</div>
+                <div class="list-count">${vocab.length} words</div>
             `;
             allListItem.addEventListener('click', () => {
                 appState.currentList = 'all';
@@ -1154,10 +1455,13 @@
             });
             grid.appendChild(allListItem);
 
+            // Get unique list numbers from the vocabulary
+            const listNums = [...new Set(vocab.map(w => w.l))].sort((a, b) => a - b);
+
             // Individual Lists
-            for (let i = 1; i <= 6; i++) {
+            listNums.forEach(i => {
                 const listName = getListName(i);
-                const count = VOCABULARY.filter(w => w.l === i).length;
+                const count = vocab.filter(w => w.l === i).length;
                 const item = document.createElement('div');
                 item.className = 'list-item';
                 item.innerHTML = `
@@ -1171,10 +1475,16 @@
                     startMode();
                 });
                 grid.appendChild(item);
-            }
+            });
         }
 
         function getListName(num) {
+            // Pull list names from class config if available
+            if (appState.user && CLASSES[appState.user.code]) {
+                const lists = CLASSES[appState.user.code].lists;
+                if (lists[num]) return lists[num];
+            }
+            // Fallback
             const names = {
                 1: 'Social Life & School',
                 2: 'Media & Society',
@@ -1187,7 +1497,8 @@
         }
 
         function calculateListMastery(list) {
-            const words = list === 'all' ? VOCABULARY : VOCABULARY.filter(w => w.l === list);
+            const vocab = getClassVocabulary(appState.user ? appState.user.code : '5B');
+            const words = list === 'all' ? vocab : vocab.filter(w => w.l === list);
             let mastered = 0;
             words.forEach(word => {
                 const data = appState.sessionData[word.en];
@@ -1199,9 +1510,10 @@
         }
 
         function getFilteredVocabulary() {
+            const vocab = getClassVocabulary(appState.user ? appState.user.code : '5B');
             return appState.currentList === 'all'
-                ? VOCABULARY
-                : VOCABULARY.filter(w => w.l === appState.currentList);
+                ? vocab
+                : vocab.filter(w => w.l === appState.currentList);
         }
 
         // ===========================
@@ -1687,6 +1999,120 @@
             document.getElementById('directionBadge3').textContent = badge;
             document.getElementById('directionBadge4').textContent = badge;
         }
+
+        // ===========================
+        // Teacher Dashboard
+        // ===========================
+        async function loadTeacherDashboard(classCode) {
+            const classConfig = CLASSES[classCode];
+            document.getElementById('dashboardTitle').textContent = `Dashboard: ${classConfig.name}`;
+
+            if (!firebaseReady) {
+                document.getElementById('dashboardEmpty').style.display = 'block';
+                document.getElementById('dashboardEmpty').textContent = 'Firebase is not connected. Cannot load student data.';
+                document.getElementById('studentTable').style.display = 'none';
+                return;
+            }
+
+            try {
+                const snapshot = await db.collection('classes').doc(classCode).collection('students').get();
+
+                if (snapshot.empty) {
+                    document.getElementById('dashboardEmpty').style.display = 'block';
+                    document.getElementById('studentTable').style.display = 'none';
+                    document.getElementById('dashboardSummary').innerHTML = '';
+                    return;
+                }
+
+                document.getElementById('dashboardEmpty').style.display = 'none';
+                document.getElementById('studentTable').style.display = '';
+
+                const students = [];
+                const vocab = getClassVocabulary(classCode);
+                const totalWords = vocab.length;
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    students.push({
+                        name: data.name || doc.id,
+                        mastered: data.stats?.mastered || 0,
+                        learning: data.stats?.learning || 0,
+                        newWords: data.stats?.new || totalWords,
+                        sessions: data.stats?.sessions || 0,
+                        lastLogin: data.lastLogin ? data.lastLogin.toDate() : null
+                    });
+                });
+
+                // Sort by mastered (descending)
+                students.sort((a, b) => b.mastered - a.mastered);
+
+                // Summary stats
+                const totalStudents = students.length;
+                const avgMastered = Math.round(students.reduce((s, st) => s + st.mastered, 0) / totalStudents);
+                const avgSessions = Math.round(students.reduce((s, st) => s + st.sessions, 0) / totalStudents);
+                const activeToday = students.filter(s => {
+                    if (!s.lastLogin) return false;
+                    const today = new Date();
+                    return s.lastLogin.toDateString() === today.toDateString();
+                }).length;
+
+                document.getElementById('dashboardSummary').innerHTML = `
+                    <div class="stat-box">
+                        <div class="number">${totalStudents}</div>
+                        <div class="label">Total Students</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">${avgMastered}</div>
+                        <div class="label">Avg. Mastered</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">${avgSessions}</div>
+                        <div class="label">Avg. Sessions</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">${activeToday}</div>
+                        <div class="label">Active Today</div>
+                    </div>
+                `;
+
+                // Render table
+                const tbody = document.getElementById('studentTableBody');
+                tbody.innerHTML = '';
+
+                students.forEach(student => {
+                    const masteryPct = totalWords > 0 ? Math.round((student.mastered / totalWords) * 100) : 0;
+                    const lastLoginStr = student.lastLogin
+                        ? student.lastLogin.toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                        : 'Never';
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><strong>${student.name}</strong></td>
+                        <td>
+                            <span class="mastery-bar"><span class="fill" style="width: ${masteryPct}%"></span></span>
+                            ${student.mastered}/${totalWords} (${masteryPct}%)
+                        </td>
+                        <td>${student.learning}</td>
+                        <td>${student.newWords}</td>
+                        <td>${student.sessions}</td>
+                        <td>${lastLoginStr}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+            } catch (e) {
+                console.warn("Error loading teacher dashboard:", e);
+                document.getElementById('dashboardEmpty').style.display = 'block';
+                document.getElementById('dashboardEmpty').textContent = 'Error loading student data. Please try again.';
+                document.getElementById('studentTable').style.display = 'none';
+            }
+        }
+
+        document.getElementById('dashboardRefresh').addEventListener('click', () => {
+            if (appState.user && appState.user.isTeacher) {
+                loadTeacherDashboard(appState.user.code);
+            }
+        });
 
         // ===========================
         // Initialization
