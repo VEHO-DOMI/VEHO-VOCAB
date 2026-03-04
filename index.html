@@ -557,6 +557,10 @@
             background: var(--gray-50);
             padding: 1.25rem 1.5rem;
             border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .exercise-header h2 {
@@ -888,6 +892,191 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* View All / Vocab Overview */
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .view-toggle-btn {
+            background: none;
+            border: 1.5px solid var(--gray-300);
+            border-radius: 8px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .view-toggle-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .view-toggle-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .exercise-header h2 {
+            flex: 0 0 auto;
+        }
+
+        .exercise-header .progress-bar {
+            flex: 0 0 100%;
+        }
+
+        .vocab-overview {
+            display: none;
+            padding: 0;
+        }
+
+        .vocab-overview.active {
+            display: block;
+        }
+
+        .vocab-overview-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .vocab-overview-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.5rem;
+            border-bottom: 1px solid var(--gray-100);
+            transition: background 0.15s ease;
+            gap: 1rem;
+        }
+
+        .vocab-overview-item:last-child {
+            border-bottom: none;
+        }
+
+        .vocab-overview-item:hover {
+            background: var(--gray-50);
+        }
+
+        .vocab-overview-item .vo-word {
+            font-weight: 600;
+            color: var(--gray-800);
+            min-width: 0;
+            flex: 1;
+        }
+
+        .vocab-overview-item .vo-translation {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            text-align: right;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .vocab-overview-item .vo-status {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .vo-status.mastered {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .vo-status.learning {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .vo-status.new {
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+
+        .vocab-overview-search {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .vocab-overview-search input {
+            width: 100%;
+            padding: 0.6rem 0.85rem;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-family: inherit;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            transition: all 0.2s ease;
+        }
+
+        .vocab-overview-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+            background: white;
+        }
+
+        .vocab-overview-count {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            border-bottom: 1px solid var(--gray-100);
+            font-weight: 500;
+        }
+
+        /* Improved feedback animations */
+        .feedback {
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Better exercise item entry animation */
+        .exercise-item {
+            animation: fadeSlideIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .vocab-overview-item {
+                flex-wrap: wrap;
+                padding: 0.75rem 1rem;
+                gap: 0.25rem;
+            }
+
+            .vocab-overview-item .vo-translation {
+                text-align: left;
+                flex: 0 0 100%;
+                order: 3;
+                font-size: 0.85rem;
+            }
+
+            .view-toggle-btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1008,11 +1197,15 @@
             <div class="exercise-container">
                 <div class="exercise-header">
                     <h2>Flashcards <span class="direction-badge" id="directionBadge"></span></h2>
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-view="exercise" data-screen="flashcard">Practice</button>
+                        <button class="view-toggle-btn" data-view="overview" data-screen="flashcard">View All</button>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill" style="width: 0%"></div>
                     </div>
                 </div>
-                <div class="exercise-content">
+                <div class="exercise-content" id="flashcardContent">
                     <div class="flashcard-container">
                         <div class="flashcard" id="flashcard">
                             <div class="flashcard-label" id="cardLabel"></div>
@@ -1025,6 +1218,8 @@
                         <button class="button button-small" id="btnNextCard">Next →</button>
                     </div>
                 </div>
+                <div class="vocab-overview" id="flashcardOverview">
+                </div>
             </div>
         </div>
 
@@ -1033,11 +1228,17 @@
             <div class="exercise-container">
                 <div class="exercise-header">
                     <h2>Gap Fill <span class="direction-badge" id="directionBadge2"></span></h2>
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-view="exercise" data-screen="gapfill">Practice</button>
+                        <button class="view-toggle-btn" data-view="overview" data-screen="gapfill">View All</button>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill2" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="exercise-content" id="gapfillContent">
+                </div>
+                <div class="vocab-overview" id="gapfillOverview">
                 </div>
             </div>
         </div>
@@ -1047,11 +1248,17 @@
             <div class="exercise-container">
                 <div class="exercise-header">
                     <h2>Definitions <span class="direction-badge" id="directionBadge3"></span></h2>
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-view="exercise" data-screen="definition">Practice</button>
+                        <button class="view-toggle-btn" data-view="overview" data-screen="definition">View All</button>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill3" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="exercise-content" id="definitionContent">
+                </div>
+                <div class="vocab-overview" id="definitionOverview">
                 </div>
             </div>
         </div>
@@ -1061,11 +1268,17 @@
             <div class="exercise-container">
                 <div class="exercise-header">
                     <h2>Context + Definition <span class="direction-badge" id="directionBadge4"></span></h2>
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-view="exercise" data-screen="context">Practice</button>
+                        <button class="view-toggle-btn" data-view="overview" data-screen="context">View All</button>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill4" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="exercise-content" id="contextContent">
+                </div>
+                <div class="vocab-overview" id="contextOverview">
                 </div>
             </div>
         </div>
@@ -2196,10 +2409,90 @@
         }
 
         // ===========================
+        // View All / Vocab Overview Toggle
+        // ===========================
+        function renderVocabOverview(screenName) {
+            const vocab = getFilteredVocabulary();
+            const overviewEl = document.getElementById(screenName + 'Overview');
+            if (!overviewEl) return;
+
+            let html = '<div class="vocab-overview-search"><input type="text" placeholder="Search words..." id="' + screenName + 'Search"></div>';
+            html += '<div class="vocab-overview-count">' + vocab.length + ' words</div>';
+            html += '<ul class="vocab-overview-list" id="' + screenName + 'List">';
+
+            vocab.forEach((word, i) => {
+                const sessionData = appState.sessionData[word.en] || {};
+                const interval = sessionData.interval || 0;
+                let statusClass = 'new';
+                let statusLabel = 'New';
+                if (interval >= 4) { statusClass = 'mastered'; statusLabel = 'Mastered'; }
+                else if (interval > 0) { statusClass = 'learning'; statusLabel = 'Learning'; }
+
+                html += '<li class="vocab-overview-item" data-word="' + word.en.toLowerCase() + '" data-de="' + (word.de || '').toLowerCase() + '">';
+                html += '<span class="vo-word">' + word.en + '</span>';
+                html += '<span class="vo-translation">' + word.de + '</span>';
+                html += '<span class="vo-status ' + statusClass + '">' + statusLabel + '</span>';
+                html += '</li>';
+            });
+
+            html += '</ul>';
+            overviewEl.innerHTML = html;
+
+            // Search filter
+            const searchInput = document.getElementById(screenName + 'Search');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const q = e.target.value.toLowerCase();
+                    const items = overviewEl.querySelectorAll('.vocab-overview-item');
+                    let visibleCount = 0;
+                    items.forEach(item => {
+                        const match = item.dataset.word.includes(q) || item.dataset.de.includes(q);
+                        item.style.display = match ? '' : 'none';
+                        if (match) visibleCount++;
+                    });
+                    const countEl = overviewEl.querySelector('.vocab-overview-count');
+                    if (countEl) countEl.textContent = visibleCount + ' words';
+                });
+            }
+        }
+
+        // Toggle between Practice and View All
+        document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const screen = btn.dataset.screen;
+                const view = btn.dataset.view;
+
+                // Update toggle button states
+                btn.parentElement.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const contentEl = document.getElementById(screen + 'Content');
+                const overviewEl = document.getElementById(screen + 'Overview');
+
+                if (view === 'overview') {
+                    if (contentEl) contentEl.style.display = 'none';
+                    if (overviewEl) {
+                        overviewEl.classList.add('active');
+                        renderVocabOverview(screen);
+                    }
+                } else {
+                    if (contentEl) contentEl.style.display = '';
+                    if (overviewEl) overviewEl.classList.remove('active');
+                }
+            });
+        });
+
+        // ===========================
         // Mode Start
         // ===========================
         function startMode() {
             appState.stats.sessions = (appState.stats.sessions || 0) + 1;
+
+            // Reset view toggles to Practice mode
+            document.querySelectorAll('.view-toggle-btn[data-view="exercise"]').forEach(b => b.classList.add('active'));
+            document.querySelectorAll('.view-toggle-btn[data-view="overview"]').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.vocab-overview').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.exercise-content').forEach(el => el.style.display = '');
 
             switch (appState.currentMode) {
                 case 'flashcard':
