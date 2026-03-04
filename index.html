@@ -748,15 +748,15 @@
                     </div>
                     <div class="mode-card" data-mode="gapfill">
                         <h3>Gap Fill</h3>
-                        <p>Fill in missing words in sentences to practice vocabulary in context.</p>
+                        <p>Read a rich context sentence with the first letter shown. Figure out the word from the clues.</p>
                     </div>
                     <div class="mode-card" data-mode="definition">
                         <h3>Definitions</h3>
-                        <p>Read German definitions and type the English words.</p>
+                        <p>See the German meaning and type the English word. Pure vocabulary recall.</p>
                     </div>
                     <div class="mode-card" data-mode="context">
                         <h3>Context + Definition</h3>
-                        <p>Read a sentence with a blank and German meaning. Type the English word.</p>
+                        <p>See the German meaning plus a short example sentence. Easier than Gap Fill.</p>
                     </div>
                 </div>
                 <div class="stats-section">
@@ -1816,7 +1816,10 @@
         }
 
         // ===========================
-        // Context Mode
+        // Context + Definition Mode
+        // Uses the simpler example sentence (ex) as light context,
+        // with the German meaning as the PRIMARY hint.
+        // Different from Gap Fill which uses the richer ex2 sentence.
         // ===========================
         function startContext() {
             const vocab = getFilteredVocabulary();
@@ -1842,26 +1845,26 @@
                 }
 
                 const word = vocab[currentIndex];
-                // Blank the phrase but show first letter as hint
-                let sentence = word.ex2;
+                // Use ex (simple example sentence) as light context, NOT ex2
+                let sentence = word.ex;
                 const ctxIdx = sentence.toLowerCase().indexOf(word.en.toLowerCase());
                 if (ctxIdx >= 0) {
                     const originalPhrase = sentence.substring(ctxIdx, ctxIdx + word.en.length);
-                    const firstLetter = originalPhrase.charAt(0);
-                    const blankPart = '_'.repeat(Math.max(1, word.en.length * 2));
-                    sentence = sentence.substring(0, ctxIdx) + '<strong>' + firstLetter + blankPart + '</strong>' + sentence.substring(ctxIdx + word.en.length);
+                    const blankPart = '_'.repeat(Math.max(1, word.en.length + 4));
+                    sentence = sentence.substring(0, ctxIdx) + '<strong>' + blankPart + '</strong>' + sentence.substring(ctxIdx + word.en.length);
                 } else {
+                    // Fallback: try to blank the first word of the phrase
                     const firstWord = word.en.split(' ')[0];
-                    const firstLetter = word.en.charAt(0);
-                    const blankPart = '_'.repeat(Math.max(1, word.en.length * 2));
-                    sentence = word.ex2.replace(new RegExp('\\b' + firstWord + '\\b', 'i'), '<strong>' + firstLetter + blankPart + '</strong>');
+                    const blankPart = '_'.repeat(Math.max(1, word.en.length + 4));
+                    const regex = new RegExp('\\b' + firstWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+                    sentence = sentence.replace(regex, '<strong>' + blankPart + '</strong>');
                 }
 
                 const itemHtml = `
                     <div class="exercise-item">
-                        <div class="item-label">Fill in the word (${currentIndex + 1}/${vocab.length})</div>
-                        <div class="item-content">${sentence}</div>
-                        <div style="margin: 0.5rem 0 1rem; color: #666; font-size: 0.95rem;">(= <strong>${word.de}</strong>)</div>
+                        <div class="item-label">What is the English word/phrase? (${currentIndex + 1}/${vocab.length})</div>
+                        <div style="margin: 0.5rem 0 1rem; font-size: 1.3rem; font-weight: 600; color: #1a1a1a;">${word.de}</div>
+                        <div class="item-content" style="font-size: 0.95rem; color: #555; font-style: italic; margin-bottom: 1rem;">Context: ${sentence}</div>
                         <div class="input-inline">
                             <input type="text" class="context-input" placeholder="Type the English word/phrase"
                                 data-word="${word.en}" data-index="${currentIndex}">
