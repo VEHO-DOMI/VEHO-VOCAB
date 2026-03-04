@@ -1077,6 +1077,368 @@
                 font-size: 0.7rem;
             }
         }
+
+        /* ===========================
+           Multiple Choice Mode
+           =========================== */
+        .mc-prompt {
+            font-size: 1.25rem;
+            color: var(--gray-800);
+            font-weight: 600;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .mc-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .mc-option {
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            text-align: left;
+            color: var(--gray-800);
+            font-family: inherit;
+        }
+
+        .mc-option:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        .mc-option:disabled { cursor: not-allowed; opacity: 0.85; }
+        .mc-option.correct { border-color: var(--success); background: var(--success-light); }
+        .mc-option.wrong { border-color: var(--danger); background: var(--danger-light); }
+
+        .mc-feedback {
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .mc-feedback.correct { background: var(--success-light); color: var(--success); }
+        .mc-feedback.wrong { background: var(--danger-light); color: var(--danger); }
+
+        /* ===========================
+           Session Summary
+           =========================== */
+        .session-summary { text-align: center; }
+
+        .summary-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-card {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-stat {
+            padding: 1.25rem 0.75rem;
+            border-radius: var(--radius);
+            background: var(--gray-50);
+            border: 1.5px solid var(--gray-200);
+        }
+        .summary-stat.correct { background: var(--success-light); border-color: var(--success); }
+        .summary-stat.wrong { background: var(--danger-light); border-color: var(--danger); }
+        .summary-stat.almost { background: var(--warning-light); border-color: var(--warning); }
+
+        .summary-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+        .summary-stat.correct .summary-stat-number { color: var(--success); }
+        .summary-stat.wrong .summary-stat-number { color: var(--danger); }
+        .summary-stat.almost .summary-stat-number { color: var(--warning); }
+
+        .summary-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-details {
+            text-align: left;
+            background: var(--gray-50);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.95rem;
+        }
+        .summary-detail-row:last-child { border-bottom: none; }
+
+        .summary-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .summary-actions .button { width: auto; min-width: 150px; }
+
+        /* ===========================
+           Student Progress Dashboard
+           =========================== */
+        .progress-dashboard-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 0.85rem 1.5rem;
+            background: var(--gray-50);
+            border: 1.5px solid var(--gray-300);
+            border-radius: var(--radius);
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .progress-dashboard-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .progress-units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-unit-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s ease;
+        }
+        .progress-unit-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .pu-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .pu-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        .progress-ring-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-ring {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-ring-inner {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--gray-800);
+        }
+
+        .pu-stats {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+        .pu-stat-val { font-weight: 700; display: block; text-align: center; color: var(--gray-800); }
+
+        /* ===========================
+           Confetti & Animations
+           =========================== */
+        @keyframes confetti-fall {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+            100% { opacity: 0; transform: translateY(90vh) rotate(720deg) scale(0.5); }
+        }
+
+        .confetti-piece {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.5rem;
+            z-index: 9999;
+            animation: confetti-fall var(--duration, 2.5s) ease-out forwards;
+        }
+
+        @keyframes correct-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .feedback.show.correct-anim { animation: correct-pulse 0.4s ease-out; }
+
+        @keyframes mastery-pop {
+            from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .mastery-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 1.5rem 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            text-align: center;
+            animation: mastery-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .mastery-modal-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+        .mastery-modal-word {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ===========================
+           Teacher Leaderboard
+           =========================== */
+        .leaderboard-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-top: 1.5rem;
+        }
+
+        .leaderboard-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .leaderboard-tab {
+            background: none;
+            border: none;
+            padding: 0.65rem 1rem;
+            cursor: pointer;
+            color: var(--gray-500);
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .leaderboard-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .leaderboard-tab:hover:not(.active) { color: var(--gray-800); }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            gap: 0.75rem;
+        }
+        .leaderboard-item:last-child { border-bottom: none; }
+
+        .lb-rank {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            color: var(--gray-700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .lb-rank.gold { background: #fef3c7; color: #92400e; }
+        .lb-rank.silver { background: #f1f5f9; color: #475569; }
+        .lb-rank.bronze { background: #fed7aa; color: #9a3412; }
+
+        .lb-name { flex: 1; font-weight: 500; color: var(--gray-800); }
+        .lb-value { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
+
+        .class-progress-section { margin-top: 1.5rem; }
+
+        .class-progress-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .class-progress-item label {
+            width: 80px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        .class-progress-item .progress-bar { flex: 1; }
+        .class-progress-item .cp-label {
+            width: 45px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            text-align: right;
+        }
+
+        @media (max-width: 480px) {
+            .summary-card { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+            .summary-stat { padding: 0.75rem 0.5rem; }
+            .summary-stat-number { font-size: 1.5rem; }
+            .progress-units-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .leaderboard-tabs { overflow-x: auto; }
+            .leaderboard-tab { font-size: 0.75rem; padding: 0.5rem 0.65rem; white-space: nowrap; }
+        }
     </style>
 </head>
 <body>
@@ -1155,7 +1517,13 @@
                         <h3>Context + Definition</h3>
                         <p>Fill in the blank in a sentence. An English definition helps you find the word.</p>
                     </div>
+                    <div class="mode-card" data-mode="multiplechoice">
+                        <span class="mode-icon">🎯</span>
+                        <h3>Multiple Choice</h3>
+                        <p>Pick the correct answer from four options. Great for learning new words!</p>
+                    </div>
                 </div>
+                <button class="progress-dashboard-btn" id="progressDashboardBtn">📊 View Progress by Unit</button>
                 <div class="stats-section">
                     <h3>Your Statistics</h3>
                     <div class="stats-grid">
@@ -1283,6 +1651,46 @@
             </div>
         </div>
 
+        <!-- Multiple Choice Screen -->
+        <div class="screen" id="multiplechoiceScreen">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h2>Multiple Choice <span class="direction-badge" id="directionBadge5"></span></h2>
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-view="exercise" data-screen="multiplechoice">Practice</button>
+                        <button class="view-toggle-btn" data-view="overview" data-screen="multiplechoice">View All</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill5" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="exercise-content" id="multiplechoiceContent">
+                </div>
+                <div class="vocab-overview" id="multiplechoiceOverview">
+                </div>
+            </div>
+        </div>
+
+        <!-- Session Summary Screen -->
+        <div class="screen" id="sessionSummaryScreen">
+            <div class="session-summary">
+                <h2 id="summaryTitle">Session Complete!</h2>
+                <div class="summary-content" id="summaryContent"></div>
+                <div class="summary-actions">
+                    <button class="button" id="summaryAgainBtn">Practice Again</button>
+                    <button class="button secondary" id="summaryHomeBtn">Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Progress Dashboard Screen -->
+        <div class="screen" id="progressDashboardScreen">
+            <div>
+                <h2>Your Progress</h2>
+                <div class="progress-units-grid" id="progressUnitsGrid"></div>
+            </div>
+        </div>
+
         <!-- Teacher Dashboard Screen -->
         <div class="screen" id="teacherDashboard">
             <div class="stats-section">
@@ -1300,11 +1708,34 @@
                                 <th>Learning</th>
                                 <th>New</th>
                                 <th>Sessions</th>
+                                <th>Streak</th>
                                 <th>Last Login</th>
                             </tr>
                         </thead>
                         <tbody id="studentTableBody"></tbody>
                     </table>
+                </div>
+                <div class="class-progress-section" id="classProgressSection" style="display:none;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1rem; color: var(--gray-700);">Class Progress</h3>
+                    <div class="class-progress-item">
+                        <label>Mastered</label>
+                        <div class="progress-bar"><div class="progress-fill" id="classMasteredBar" style="background: var(--success); width: 0%"></div></div>
+                        <span class="cp-label" id="classMasteredLabel">0%</span>
+                    </div>
+                    <div class="class-progress-item">
+                        <label>Learning</label>
+                        <div class="progress-bar"><div class="progress-fill" id="classLearningBar" style="background: var(--accent); width: 0%"></div></div>
+                        <span class="cp-label" id="classLearningLabel">0%</span>
+                    </div>
+                </div>
+                <div class="leaderboard-section" id="leaderboardSection" style="display:none;">
+                    <h3 style="margin-bottom: 0.75rem; font-size: 1rem; color: var(--gray-700);">Leaderboard</h3>
+                    <div class="leaderboard-tabs">
+                        <button class="leaderboard-tab active" data-sort="mastered">Words Mastered</button>
+                        <button class="leaderboard-tab" data-sort="sessions">Sessions</button>
+                        <button class="leaderboard-tab" data-sort="streak">Streak</button>
+                    </div>
+                    <div id="leaderboardContent"></div>
                 </div>
                 <div class="dashboard-empty" id="dashboardEmpty" style="display:none;">
                     No students have logged in yet.
@@ -3265,6 +3696,13 @@
                 new: 0,
                 sessions: 0,
                 streak: 0
+            },
+            sessionStats: {
+                correct: 0,
+                wrong: 0,
+                almost: 0,
+                newWordsLearned: 0,
+                startTime: null
             }
         };
 
@@ -3660,9 +4098,26 @@
 
         function getFilteredVocabulary() {
             const vocab = getClassVocabulary(appState.user ? appState.user.code : '5B');
-            return appState.currentList === 'all'
-                ? vocab
+            let filtered = appState.currentList === 'all'
+                ? [...vocab]
                 : vocab.filter(w => w.l === appState.currentList);
+
+            // Smart ordering: prioritize weaker words (except flashcards)
+            if (appState.currentMode && appState.currentMode !== 'flashcard') {
+                filtered = sortVocabularyByDifficulty(filtered);
+            }
+            return filtered;
+        }
+
+        function sortVocabularyByDifficulty(vocab) {
+            return [...vocab].sort((a, b) => {
+                const da = appState.sessionData[a.en] || { correct: 0, interval: 1000 };
+                const db = appState.sessionData[b.en] || { correct: 0, interval: 1000 };
+                const scoreA = (da.correct * 100) + (da.interval / 1000);
+                const scoreB = (db.correct * 100) + (db.interval / 1000);
+                // Add small random factor to avoid identical order every time
+                return (scoreA + Math.random() * 10) - (scoreB + Math.random() * 10);
+            });
         }
 
         // ===========================
@@ -3745,6 +4200,12 @@
         function startMode() {
             appState.stats.sessions = (appState.stats.sessions || 0) + 1;
 
+            // Initialize session tracking
+            appState.sessionStats = {
+                correct: 0, wrong: 0, almost: 0,
+                newWordsLearned: 0, startTime: Date.now()
+            };
+
             // Reset view toggles to Practice mode
             document.querySelectorAll('.view-toggle-btn[data-view="exercise"]').forEach(b => b.classList.add('active'));
             document.querySelectorAll('.view-toggle-btn[data-view="overview"]').forEach(b => b.classList.remove('active'));
@@ -3764,6 +4225,9 @@
                     break;
                 case 'context':
                     startContext();
+                    break;
+                case 'multiplechoice':
+                    startMultipleChoice();
                     break;
             }
         }
@@ -3863,14 +4327,9 @@
 
             function renderItem() {
                 if (currentIndex >= vocab.length) {
-                    container.innerHTML += `
-                        <div style="text-align: center; padding: 2rem;">
-                            <h3>Excellent! You completed all ${vocab.length} words.</h3>
-                            <button class="button" onclick="goBack()">Back to Home</button>
-                        </div>
-                    `;
                     saveLocalStorage();
                     syncToFirebase();
+                    showSessionSummary();
                     return;
                 }
 
@@ -3971,14 +4430,9 @@
 
             function renderItem() {
                 if (currentIndex >= vocab.length) {
-                    container.innerHTML += `
-                        <div style="text-align: center; padding: 2rem;">
-                            <h3>Excellent! You completed all ${vocab.length} words.</h3>
-                            <button class="button" onclick="goBack()">Back to Home</button>
-                        </div>
-                    `;
                     saveLocalStorage();
                     syncToFirebase();
+                    showSessionSummary();
                     return;
                 }
 
@@ -4060,14 +4514,9 @@
 
             function renderItem() {
                 if (currentIndex >= vocab.length) {
-                    container.innerHTML += `
-                        <div style="text-align: center; padding: 2rem;">
-                            <h3>Excellent! You completed all ${vocab.length} words.</h3>
-                            <button class="button" onclick="goBack()">Back to Home</button>
-                        </div>
-                    `;
                     saveLocalStorage();
                     syncToFirebase();
+                    showSessionSummary();
                     return;
                 }
 
@@ -4193,29 +4642,41 @@
         // Session Data & Spaced Repetition
         // ===========================
         function updateSessionData(word, difficulty) {
-            if (!appState.sessionData[word]) {
+            const isNew = !appState.sessionData[word];
+            if (isNew) {
                 appState.sessionData[word] = {
                     correct: 0,
                     interval: 1000,
                     nextReview: Date.now(),
                     lastReviewed: null
                 };
+                appState.sessionStats.newWordsLearned++;
             }
 
             const data = appState.sessionData[word];
+            const wasMastered = data.correct >= 3 && data.interval >= 360000;
             data.lastReviewed = Date.now();
 
             if (difficulty === 'easy') {
+                appState.sessionStats.correct++;
                 data.correct++;
                 data.interval = Math.max(1000, data.interval * 2.5);
             } else if (difficulty === 'good' || difficulty === 'almost') {
+                appState.sessionStats.almost++;
                 data.correct++;
                 data.interval = Math.max(1000, data.interval * 1.5);
             } else if (difficulty === 'wrong' || difficulty === 'hard') {
+                appState.sessionStats.wrong++;
                 data.interval = 60000; // 1 minute
             }
 
             data.nextReview = Date.now() + data.interval;
+
+            // Check for mastery transition → trigger celebration
+            const isNowMastered = data.correct >= 3 && data.interval >= 360000;
+            if (!wasMastered && isNowMastered) {
+                triggerMasteryAnimation(word);
+            }
 
             loadStats();
             saveLocalStorage();
@@ -4231,6 +4692,237 @@
             document.getElementById('directionBadge2').textContent = badge;
             document.getElementById('directionBadge3').textContent = badge;
             document.getElementById('directionBadge4').textContent = badge;
+            document.getElementById('directionBadge5').textContent = badge;
+        }
+
+        // ===========================
+        // Multiple Choice Mode
+        // ===========================
+        function startMultipleChoice() {
+            const vocab = getFilteredVocabulary();
+            if (vocab.length === 0) return;
+
+            updateDirectionBadges();
+            const container = document.getElementById('multiplechoiceContent');
+            container.innerHTML = '';
+
+            let currentIndex = 0;
+
+            function getDistractors(correctAnswer, correctIndex) {
+                const allVocab = getClassVocabulary(appState.user ? appState.user.code : '5B');
+                const isDeToEn = appState.direction === 'de-en';
+                const candidates = allVocab
+                    .filter(w => w.en.toLowerCase() !== vocab[correctIndex].en.toLowerCase())
+                    .map(w => isDeToEn ? w.en : w.de);
+                const shuffled = candidates.sort(() => Math.random() - 0.5);
+                return shuffled.slice(0, 3);
+            }
+
+            function renderItem() {
+                if (currentIndex >= vocab.length) {
+                    saveLocalStorage();
+                    syncToFirebase();
+                    showSessionSummary();
+                    return;
+                }
+
+                const word = vocab[currentIndex];
+                const isDeToEn = appState.direction === 'de-en';
+                const prompt = isDeToEn ? word.de : word.en;
+                const correctAnswer = isDeToEn ? word.en : word.de;
+
+                const distractors = getDistractors(correctAnswer, currentIndex);
+                const allOptions = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
+
+                const optionsHtml = allOptions.map(option => `
+                    <button class="mc-option" data-correct="${option === correctAnswer}">${option}</button>
+                `).join('');
+
+                container.innerHTML = `
+                    <div class="exercise-item">
+                        <div class="item-label">Select the correct answer (${currentIndex + 1}/${vocab.length})</div>
+                        <div class="mc-prompt">${prompt}</div>
+                        <div class="mc-options">${optionsHtml}</div>
+                        <div class="feedback" id="mcFeedback"></div>
+                    </div>
+                `;
+
+                document.querySelectorAll('.mc-option').forEach(btn => {
+                    btn.addEventListener('click', () => handleMCAnswer(word, btn));
+                });
+
+                document.getElementById('progressFill5').style.width =
+                    ((currentIndex + 1) / vocab.length) * 100 + '%';
+            }
+
+            function handleMCAnswer(word, button) {
+                const isCorrect = button.dataset.correct === 'true';
+                const feedback = document.getElementById('mcFeedback');
+
+                document.querySelectorAll('.mc-option').forEach(btn => btn.disabled = true);
+
+                if (isCorrect) {
+                    updateSessionData(word.en, 'easy');
+                    button.classList.add('correct');
+                    feedback.textContent = '✓ Correct!';
+                    feedback.className = 'feedback show mc-feedback correct';
+                } else {
+                    updateSessionData(word.en, 'wrong');
+                    button.classList.add('wrong');
+                    document.querySelector('.mc-option[data-correct="true"]').classList.add('correct');
+                    feedback.textContent = '✗ Incorrect';
+                    feedback.className = 'feedback show mc-feedback wrong';
+                }
+
+                setTimeout(() => {
+                    currentIndex++;
+                    renderItem();
+                }, 1200);
+            }
+
+            renderItem();
+            pushScreen('multiplechoiceScreen');
+        }
+
+        // ===========================
+        // Session Summary
+        // ===========================
+        function showSessionSummary() {
+            const ss = appState.sessionStats;
+            const total = ss.correct + ss.wrong + ss.almost;
+            const accuracy = total > 0 ? Math.round((ss.correct / total) * 100) : 0;
+            const elapsed = Math.round((Date.now() - (ss.startTime || Date.now())) / 1000);
+            const mins = Math.floor(elapsed / 60);
+            const secs = elapsed % 60;
+
+            document.getElementById('summaryContent').innerHTML = `
+                <div class="summary-card">
+                    <div class="summary-stat correct">
+                        <div class="summary-stat-number">${ss.correct}</div>
+                        <div class="summary-stat-label">Correct</div>
+                    </div>
+                    <div class="summary-stat almost">
+                        <div class="summary-stat-number">${ss.almost}</div>
+                        <div class="summary-stat-label">Almost</div>
+                    </div>
+                    <div class="summary-stat wrong">
+                        <div class="summary-stat-number">${ss.wrong}</div>
+                        <div class="summary-stat-label">Wrong</div>
+                    </div>
+                </div>
+                <div class="summary-details">
+                    <div class="summary-detail-row">
+                        <span>Accuracy</span>
+                        <strong>${accuracy}%</strong>
+                    </div>
+                    <div class="summary-detail-row">
+                        <span>New words seen</span>
+                        <strong>${ss.newWordsLearned}</strong>
+                    </div>
+                    <div class="summary-detail-row">
+                        <span>Total reviewed</span>
+                        <strong>${total}</strong>
+                    </div>
+                    <div class="summary-detail-row">
+                        <span>Time</span>
+                        <strong>${mins}m ${secs}s</strong>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('summaryAgainBtn').onclick = () => { startMode(); };
+            document.getElementById('summaryHomeBtn').onclick = () => {
+                // Navigate back to home
+                navigationStack = ['homeScreen'];
+                pushScreen('homeScreen');
+                loadStats();
+            };
+
+            pushScreen('sessionSummaryScreen');
+        }
+
+        // ===========================
+        // Student Progress Dashboard
+        // ===========================
+        function renderProgressDashboard() {
+            const classCode = appState.user ? appState.user.code : '5B';
+            const vocab = getClassVocabulary(classCode);
+            const classConfig = CLASSES[classCode];
+            const grid = document.getElementById('progressUnitsGrid');
+            grid.innerHTML = '';
+
+            // Find all unique list numbers
+            const listNums = [...new Set(vocab.map(w => w.l))].sort((a, b) => a - b);
+
+            listNums.forEach(ln => {
+                const words = vocab.filter(w => w.l === ln);
+                let mastered = 0, learning = 0, newCount = 0;
+                words.forEach(w => {
+                    const d = appState.sessionData[w.en];
+                    if (d && d.correct >= 3 && d.interval >= 360000) mastered++;
+                    else if (d && d.correct > 0) learning++;
+                    else newCount++;
+                });
+                const total = words.length;
+                const mPct = Math.round((mastered / total) * 100);
+                const lPct = Math.round((learning / total) * 100);
+                const mAngle = (mastered / total) * 360;
+                const lAngle = ((mastered + learning) / total) * 360;
+                const listName = classConfig && classConfig.lists && classConfig.lists[ln]
+                    ? classConfig.lists[ln] : 'Unit ' + ln;
+
+                const card = document.createElement('div');
+                card.className = 'progress-unit-card';
+                card.innerHTML = `
+                    <div class="pu-title">Unit ${ln} <span class="pu-subtitle">${listName}</span></div>
+                    <div class="progress-ring-container">
+                        <div class="progress-ring" style="background: conic-gradient(var(--success) 0deg ${mAngle}deg, var(--accent) ${mAngle}deg ${lAngle}deg, var(--gray-200) ${lAngle}deg 360deg);">
+                            <div class="progress-ring-inner">${mPct}%</div>
+                        </div>
+                    </div>
+                    <div class="pu-stats">
+                        <div><span class="pu-stat-val">${mastered}</span>Mastered</div>
+                        <div><span class="pu-stat-val">${learning}</span>Learning</div>
+                        <div><span class="pu-stat-val">${newCount}</span>New</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById('progressDashboardBtn').addEventListener('click', () => {
+            renderProgressDashboard();
+            pushScreen('progressDashboardScreen');
+        });
+
+        // ===========================
+        // Confetti & Mastery Animations
+        // ===========================
+        function triggerConfetti() {
+            const emojis = ['🎉', '✨', '⭐', '🌟', '💫', '🎊'];
+            for (let i = 0; i < 15; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                piece.style.left = (Math.random() * 100) + 'vw';
+                piece.style.top = (-10 - Math.random() * 20) + 'px';
+                piece.style.setProperty('--duration', (2 + Math.random() * 1.5) + 's');
+                piece.style.animationDelay = (Math.random() * 0.5) + 's';
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 4000);
+            }
+        }
+
+        function triggerMasteryAnimation(word) {
+            triggerConfetti();
+            const modal = document.createElement('div');
+            modal.className = 'mastery-modal';
+            modal.innerHTML = `
+                <div class="mastery-modal-text">🎓 Word Mastered!</div>
+                <div class="mastery-modal-word">${word}</div>
+            `;
+            document.body.appendChild(modal);
+            setTimeout(() => modal.remove(), 2200);
         }
 
         // ===========================
@@ -4272,6 +4964,7 @@
                         learning: data.stats?.learning || 0,
                         newWords: data.stats?.new || totalWords,
                         sessions: data.stats?.sessions || 0,
+                        streak: data.stats?.streak || 0,
                         lastLogin: data.lastLogin ? data.lastLogin.toDate() : null
                     });
                 });
@@ -4283,11 +4976,13 @@
                 const totalStudents = students.length;
                 const avgMastered = Math.round(students.reduce((s, st) => s + st.mastered, 0) / totalStudents);
                 const avgSessions = Math.round(students.reduce((s, st) => s + st.sessions, 0) / totalStudents);
+                const now = new Date();
                 const activeToday = students.filter(s => {
                     if (!s.lastLogin) return false;
-                    const today = new Date();
-                    return s.lastLogin.toDateString() === today.toDateString();
+                    return s.lastLogin.toDateString() === now.toDateString();
                 }).length;
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                const activeThisWeek = students.filter(s => s.lastLogin && s.lastLogin >= weekAgo).length;
 
                 document.getElementById('dashboardSummary').innerHTML = `
                     <div class="stat-box">
@@ -4295,16 +4990,16 @@
                         <div class="label">Total Students</div>
                     </div>
                     <div class="stat-box">
-                        <div class="number">${avgMastered}</div>
-                        <div class="label">Avg. Mastered</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="number">${avgSessions}</div>
-                        <div class="label">Avg. Sessions</div>
-                    </div>
-                    <div class="stat-box">
                         <div class="number">${activeToday}</div>
                         <div class="label">Active Today</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">${activeThisWeek}</div>
+                        <div class="label">Active This Week</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">${avgMastered}</div>
+                        <div class="label">Avg. Mastered</div>
                     </div>
                 `;
 
@@ -4328,9 +5023,33 @@
                         <td>${student.learning}</td>
                         <td>${student.newWords}</td>
                         <td>${student.sessions}</td>
+                        <td>${student.streak || 0}</td>
                         <td>${lastLoginStr}</td>
                     `;
                     tbody.appendChild(row);
+                });
+
+                // Class progress bars
+                const avgMasteredPct = totalWords > 0 ? Math.round((avgMastered / totalWords) * 100) : 0;
+                const avgLearning = Math.round(students.reduce((s, st) => s + st.learning, 0) / totalStudents);
+                const avgLearningPct = totalWords > 0 ? Math.round((avgLearning / totalWords) * 100) : 0;
+
+                document.getElementById('classProgressSection').style.display = '';
+                document.getElementById('classMasteredBar').style.width = avgMasteredPct + '%';
+                document.getElementById('classMasteredLabel').textContent = avgMasteredPct + '%';
+                document.getElementById('classLearningBar').style.width = avgLearningPct + '%';
+                document.getElementById('classLearningLabel').textContent = avgLearningPct + '%';
+
+                // Leaderboard
+                document.getElementById('leaderboardSection').style.display = '';
+                renderLeaderboard(students, 'mastered');
+
+                document.querySelectorAll('.leaderboard-tab').forEach(tab => {
+                    tab.onclick = () => {
+                        document.querySelectorAll('.leaderboard-tab').forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        renderLeaderboard(students, tab.dataset.sort);
+                    };
                 });
 
             } catch (e) {
@@ -4339,6 +5058,24 @@
                 document.getElementById('dashboardEmpty').textContent = 'Error loading student data. Please try again.';
                 document.getElementById('studentTable').style.display = 'none';
             }
+        }
+
+        function renderLeaderboard(students, sortBy) {
+            const sorted = [...students].sort((a, b) => (b[sortBy] || 0) - (a[sortBy] || 0));
+            const labels = { mastered: 'words', sessions: 'sessions', streak: 'days' };
+            const content = document.getElementById('leaderboardContent');
+
+            content.innerHTML = sorted.slice(0, 10).map((s, i) => {
+                const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+                const rankText = i < 3 ? ['🥇','🥈','🥉'][i] : (i + 1);
+                return `
+                    <div class="leaderboard-item">
+                        <div class="lb-rank ${rankClass}">${rankText}</div>
+                        <div class="lb-name">${s.name}</div>
+                        <div class="lb-value">${s[sortBy] || 0} ${labels[sortBy] || ''}</div>
+                    </div>
+                `;
+            }).join('');
         }
 
         document.getElementById('dashboardRefresh').addEventListener('click', () => {
