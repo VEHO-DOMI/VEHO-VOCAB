@@ -959,7 +959,7 @@
                     <div class="mode-card" data-mode="definition">
                         <span class="mode-icon">📖</span>
                         <h3>Definitions</h3>
-                        <p>Read an English definition and type the matching word or phrase.</p>
+                        <p>Read the German meaning and type the correct English word or phrase.</p>
                     </div>
                     <div class="mode-card" data-mode="context">
                         <span class="mode-icon">🔤</span>
@@ -1958,12 +1958,12 @@
                 }
 
                 const word = vocab[currentIndex];
-                const definition = word.def || word.de;
+                const germanMeaning = word.de;
 
                 const itemHtml = `
                     <div class="exercise-item">
-                        <div class="item-label">Fill in the correct word or phrase (${currentIndex + 1}/${vocab.length})</div>
-                        <div class="item-content">${definition}: <strong>________</strong></div>
+                        <div class="item-label">What is the English word or phrase for this? (${currentIndex + 1}/${vocab.length})</div>
+                        <div class="item-content">${germanMeaning}: <strong>________</strong></div>
                         <div class="input-inline">
                             <input type="text" class="def-input" placeholder="Type the English word/phrase"
                                 data-word="${word.en}" data-index="${currentIndex}">
