@@ -3125,13 +3125,14 @@
         // ===========================
         // Class Configuration
         // ===========================
+        // Single teacher password for all classes
+        const TEACHER_PASSWORD = "veho2025";
+
         // Add new classes here. Each class needs a code (used as login),
-        // a display name, a teacher password, and list names.
-        // Vocabulary arrays can be added per class in CLASS_VOCABULARY.
+        // a display name, and list names.
         const CLASSES = {
             "5B": {
                 name: "5B 2025/26",
-                teacherPassword: "veho5b2025",
                 lists: {
                     1: "Social Life & School",
                     2: "Media & Society",
@@ -3143,7 +3144,6 @@
             },
             "4B": {
                 name: "4B 2025/26",
-                teacherPassword: "veho4b2025",
                 lists: {
                     1: "Ireland & Culture",
                     2: "Crime & Mystery",
@@ -3162,7 +3162,6 @@
             },
             "3A": {
                 name: "3A 2025/26",
-                teacherPassword: "veho3a2025",
                 lists: {
                     1: "Auditions & Music",
                     2: "Activities & Coincidences",
@@ -3182,7 +3181,6 @@
             },
             "2A": {
                 name: "2A 2025/26",
-                teacherPassword: "veho2a2025",
                 lists: {
                     1: "School Subjects & Daily Routines",
                     2: "Parties & Online Safety",
@@ -3376,7 +3374,7 @@
                     showLoginError('Please enter the teacher password.');
                     return;
                 }
-                if (teacherPw !== classConfig.teacherPassword) {
+                if (teacherPw !== TEACHER_PASSWORD) {
                     showLoginError('Incorrect teacher password.');
                     return;
                 }
